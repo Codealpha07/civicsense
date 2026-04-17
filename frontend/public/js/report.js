@@ -538,7 +538,7 @@
           }));
 
           // Redirect to report success page with report ID
-          window.location.href = `/report-success.html?reportId=${result.data._id}`;
+          window.location.href = `/report-success?reportId=${result.data._id}`;
         } else {
           // Handle submission error
           showMessage(result.message || 'Failed to submit report', true);

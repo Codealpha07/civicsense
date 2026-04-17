@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CivicVerse – My Reports</title>
+  <title>CivicVerse – Citizen Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -136,7 +136,7 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 1);
       backdrop-filter: blur(30px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       transition: var(--transition-smooth);
@@ -457,6 +457,20 @@
       color: white;
       background: var(--premium-gradient);
       border-radius: 16px;
+      border-radius: 16px;
+    }
+
+    .avatar-initials {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      background: var(--premium-gradient);
+      border-radius: 16px;
     }
 
     /* Main Content */
@@ -530,57 +544,6 @@
       margin-top: 3rem;
     }
 
-    /* Achievement Sections */
-    .achievement-section {
-      background: var(--bg-secondary);
-      border-radius: var(--border-radius-lg);
-      padding: 3.5rem;
-      margin-bottom: 4rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: var(--shadow-light);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .achievement-section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
-      opacity: 0;
-      transition: var(--transition-smooth);
-    }
-
-    .achievement-section:hover::before {
-      opacity: 1;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 3rem;
-    }
-
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.875rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      color: var(--text-primary);
-    }
-
-    .section-title i {
-      color: var(--text-accent);
-      font-size: 1.5rem;
-    }
-
-    /* Stats Cards */
     .stat-card {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
@@ -650,20 +613,305 @@
       color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Report Cards */
-    .report-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(25px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      padding: 2.5rem;
-      margin-bottom: 2rem;
+    /* Quick Actions */
+    .quick-actions {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .action-card {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem 2rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
       transition: var(--transition-elastic);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-light);
+    }
+
+    .action-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--premium-gradient);
+      transition: var(--transition-smooth);
+      z-index: -1;
+    }
+
+    .action-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      transition: var(--transition-smooth);
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+    }
+
+    .action-card:hover::before {
+      left: 0;
+    }
+
+    .action-card:hover::after {
+      width: 400px;
+      height: 400px;
+    }
+
+    .action-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: var(--shadow-heavy);
+      color: white;
+    }
+
+    .action-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin: 0 auto 1.5rem;
+      transition: var(--transition-smooth);
+    }
+
+    .action-card:hover .action-icon {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .action-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      transition: var(--transition-smooth);
+    }
+
+    .action-description {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      transition: var(--transition-smooth);
+    }
+
+    .action-card:hover .action-description {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* Advanced Stats Grid */
+    .advanced-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .advanced-stat-card {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-light);
+      transition: var(--transition-elastic);
+    }
+
+    .advanced-stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 150px;
+      height: 150px;
+      background: var(--premium-gradient);
+      border-radius: 50%;
+      opacity: 0.1;
+      transform: translate(50px, -50px);
+      transition: var(--transition-smooth);
+    }
+
+    .advanced-stat-card:hover::before {
+      transform: translate(30px, -30px) scale(1.2);
+    }
+
+    .advanced-stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .stat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .stat-trend {
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
       position: relative;
       overflow: hidden;
     }
 
-    .report-card::before {
+    .stat-trend::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transform: translateX(-100%);
+      transition: var(--transition-smooth);
+    }
+
+    .stat-trend:hover::before {
+      transform: translateX(100%);
+    }
+
+    .stat-trend.up {
+      background: rgba(72, 187, 120, 0.2);
+      color: #38a169;
+      border: 1px solid rgba(72, 187, 120, 0.3);
+    }
+
+    .stat-trend.down {
+      background: rgba(245, 87, 108, 0.2);
+      color: #e53e3e;
+      border: 1px solid rgba(245, 87, 108, 0.3);
+    }
+
+    .stat-value {
+      font-size: 2.75rem;
+      font-weight: 900;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .stat-progress {
+      height: 8px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .stat-progress-bar {
+      height: 100%;
+      background: var(--premium-gradient);
+      border-radius: 4px;
+      transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-progress-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      animation: progressShimmer 2s infinite;
+    }
+
+    @keyframes progressShimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Impact Section */
+    .impact-section {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 3.5rem;
+      margin-bottom: 4rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .impact-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .impact-section:hover::before {
+      opacity: 1;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.875rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-primary);
+    }
+
+    .section-title i {
+      color: var(--text-accent);
+      font-size: 1.5rem;
+    }
+
+    /* Impact Card */
+    .impact-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(25px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-elastic);
+    }
+
+    .impact-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -675,335 +923,231 @@
       transition: var(--transition-smooth);
     }
 
-    .report-card:hover::before {
-      opacity: 0.05;
+    .impact-card:hover::before {
+      opacity: 0.08;
     }
 
-    .report-card:hover {
-      transform: translateY(-8px) scale(1.02);
+    .impact-card:hover {
+      transform: translateY(-8px);
       box-shadow: var(--shadow-heavy);
     }
 
-    /* Status Badges */
-    .status-badge {
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: inline-flex;
+    .impact-icon {
+      font-size: 2.5rem;
+      margin-right: 1rem;
+    }
+
+    .impact-stat {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .impact-stat .h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+
+    .badge-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      margin: 0.25rem;
+      transition: var(--transition-smooth);
+    }
+
+    .badge-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .badge-icon-small {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      background: var(--warning-gradient);
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
     }
 
-    .status-active {
-      background: rgba(13, 110, 253, 0.1);
-      color: #0d6efd;
-      border: 1px solid rgba(13, 110, 253, 0.2);
+    /* Activity Section */
+    .activity-section {
+      background: var(--bg-secondary);
+      border-radius: var(--border-radius-lg);
+      padding: 3.5rem;
+      margin-bottom: 4rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-light);
+      position: relative;
+      overflow: hidden;
     }
 
-    .status-in-progress {
-      background: rgba(255, 193, 7, 0.1);
-      color: #ffc107;
-      border: 1px solid rgba(255, 193, 7, 0.2);
+    .activity-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+      opacity: 0;
+      transition: var(--transition-smooth);
     }
 
-    .status-resolved {
-      background: rgba(25, 135, 84, 0.1);
-      color: #198754;
-      border: 1px solid rgba(25, 135, 84, 0.2);
+    .activity-section:hover::before {
+      opacity: 1;
     }
 
-    .status-overdue {
-      background: rgba(220, 53, 69, 0.1);
-      color: #dc3545;
-      border: 1px solid rgba(220, 53, 69, 0.2);
+    /* Activity Cards */
+    .activity-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(25px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: var(--transition-elastic);
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Category Icons */
-    .category-icon {
+    .activity-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--premium-gradient);
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .activity-card:hover::before {
+      opacity: 0.08;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .activity-icon {
       width: 50px;
       height: 50px;
       border-radius: 15px;
       background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-primary);
       font-size: 1.25rem;
       transition: var(--transition-smooth);
     }
 
-    .report-card:hover .category-icon {
-      background: rgba(255, 255, 255, 0.2);
+    .activity-card:hover .activity-icon {
+      background: var(--premium-gradient);
       color: white;
+      transform: scale(1.1);
     }
 
-    /* Progress Steps */
-    .progress-step {
-      flex: 1;
-      text-align: center;
-      position: relative;
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-    }
-
-    .progress-step .step-dot {
-      width: 16px;
-      height: 16px;
-      background-color: #dee2e6;
-      border-radius: 50%;
-      margin: 0 auto 5px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .progress-step.completed .step-dot {
-      background: var(--success-gradient);
-    }
-
-    .progress-step.active .step-dot {
-      background: var(--premium-gradient);
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-    }
-
-    .progress {
-      height: 8px;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .progress-bar {
-      background: var(--premium-gradient);
-      border-radius: 4px;
-      transition: width 2s ease;
-    }
-
-    /* Filters Card */
-    .filters-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      margin-bottom: 2rem;
-      transition: var(--transition-smooth);
-    }
-
-    .filters-card:hover {
-      box-shadow: var(--shadow-medium);
-    }
-
-    .form-control, .form-select {
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      color: var(--text-primary);
-      transition: var(--transition-smooth);
-    }
-
-    .form-control:focus, .form-select:focus {
-      border-color: var(--text-accent);
-      box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
+    /* Badges Section */
+    .badges-section {
       background: var(--bg-secondary);
-    }
-
-    /* Buttons */
-    .btn {
-      border-radius: 12px;
-      font-weight: 600;
-      transition: var(--transition-smooth);
+      border-radius: var(--border-radius-lg);
+      padding: 3.5rem;
+      margin-bottom: 4rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: var(--shadow-light);
       position: relative;
       overflow: hidden;
     }
 
-    .btn::before {
+    .badges-section::before {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      background: linear-gradient(45deg, transparent, rgba(102, 126, 234, 0.05), transparent);
+      opacity: 0;
       transition: var(--transition-smooth);
     }
 
-    .btn:hover::before {
-      left: 100%;
+    .badges-section:hover::before {
+      opacity: 1;
     }
 
-    .btn-primary {
-      background: var(--premium-gradient);
-      border: none;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
-    }
-
-    .btn-outline-secondary {
-      border-color: var(--glass-border);
-      color: var(--text-primary);
+    .badge-card {
       background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-    }
-
-    .btn-outline-secondary:hover {
-      background: var(--premium-gradient);
-      border-color: transparent;
-      color: white;
-    }
-
-    /* Pagination */
-    .pagination {
-      border-radius: 50px;
-      overflow: hidden;
-      box-shadow: var(--shadow-light);
-    }
-
-    .page-link {
-      border: none;
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      color: var(--text-primary);
-      transition: var(--transition-smooth);
-    }
-
-    .page-item.active .page-link {
-      background: var(--premium-gradient);
-      color: white;
-    }
-
-    .page-link:hover {
-      background: var(--premium-gradient);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Modal */
-    .modal-content {
-      background: var(--bg-secondary);
+      backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      backdrop-filter: blur(30px);
-    }
-
-    .modal-header {
-      border-bottom: 1px solid var(--glass-border);
-    }
-
-    .modal-footer {
-      border-top: 1px solid var(--glass-border);
-    }
-
-    /* Timeline for modal */
-    .timeline {
+      padding: 2.5rem;
+      text-align: center;
+      transition: var(--transition-elastic);
       position: relative;
-      padding-left: 30px;
-      margin-bottom: 20px;
+      overflow: hidden;
+      height: 100%;
     }
 
-    .timeline:before {
+    .badge-card::before {
       content: '';
       position: absolute;
-      left: 10px;
       top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      width: 2px;
-      background: var(--glass-border);
+      background: var(--premium-gradient);
+      opacity: 0;
+      transition: var(--transition-smooth);
     }
 
-    .timeline-item {
-      position: relative;
-      padding-bottom: 20px;
+    .badge-card:hover::before {
+      opacity: 0.1;
     }
 
-    .timeline-item:last-child {
-      padding-bottom: 0;
+    .badge-card:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: var(--shadow-heavy);
     }
 
-    .timeline-marker {
-      position: absolute;
-      left: -30px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #dee2e6;
-      border: 3px solid var(--bg-secondary);
-      box-shadow: 0 0 0 2px #dee2e6;
-    }
-
-    .timeline-item.completed .timeline-marker {
-      background: var(--success-gradient);
-      box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
-    }
-
-    .timeline-content {
-      padding-left: 10px;
-    }
-
-    /* Loading Animation */
-    .loading {
+    .badge-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: var(--premium-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 3rem;
-      color: var(--text-secondary);
-    }
-
-    .spinner {
-      width: 28px;
-      height: 28px;
-      border: 3px solid rgba(0, 0, 0, 0.1);
-      border-top: 3px solid var(--premium-gradient);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-right: 0.75rem;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    /* Custom Dropdown */
-    .dropdown-menu {
-      background: var(--glass-bg);
-      backdrop-filter: blur(30px);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      box-shadow: var(--shadow-heavy);
-      padding: 1rem 0;
-      margin-top: 0;
-      transform: translateY(10px);
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-
-    .dropdown-menu.show {
-      transform: translateY(0);
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .dropdown-item {
-      padding: 0.8rem 1.5rem;
-      transition: var(--transition-smooth);
-      color: var(--text-primary);
-      white-space: nowrap;
-    }
-
-    .dropdown-item:hover {
-      background: var(--premium-gradient);
       color: white;
-      transform: translateX(5px);
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .badge-card:hover .badge-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .badge-card h6 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .badge-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
     /* Premium Footer */
@@ -1106,6 +1250,30 @@
       color: var(--text-accent);
     }
 
+    /* Loading Animation */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-top: 3px solid var(--premium-gradient);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 0.75rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     /* Scroll Reveal Animation */
     .scroll-reveal {
       opacity: 0;
@@ -1145,14 +1313,67 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
+      
+      .quick-actions {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      
+      .advanced-stats {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
 
       .section-title {
         font-size: 1.5rem;
       }
 
-      .achievement-section {
+      .impact-card,
+      .activity-section,
+      .badges-section {
         padding: 2rem 1.5rem;
       }
+    }
+
+    /* Hover Effects */
+    .hover-lift {
+      transition: var(--transition-smooth);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Glassmorphism Effects */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+    }
+
+    /* Custom Dropdown */
+    .dropdown-menu {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-heavy);
+      padding: 1rem 0;
+      margin-top: 1rem;
+    }
+
+    .dropdown-item {
+      padding: 0.8rem 1.5rem;
+      transition: var(--transition-smooth);
+      color: var(--text-primary);
+    }
+
+    .dropdown-item:hover {
+      background: var(--premium-gradient);
+      color: white;
+      transform: translateX(5px);
     }
   </style>
 </head>
@@ -1187,10 +1408,10 @@
       </div>
 
       <nav class="nav-links">
-        <a href="/citizen-dashboard.html" class="nav-link">Dashboard</a>
-        <a href="/report.html" class="nav-link">New Report</a>
-        <a href="/my-reports.html" class="nav-link active">My Reports</a>
-        <a href="/achievements.html" class="nav-link">Achievements</a>
+        <a href="/dashboard" class="nav-link active">Dashboard</a>
+        <a href="/report" class="nav-link">New Report</a>
+        <a href="/my-reports" class="nav-link">My Reports</a>
+        <a href="/achievements" class="nav-link">Achievements</a>
         <a href="/rewards.html" class="nav-link">Rewards</a>
       </nav>
 
@@ -1218,19 +1439,19 @@
               <div class="fw-semibold" id="ddUserName">Loading...</div>
               <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
             </div>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile">
               <i class="fas fa-user"></i> Profile
             </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports">
               <i class="fas fa-list"></i> My Reports
             </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements">
               <i class="fas fa-trophy"></i> Achievements
             </a>
             <a class="dropdown-item d-flex align-items-center gap-2" href="/rewards.html">
               <i class="fas fa-gift"></i> Rewards
             </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings">
               <i class="fas fa-cog"></i> Settings
             </a>
             <hr class="dropdown-divider">
@@ -1255,136 +1476,157 @@
     <!-- Hero Section -->
     <section class="hero-section scroll-reveal">
       <div class="hero-content">
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h1 class="hero-title">My Reports</h1>
-            <p class="hero-subtitle">Track and manage all your civic reports in one place.</p>
-          </div>
-          <button class="btn btn-primary" onclick="window.location.href='/report.html'">
-            <i class="fas fa-plus-circle me-2"></i>New Report
-          </button>
-        </div>
+        <h1 class="hero-title">Welcome back, <span id="greeting">Citizen</span>!</h1>
+        <p class="hero-subtitle">Your civic engagement is making a real difference in the community</p>
         
-        <div class="hero-stats" id="statsCards">
-          <!-- Will be populated by JavaScript -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Performance Metrics -->
-    <section class="achievement-section" id="performanceMetrics">
-      <!-- Will be populated by JavaScript -->
-    </section>
-
-    <!-- Filters & Search -->
-    <section class="achievement-section filters-card">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-filter"></i>
-          Filter Reports
-        </h2>
-        <button class="btn btn-outline-secondary" id="resetFilters">Reset</button>
-      </div>
-      
-      <div class="row g-3">
-        <div class="col-md-5">
-          <div class="input-group">
-            <span class="input-group-text bg-transparent"><i class="fas fa-search"></i></span>
-            <input type="text" class="form-control" id="searchReports" placeholder="Search reports...">
-          </div>
-        </div>
-        <div class="col-md-2">
-          <select class="form-select" id="dateRangeFilter">
-            <option selected>Last 30 days</option>
-            <option>Last 7 days</option>
-            <option>Last 90 days</option>
-            <option>This year</option>
-            <option>All time</option>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <select class="form-select" id="categoryFilter">
-            <option selected>All Categories</option>
-            <option>Roads</option>
-            <option>Water</option>
-            <option>Electricity</option>
-            <option>Sanitation</option>
-            <option>Others</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <select class="form-select" id="statusFilter">
-            <option value="all" selected>All Status</option>
-            <option value="active">Active</option>
-            <option value="in-progress">In Progress</option>
-            <option value="resolved">Resolved</option>
-            <option value="overdue">Overdue</option>
-          </select>
-        </div>
-      </div>
-    </section>
-
-    <!-- Reports List -->
-    <section class="achievement-section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-list"></i>
-          Your Reports
-        </h2>
-      </div>
-      
-      <div id="reportsList" class="fade-in-up">
-        <!-- Will be populated by JavaScript -->
-      </div>
-
-      <!-- Pagination -->
-      <nav aria-label="Reports pagination" class="mt-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="text-muted">
-            Showing <span id="showingFrom">1</span> to <span id="showingTo">5</span> of <span id="totalItems">0</span> reports
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="me-3">
-              <select class="form-select form-select-sm" id="itemsPerPage" style="width: auto; display: inline-block;">
-                <option value="5">5 per page</option>
-                <option value="10" selected>10 per page</option>
-                <option value="25">25 per page</option>
-                <option value="50">50 per page</option>
-              </select>
+        <div class="hero-stats">
+          <div class="stat-card hover-lift">
+            <div class="stat-icon">
+              <i class="fas fa-chart-line"></i>
             </div>
-            <ul class="pagination mb-0" id="pagination">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
+            <div class="stat-value" id="statReported">0</div>
+            <div class="stat-label">Total Reports</div>
+          </div>
+          <div class="stat-card hover-lift">
+            <div class="stat-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-value" id="statResolved">0</div>
+            <div class="stat-label">Resolved Issues</div>
+          </div>
+          <div class="stat-card hover-lift">
+            <div class="stat-icon">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div class="stat-value" id="statPoints">0</div>
+            <div class="stat-label">Impact Points</div>
+          </div>
+          <div class="stat-card hover-lift">
+            <div class="stat-icon">
+              <i class="fas fa-percentage"></i>
+            </div>
+            <div class="stat-value" id="statRate">0%</div>
+            <div class="stat-label">Success Rate</div>
           </div>
         </div>
-      </nav>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions scroll-reveal">
+      <div class="action-card hover-lift" onclick="window.location.href='/report.html'">
+        <div class="action-icon">
+          <i class="fas fa-plus"></i>
+        </div>
+        <h3 class="action-title">New Report</h3>
+        <p class="action-description">Submit a new issue or concern to help improve your community</p>
+      </div>
+      <div class="action-card hover-lift" onclick="window.location.href='/my-reports.html'">
+        <div class="action-icon">
+          <i class="fas fa-list"></i>
+        </div>
+        <h3 class="action-title">My Reports</h3>
+        <p class="action-description">Track the progress of your submitted reports and updates</p>
+      </div>
+      <div class="action-card hover-lift" onclick="window.location.href='/achievements.html'">
+        <div class="action-icon">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <h3 class="action-title">Achievements</h3>
+        <p class="action-description">View your badges and milestones in civic engagement</p>
+      </div>
+      <div class="action-card hover-lift" onclick="window.location.href='/rewards.html'">
+        <div class="action-icon">
+          <i class="fas fa-gift"></i>
+        </div>
+        <h3 class="action-title">Rewards</h3>
+        <p class="action-description">Discover rewards and incentives for your civic contributions</p>
+      </div>
+    </section>
+
+    <!-- Advanced Stats -->
+    <section class="advanced-stats scroll-reveal">
+      <div class="advanced-stat-card hover-lift">
+        <div class="stat-header">
+          <span class="stat-label">Total Reports</span>
+          <span class="stat-trend up">+12%</span>
+        </div>
+        <div class="stat-value" id="totalReports">0</div>
+        <div class="stat-progress">
+          <div class="stat-progress-bar" style="width: 0%" id="totalReportsProgress"></div>
+        </div>
+      </div>
+      
+      <div class="advanced-stat-card hover-lift">
+        <div class="stat-header">
+          <span class="stat-label">Resolved Issues</span>
+          <span class="stat-trend up">+8%</span>
+        </div>
+        <div class="stat-value" id="resolvedIssues">0</div>
+        <div class="stat-progress">
+          <div class="stat-progress-bar" style="width: 0%" id="resolvedProgress"></div>
+        </div>
+      </div>
+      
+      <div class="advanced-stat-card hover-lift">
+        <div class="stat-header">
+          <span class="stat-label">Response Rate</span>
+          <span class="stat-trend up">+15%</span>
+        </div>
+        <div class="stat-value" id="responseRate">0%</div>
+        <div class="stat-progress">
+          <div class="stat-progress-bar" style="width: 0%" id="responseProgress"></div>
+        </div>
+      </div>
+      
+      <div class="advanced-stat-card hover-lift">
+        <div class="stat-header">
+          <span class="stat-label">Impact Score</span>
+          <span class="stat-trend up">+22%</span>
+        </div>
+        <div class="stat-value" id="impactScore">0</div>
+        <div class="stat-progress">
+          <div class="stat-progress-bar" style="width: 0%" id="impactProgress"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Summary -->
+    <section class="impact-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-star"></i>
+          Impact Summary
+        </h2>
+      </div>
+      
+      <div id="impactSummary">
+        <!-- Impact summary will be populated by JavaScript -->
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading your impact summary...
+        </div>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="activity-section scroll-reveal">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-history"></i>
+          Recent Activity
+        </h2>
+        <a href="/my-reports" class="btn btn-outline-primary">View All</a>
+      </div>
+      
+      <div id="recentActivityContainer">
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading recent activity...
+        </div>
+      </div>
     </section>
   </main>
-
-  <!-- Report Details Modal -->
-  <div class="modal fade" id="reportDetailsModal" tabindex="-1" aria-labelledby="reportDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="reportDetailsModalLabel">Report Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="reportDetailsContent">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Premium Footer -->
   <footer class="premium-footer">
@@ -1425,7 +1667,7 @@
                 </a>
               </li>
               <li class="mb-2">
-                <a href="/citizen-dashboard.html" class="footer-link">
+                <a href="/dashboard" class="footer-link">
                   <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
               </li>
@@ -1463,7 +1705,7 @@
         </div>
 
         <!-- Community Section -->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-4">
           <div class="footer-section">
             <h6>Community</h6>
             <ul class="list-unstyled">
@@ -1503,9 +1745,7 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
-  <script src="js/auth.js"></script>
-  <script src="js/my-reports.js"></script>
+  <script src="/js/citizen-dashboard.js"></script>
   
   <script>
     // Scroll Reveal Animation
@@ -1567,22 +1807,12 @@
     profileAvatar.addEventListener('click', (e) => {
       e.stopPropagation();
       dropdownOpen = !dropdownOpen;
-      
-      if (dropdownOpen) {
-        dropdownMenu.style.display = 'block';
-        setTimeout(() => dropdownMenu.classList.add('show'), 10);
-      } else {
-        dropdownMenu.classList.remove('show');
-        setTimeout(() => dropdownMenu.style.display = 'none', 300);
-      }
+      dropdownMenu.style.display = dropdownOpen ? 'block' : 'none';
     });
 
     document.addEventListener('click', () => {
-      if (dropdownOpen) {
-        dropdownOpen = false;
-        dropdownMenu.classList.remove('show');
-        setTimeout(() => dropdownMenu.style.display = 'none', 300);
-      }
+      dropdownOpen = false;
+      dropdownMenu.style.display = 'none';
     });
 
     // Notification Bell Animation
@@ -1594,15 +1824,16 @@
       }, 600);
     });
 
-    // Navigation active state
+    // Smooth scroll for nav links
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
+        // Add active class
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
     });
 
-    // Header scroll effects
+    // Add scroll effects
     let lastScrollTop = 0;
     const header = document.querySelector('.premium-header');
     
@@ -1617,7 +1848,7 @@
       
       lastScrollTop = scrollTop;
     });
-
+        
     // Parallax effect for hero section
     window.addEventListener('scroll', () => {
       const scrolled = window.pageYOffset;
@@ -1646,7 +1877,7 @@
 
     // Observe all cards for stagger animation
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.stat-card, .report-card');
+      const cards = document.querySelectorAll('.stat-card, .action-card, .advanced-stat-card');
       cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';

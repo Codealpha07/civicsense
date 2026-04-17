@@ -1,0 +1,19 @@
+.env
+**/.env
+# Optional: ignore local env variants
+.env.*
+
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
