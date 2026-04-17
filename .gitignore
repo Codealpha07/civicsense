@@ -1,5 +1,8 @@
-# Admin portal environment variables only
-adminportal/admin-portal/backend/.env
+# Environment variables
+.env
+adminportal/backend/.env
+backend/.env
+frontend/.env
 
 # Node modules
 node_modules/
