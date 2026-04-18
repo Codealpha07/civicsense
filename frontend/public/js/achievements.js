@@ -153,7 +153,7 @@ function setupThemeToggle() {
 // Check authentication and load user data
 document.addEventListener('DOMContentLoaded', async () => {
     if (!window.isAuthenticated()) {
-        window.location.href = '/citizen-login.html';
+        window.location.href = '/login';
         return;
     }
 

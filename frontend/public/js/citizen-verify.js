@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       showMsg('otpMsg', 'Verified! Redirecting...', true);
       setTimeout(() => {
-        window.location.href = '/citizen-dashboard';
+        window.location.href = '/dashboard';
       }, 1200);
     } catch (err) {
       showMsg('otpMsg', 'Server error. Try again.', false);
