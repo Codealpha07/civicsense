@@ -121,61 +121,91 @@ And empower **1000+ citizens** and **50+ municipalities** by 2026 with tools tha
 
 ## 🚀 Installation & Setup
 
-1. **Clone & Navigate**
+### Prerequisites
+- Node.js (v16 or higher)
+- MongoDB (local or Atlas)
+- Git
+
+### Quick Start
+
+1. **Clone the repository**
    ```bash
    git clone https://github.com/CtrlAlt07/civicsense.git
+   cd civicsense
    ```
 
-2. **Install Dependencies**
+2. **Setup Backend**
    ```bash
-   # Node.js backend & frontend
+   cd backend
    npm install
-   ```
-
-3. **Configure Environment**
-   ```bash
+   # Copy and configure environment variables
    cp .env.example .env
-   # Edit .env: MongoDB URI, JWT secrets, SMTP/Twilio creds
-   ```
-
-4. **Run Services**
-   ```bash
-   # In new terminal: Start Node.js server
+   # Edit .env with your configuration (MongoDB, JWT, SMTP)
    npm run dev
-
-   In a split terminal 
-   cd adminportal/backend
-   npm start 
    ```
+   Backend API will run on `http://localhost:5000`
 
-5. **Access**
-   - http://localhost:5000
+3. **Setup Frontend** (in a new terminal)
+   ```bash
+   cd frontend
+   npm install
+   # Copy and configure environment variables
+   cp .env.example .env
+   # Edit .env with your configuration
+   npm run dev
+   ```
+   Frontend will run on `http://localhost:3000`
+
+4. **Access the application**
+   - Frontend: http://localhost:3000
+   - Backend API: http://localhost:5000/api
+
+### Environment Variables
+
+#### Backend (.env)
+```env
+NODE_ENV=development
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/civicsense
+JWT_SECRET=your_super_secret_jwt_key
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your_email@gmail.com
+SMTP_PASS=your_app_password
+```
+
+#### Frontend (.env)
+```env
+FRONTEND_PORT=3000
+BACKEND_URL=http://localhost:5000
+```
 
 ## 🗂 Project Structure
 
 ```text
 civicsense/
-├── adminportal/         # React/Vue/HTML admin UI
-├── backend/             # Express server & API
+├── frontend/            # Separate frontend application
+│   ├── public/          # Static citizen front-end files
+│   │   ├── css/
+│   │   ├── js/
+│   │   └── *.html
+│   ├── server.js        # Frontend server with API proxy
+│   ├── package.json
+│   └── .env
+├── backend/             # Express API server
 │   ├── config/          # DB & global settings
 │   ├── controllers/     # Business logic
 │   ├── middleware/      # Auth, logging, error handling
 │   ├── models/          # Mongoose schemas
 │   ├── routes/          # Express routers
-│   └── server.js        # Entry point
-├── public/              # Static citizen front-end
-│   ├── css/
-│   ├── js/
-│   └── *.html
+│   ├── server.js        # Backend API entry point
+│   ├── package.json
+│   └── .env
+├── adminportal/         # Admin interface
 ├── uploads/             # User-uploaded files
-├── ml_api/              # FastAPI microservice for ML
-│   ├── main.py
-│   └── requirements.txt
-├── .env.example         # Environment variables template
-├── package.json         # Node project config
-├── roadmap.md           # Feature roadmap
-├── scratchpad.md        # Dev notes & lessons
-└── wireframe.md         # UX/UI wireframes
+├── .gitignore           # Git ignore rules
+├── README.md            # This file
+└── package.json         # Root package.json (if needed)
 ```
 
 ## 🔒 Security & Compliance

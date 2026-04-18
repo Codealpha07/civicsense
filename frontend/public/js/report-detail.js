@@ -21,7 +21,7 @@
   // Ensure the user is authenticated
   const token = localStorage.getItem('token');
   if (!token) {
-    window.location.href = '/citizen-login.html';
+    window.location.href = '/login';
     return;
   }
 

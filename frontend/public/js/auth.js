@@ -27,7 +27,7 @@ function logout() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = '/landing.html';
+    window.location.href = '/';
 }
 
 // Attach event listeners for logout links
@@ -43,7 +43,7 @@ function attachLogoutHandler() {
 // Protect a page or action: if not logged in, redirect to login with redirect param
 function requireLogin(redirectTo) {
     if (!isAuthenticated()) {
-        window.location.href = `/citizen-login.html?redirect=${encodeURIComponent(redirectTo)}`;
+        window.location.href = `/login?redirect=${encodeURIComponent(redirectTo)}`;
         return false;
     }
     return true;

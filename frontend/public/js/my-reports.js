@@ -41,7 +41,7 @@ let filteredReports = [];
 document.addEventListener('DOMContentLoaded', async () => {
   // Check authentication
   if (!window.isAuthenticated()) {
-    window.location.href = '/citizen-login.html';
+    window.location.href = '/login';
     return;
   }
 
@@ -465,7 +465,7 @@ function renderReports() {
           <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
           <h5>No reports found</h5>
           <p class="text-muted">Try adjusting your search or filter criteria</p>
-          <button class="btn btn-primary mt-2" onclick="window.location.href='/report.html'">
+          <button class="btn btn-primary mt-2" onclick="window.location.href='/report'">
             <i class="fas fa-plus-circle me-2"></i>Create New Report
           </button>
         </div>
@@ -697,7 +697,7 @@ function updatePerformanceMetrics() {
         <i class="fas fa-exclamation-circle fa-3x text-info mb-3"></i>
         <p class="lead">No reports filed yet.</p>
         <p class="text-muted">File your first report to see your performance metrics here!</p>
-        <button class="btn btn-primary mt-3" onclick="window.location.href='/report.html'">
+        <button class="btn btn-primary mt-3" onclick="window.location.href='/report'">
           <i class="fas fa-plus-circle me-2"></i>File New Report
         </button>
       </div>
