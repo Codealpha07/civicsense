@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="light">
+
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CivicSense - Achievements</title>
+  <title>CivicSense - Rewards</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
   <style>
     :root {
       --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -86,9 +89,17 @@
     }
 
     @keyframes premiumShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
     }
 
     /* Advanced Floating Elements */
@@ -117,13 +128,20 @@
     }
 
     @keyframes orbFloat {
-      0% { 
+      0% {
         transform: translateY(100vh) rotate(0deg) scale(0.8);
         opacity: 0;
       }
-      10% { opacity: 0.1; }
-      90% { opacity: 0.1; }
-      100% { 
+
+      10% {
+        opacity: 0.1;
+      }
+
+      90% {
+        opacity: 0.1;
+      }
+
+      100% {
         transform: translateY(-100vh) rotate(360deg) scale(1.2);
         opacity: 0;
       }
@@ -350,8 +368,15 @@
     }
 
     @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+
+      0%,
+      100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.2);
+      }
     }
 
     .theme-toggle {
@@ -508,8 +533,15 @@
     }
 
     @keyframes heroFloat {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-50px, -30px) rotate(180deg); }
+
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+
+      50% {
+        transform: translate(-50px, -30px) rotate(180deg);
+      }
     }
 
     .hero-content {
@@ -975,7 +1007,8 @@
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      
+      max-height: 80vh;
+      overflow-y: auto;
     }
 
     .dropdown-menu.show {
@@ -1117,8 +1150,13 @@
     }
 
     @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Scroll Reveal Animation */
@@ -1138,29 +1176,29 @@
       .header-content {
         padding: 1rem;
       }
-      
+
       .nav-links {
         display: none;
       }
-      
+
       .main-content {
         padding: 1.5rem;
         margin-top: 90px;
       }
-      
+
       .hero-section {
         padding: 2.5rem 1.5rem;
       }
-      
+
       .hero-title {
         font-size: 2.25rem;
       }
-      
+
       .hero-stats {
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
-      
+
       .badges-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
@@ -1175,7 +1213,7 @@
       }
     }
 
-    
+
     /* Hover Effects */
     .hover-lift {
       transition: var(--transition-smooth);
@@ -1218,10 +1256,11 @@
     }
   </style>
 </head>
+
 <body>
   <!-- Premium Background -->
   <div class="premium-bg"></div>
-  
+
   <!-- Floating Orbs -->
   <div class="floating-orbs">
     <div class="orb" style="left: 10%; width: 40px; height: 40px; animation-delay: 0s;"></div>
@@ -1252,8 +1291,8 @@
         <a href="/dashboard" class="nav-link">Dashboard</a>
         <a href="/report" class="nav-link">New Report</a>
         <a href="/my-reports" class="nav-link">My Reports</a>
-        <a href="/achievements" class="nav-link active">Achievements</a>
-        <a href="/rewards.html" class="nav-link">Rewards</a>
+        <a href="/achievements" class="nav-link">Achievements</a>
+        <a href="/rewards.html" class="nav-link active">Rewards</a>
       </nav>
 
       <div class="header-actions">
@@ -1261,7 +1300,7 @@
           <i class="fas fa-bell"></i>
           <span class="notification-badge">3</span>
         </button>
-        
+
         <div class="theme-toggle" id="themeToggle">
           <div class="theme-toggle-slider">
             <i class="fas fa-moon"></i>
@@ -1273,9 +1312,10 @@
             <img id="userAvatar" src="/images/default-avatar.png" alt="User Avatar">
             <div id="avatarInitials" class="avatar-initials" style="display: none;">U</div>
           </div>
-          
+
           <!-- Dropdown Menu -->
-          <div class="dropdown-menu dropdown-menu-end shadow-sm" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 250px; max-width: 280px; z-index: 1050; margin-top: 0.5rem;">
+          <div class="dropdown-menu dropdown-menu-end shadow-sm" id="profileDropdown"
+            style="display: none; position: absolute; right: -70px; top: 60px; min-width: 250px; max-width: 280px; z-index: 1050; margin-top: 0.5rem;">
             <div class="px-3 py-2 border-bottom">
               <div class="fw-semibold" id="ddUserName">Loading...</div>
               <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
@@ -1317,135 +1357,80 @@
     <!-- Hero Section -->
     <section class="hero-section scroll-reveal">
       <div class="hero-content">
-        <h1 class="hero-title">Your Achievements</h1>
-        <p class="hero-subtitle">Track your progress and earn rewards for your civic contributions</p>
-        
-        <div class="hero-stats">
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-file-alt"></i>
-            </div>
-            <div class="stat-value" id="totalReports">0</div>
-            <div class="stat-label">Total Reports</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="stat-value" id="resolvedReports">0</div>
-            <div class="stat-label">Reports Resolved</div>
-          </div>
+        <h1 class="hero-title">Rewards Center</h1>
+        <p class="hero-subtitle">Redeem your earned points for exciting rewards and civic perks.</p>
+
+        <div class="hero-stats" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
           <div class="stat-card">
             <div class="stat-icon">
               <i class="fas fa-star"></i>
             </div>
-            <div class="stat-value" id="totalPoints">0</div>
-            <div class="stat-label">Points Earned</div>
+            <div class="stat-value" id="currentPoints">0</div>
+            <div class="stat-label">Current Points</div>
           </div>
           <div class="stat-card">
             <div class="stat-icon">
-              <i class="fas fa-medal"></i>
+              <i class="fas fa-gift"></i>
             </div>
-            <div class="stat-value" id="totalBadges">0</div>
-            <div class="stat-label">Badges Earned</div>
+            <div class="stat-value" id="redeemedRewards">0</div>
+            <div class="stat-label">Rewards Redeemed</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Badges Section -->
-    <section class="achievement-section">
+    <!-- Rewards Catalog -->
+    <section class="achievement-section scroll-reveal">
       <div class="section-header">
         <h2 class="section-title">
-          <i class="fas fa-trophy"></i>
-          Badges & Achievements
+          <i class="fas fa-shopping-bag"></i>
+          Rewards Catalog
         </h2>
-        <div class="badge bg-primary text-white px-3 py-1 rounded-pill" id="badgeProgress">
-          <span id="badgeCount">0</span> badges earned
-        </div>
       </div>
-      
-      <div class="badges-grid" id="badgesContainer">
-        <div class="loading">
-          <div class="spinner"></div>
-          Loading your badges...
-        </div>
-      </div>
-    </section>
 
-    <!-- Badge Roadmap -->
-    <section class="achievement-section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-map-marker-alt"></i>
-          Achievement Roadmap
-        </h2>
-        <div class="badge bg-info text-white px-3 py-1 rounded-pill" id="nextMilestone">
-          Next milestone loading...
+      <div class="badges-grid" id="rewardsContainer">
+        <!-- Static Rewards Example -->
+        <div class="badge-card">
+          <div class="badge-icon">
+            <i class="fas fa-bus"></i>
+          </div>
+          <h6>Free Transit Pass</h6>
+          <p>Get a 1-day free transit pass for local buses.</p>
+          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 500
+            Points</button>
         </div>
-      </div>
-      
-      <div id="roadmapContainer">
-        <div class="loading">
-          <div class="spinner"></div>
-          Loading roadmap...
+        <div class="badge-card">
+          <div class="badge-icon">
+            <i class="fas fa-tree"></i>
+          </div>
+          <h6>Plant a Tree</h6>
+          <p>Sponsor a tree planted in your name in a local park.</p>
+          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 1000
+            Points</button>
         </div>
-      </div>
-    </section>
-
-    <!-- Points History -->
-    <section class="achievement-section">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-history"></i>
-          Points History
-        </h2>
-        <a href="/rewards.html" class="btn btn-primary">
-          <i class="fas fa-gift"></i> Redeem Rewards
-        </a>
-      </div>
-      
-      <div class="points-table">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Points</th>
-              <th>Reason</th>
-            </tr>
-          </thead>
-          <tbody id="pointsHistoryTable">
-            <tr>
-              <td colspan="3">
-                <div class="loading">
-                  <div class="spinner"></div>
-                  Loading points history...
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      
-      <!-- Pagination -->
-      <div class="pagination-container" id="paginationContainer" style="display: none;">
-        <div class="pagination-info">
-          Showing <span id="pageInfo">0-0 of 0</span> entries
+        <div class="badge-card">
+          <div class="badge-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h6>Free Meal Voucher</h6>
+          <p>₹300 food coupons redeemable at partner restaurants.</p>
+          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 2000
+            Points</button>
         </div>
-        <div class="pagination-controls">
-          <button class="pagination-btn" id="prevBtn" disabled>
-            <i class="fas fa-chevron-left"></i> Previous
-          </button>
-          <div id="pageNumbers"></div>
-          <button class="pagination-btn" id="nextBtn" disabled>
-            Next <i class="fas fa-chevron-right"></i>
-          </button>
+        <div class="badge-card">
+          <div class="badge-icon">
+            <i class="fas fa-shopping-bag"></i>
+          </div>
+          <h6>E-commerce Voucher</h6>
+          <p>Get a voucher worth ₹200 for online shopping.</p>
+          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 2500
+            Points</button>
         </div>
       </div>
     </section>
   </main>
 
-   <!-- Premium Footer -->
+  <!-- Premium Footer -->
   <footer class="premium-footer">
     <div class="footer-content">
       <div class="row">
@@ -1472,7 +1457,7 @@
             </ul>
           </div>
         </div>
-        
+
         <!-- Quick Links Section -->
         <div class="col-md-3 mb-4">
           <div class="footer-section">
@@ -1480,7 +1465,7 @@
             <ul class="list-unstyled">
               <li class="mb-2">
                 <a href="/about.html" class="footer-link">
-                  <i class="fas fa-info-circle me-2"></i>About CivicVerse
+                  <i class="fas fa-info-circle me-2"></i>About CivicSense
                 </a>
               </li>
               <li class="mb-2">
@@ -1545,11 +1530,11 @@
           </div>
         </div>
       </div>
-      
+
       <div class="footer-bottom">
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
           <div class="mb-3 mb-md-0">
-            <p class="mb-0">© 2025 CivicVerse. Empowering communities through technology.</p>
+            <p class="mb-0">© 2025 Civicsense. Empowering communities through technology.</p>
           </div>
           <div class="footer-version">
             <i class="fas fa-code-branch me-2"></i>
@@ -1563,18 +1548,18 @@
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/achievements.js"></script>
-  
+  <script src="js/rewards.js"></script>
+
   <script>
-     // Scroll Reveal Animation
-     function revealOnScroll() {
+    // Scroll Reveal Animation
+    function revealOnScroll() {
       const reveals = document.querySelectorAll('.scroll-reveal');
-      
+
       reveals.forEach(reveal => {
         const windowHeight = window.innerHeight;
         const elementTop = reveal.getBoundingClientRect().top;
         const elementVisible = 100;
-        
+
         if (elementTop < windowHeight - elementVisible) {
           reveal.classList.add('revealed');
         }
@@ -1588,11 +1573,11 @@
     const themeToggle = document.getElementById('themeToggle');
     const themeSlider = themeToggle.querySelector('.theme-toggle-slider');
     const themeIcon = themeSlider.querySelector('i');
-    
+
     // Load saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-bs-theme', savedTheme);
-    
+
     if (savedTheme === 'dark') {
       themeToggle.classList.add('dark');
       themeIcon.classList.remove('fa-moon');
@@ -1601,7 +1586,7 @@
 
     themeToggle.addEventListener('click', () => {
       const isDark = themeToggle.classList.contains('dark');
-      
+
       if (isDark) {
         themeToggle.classList.remove('dark');
         themeIcon.classList.remove('fa-sun');
@@ -1625,7 +1610,7 @@
     profileAvatar.addEventListener('click', (e) => {
       e.stopPropagation();
       dropdownOpen = !dropdownOpen;
-      
+
       if (dropdownOpen) {
         dropdownMenu.style.display = 'block';
         setTimeout(() => dropdownMenu.classList.add('show'), 10);
@@ -1662,16 +1647,16 @@
     // Add scroll effects
     let lastScrollTop = 0;
     const header = document.querySelector('.premium-header');
-    
+
     window.addEventListener('scroll', () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
+
       if (scrollTop > lastScrollTop && scrollTop > 100) {
         header.style.transform = 'translateY(-100%)';
       } else {
         header.style.transform = 'translateY(0)';
       }
-      
+
       lastScrollTop = scrollTop;
     });
     // Keep hero section static (no parallax movement).
@@ -1706,4 +1691,5 @@
   </script>
   <script src="/js/shared-footer.js"></script>
 </body>
+
 </html>
