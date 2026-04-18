@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CivicSense - My Reports</title>
+  <title>CivicSense - Achievements</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -457,6 +457,20 @@
       color: white;
       background: var(--premium-gradient);
       border-radius: 16px;
+      border-radius: 16px;
+    }
+
+    .avatar-initials {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      background: var(--premium-gradient);
+      border-radius: 16px;
     }
 
     /* Main Content */
@@ -650,20 +664,27 @@
       color: rgba(255, 255, 255, 0.8);
     }
 
-    /* Report Cards */
-    .report-card {
+    /* Badge Grid */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .badge-card {
       background: var(--glass-bg);
       backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
       padding: 2.5rem;
-      margin-bottom: 2rem;
+      text-align: center;
       transition: var(--transition-elastic);
       position: relative;
       overflow: hidden;
+      height: 100%;
     }
 
-    .report-card::before {
+    .badge-card::before {
       content: '';
       position: absolute;
       top: 0;
@@ -675,54 +696,73 @@
       transition: var(--transition-smooth);
     }
 
-    .report-card:hover::before {
-      opacity: 0.05;
+    .badge-card:hover::before {
+      opacity: 0.1;
     }
 
-    .report-card:hover {
-      transform: translateY(-8px) scale(1.02);
+    .badge-card:hover {
+      transform: translateY(-8px) scale(1.05);
       box-shadow: var(--shadow-heavy);
     }
 
-    /* Status Badges */
-    .status-badge {
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      display: inline-flex;
+    .badge-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: var(--premium-gradient);
+      display: flex;
       align-items: center;
-      gap: 0.5rem;
+      justify-content: center;
+      color: white;
+      font-size: 2rem;
+      margin: 0 auto 1.5rem;
+      transition: var(--transition-smooth);
+      box-shadow: var(--shadow-medium);
     }
 
-    .status-active {
-      background: rgba(13, 110, 253, 0.1);
-      color: #0d6efd;
-      border: 1px solid rgba(13, 110, 253, 0.2);
+    .badge-card:hover .badge-icon {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: var(--shadow-glow);
     }
 
-    .status-in-progress {
-      background: rgba(255, 193, 7, 0.1);
-      color: #ffc107;
-      border: 1px solid rgba(255, 193, 7, 0.2);
+    .badge-card h6 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
     }
 
-    .status-resolved {
-      background: rgba(25, 135, 84, 0.1);
-      color: #198754;
-      border: 1px solid rgba(25, 135, 84, 0.2);
+    .badge-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.5;
     }
 
-    .status-overdue {
-      background: rgba(220, 53, 69, 0.1);
-      color: #dc3545;
-      border: 1px solid rgba(220, 53, 69, 0.2);
+    /* Badge Items */
+    .badge-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      transition: var(--transition-smooth);
     }
 
-    /* Category Icons */
-    .category-icon {
+    .badge-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .badge-item.earned {
+      border-color: rgba(34, 197, 94, 0.3);
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    .badge-item .badge-icon {
       width: 50px;
       height: 50px;
       border-radius: 15px;
@@ -730,42 +770,86 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-primary);
       font-size: 1.25rem;
+      color: var(--text-primary);
       transition: var(--transition-smooth);
     }
 
-    .report-card:hover .category-icon {
-      background: rgba(255, 255, 255, 0.2);
+    .badge-item.earned .badge-icon {
+      background: var(--success-gradient);
       color: white;
     }
 
-    /* Progress Steps */
-    .progress-step {
+    .badge-info {
       flex: 1;
-      text-align: center;
-      position: relative;
-      font-size: 0.8rem;
+    }
+
+    .badge-info h6 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .badge-info p {
+      margin-bottom: 0.75rem;
       color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
-    .progress-step .step-dot {
-      width: 16px;
-      height: 16px;
-      background-color: #dee2e6;
-      border-radius: 50%;
-      margin: 0 auto 5px;
-      position: relative;
-      z-index: 2;
+    /* Roadmap */
+    .roadmap-item {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      transition: var(--transition-smooth);
     }
 
-    .progress-step.completed .step-dot {
+    .roadmap-item:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .roadmap-item.earned {
+      border-color: rgba(34, 197, 94, 0.3);
+      background: rgba(34, 197, 94, 0.1);
+    }
+
+    .roadmap-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
+      background: var(--glass-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      transition: var(--transition-smooth);
+    }
+
+    .roadmap-item.earned .roadmap-icon {
       background: var(--success-gradient);
+      color: white;
     }
 
-    .progress-step.active .step-dot {
-      background: var(--premium-gradient);
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+    .roadmap-info {
+      flex: 1;
+    }
+
+    .roadmap-info h6 {
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .roadmap-info p {
+      margin-bottom: 0.75rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
     }
 
     .progress {
@@ -776,198 +860,106 @@
     }
 
     .progress-bar {
+      height: 100%;
       background: var(--premium-gradient);
       border-radius: 4px;
       transition: width 2s ease;
     }
 
-    /* Filters Card */
-    .filters-card {
+    /* Points History Table */
+    .points-table {
       background: var(--glass-bg);
       backdrop-filter: blur(20px);
       border: 1px solid var(--glass-border);
       border-radius: var(--border-radius);
-      margin-bottom: 2rem;
-      transition: var(--transition-smooth);
+      overflow: hidden;
     }
 
-    .filters-card:hover {
-      box-shadow: var(--shadow-medium);
+    .points-table table {
+      margin-bottom: 0;
     }
 
-    .form-control, .form-select {
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      color: var(--text-primary);
-      transition: var(--transition-smooth);
-    }
-
-    .form-control:focus, .form-select:focus {
-      border-color: var(--text-accent);
-      box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.25);
-      background: var(--bg-secondary);
-    }
-
-    /* Buttons */
-    .btn {
-      border-radius: 12px;
+    .points-table th {
+      background: var(--premium-gradient);
+      color: white;
       font-weight: 600;
-      transition: var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transition: var(--transition-smooth);
-    }
-
-    .btn:hover::before {
-      left: 100%;
-    }
-
-    .btn-primary {
-      background: var(--premium-gradient);
       border: none;
-      color: white;
+      padding: 1rem;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-medium);
-    }
-
-    .btn-outline-secondary {
-      border-color: var(--glass-border);
-      color: var(--text-primary);
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-    }
-
-    .btn-outline-secondary:hover {
-      background: var(--premium-gradient);
-      border-color: transparent;
-      color: white;
-    }
-
-    /* Pagination */
-    .pagination {
-      border-radius: 50px;
-      overflow: hidden;
-      box-shadow: var(--shadow-light);
-    }
-
-    .page-link {
+    .points-table td {
+      padding: 1rem;
       border: none;
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      color: var(--text-primary);
-      transition: var(--transition-smooth);
-    }
-
-    .page-item.active .page-link {
-      background: var(--premium-gradient);
-      color: white;
-    }
-
-    .page-link:hover {
-      background: var(--premium-gradient);
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    /* Modal */
-    .modal-content {
-      background: var(--bg-secondary);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--border-radius);
-      backdrop-filter: blur(30px);
-    }
-
-    .modal-header {
       border-bottom: 1px solid var(--glass-border);
     }
 
-    .modal-footer {
-      border-top: 1px solid var(--glass-border);
+    .points-table tr:hover {
+      background: var(--glass-bg);
     }
 
-    /* Timeline for modal */
-    .timeline {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 20px;
-    }
-
-    .timeline:before {
-      content: '';
-      position: absolute;
-      left: 10px;
-      top: 0;
-      height: 100%;
-      width: 2px;
-      background: var(--glass-border);
-    }
-
-    .timeline-item {
-      position: relative;
-      padding-bottom: 20px;
-    }
-
-    .timeline-item:last-child {
-      padding-bottom: 0;
-    }
-
-    .timeline-marker {
-      position: absolute;
-      left: -30px;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background-color: #dee2e6;
-      border: 3px solid var(--bg-secondary);
-      box-shadow: 0 0 0 2px #dee2e6;
-    }
-
-    .timeline-item.completed .timeline-marker {
-      background: var(--success-gradient);
-      box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.25);
-    }
-
-    .timeline-content {
-      padding-left: 10px;
-    }
-
-    /* Loading Animation */
-    .loading {
+    /* Pagination */
+    .pagination-container {
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 3rem;
+      align-items: center;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .pagination-info {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .pagination-controls {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .pagination-btn {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      padding: 0.5rem 1rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      font-size: 0.9rem;
+    }
+
+    .pagination-btn:hover {
+      background: var(--premium-gradient);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .pagination-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .pagination-btn.active {
+      background: var(--premium-gradient);
+      color: white;
+    }
+
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
       color: var(--text-secondary);
     }
 
-    .spinner {
-      width: 28px;
-      height: 28px;
-      border: 3px solid rgba(0, 0, 0, 0.1);
-      border-top: 3px solid var(--premium-gradient);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      margin-right: 0.75rem;
+    .empty-state i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+    .empty-state h5 {
+      margin-bottom: 1rem;
+      color: var(--text-primary);
     }
 
     /* Custom Dropdown */
@@ -1106,6 +1098,30 @@
       color: var(--text-accent);
     }
 
+    /* Loading Animation */
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      color: var(--text-secondary);
+    }
+
+    .spinner {
+      width: 28px;
+      height: 28px;
+      border: 3px solid rgba(0, 0, 0, 0.1);
+      border-top: 3px solid var(--premium-gradient);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-right: 0.75rem;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
     /* Scroll Reveal Animation */
     .scroll-reveal {
       opacity: 0;
@@ -1145,6 +1161,11 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
       }
+      
+      .badges-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
 
       .section-title {
         font-size: 1.5rem;
@@ -1153,6 +1174,48 @@
       .achievement-section {
         padding: 2rem 1.5rem;
       }
+    }
+
+    
+    /* Hover Effects */
+    .hover-lift {
+      transition: var(--transition-smooth);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-medium);
+    }
+
+    /* Glassmorphism Effects */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+    }
+
+    /* Custom Dropdown */
+    .dropdown-menu {
+      background: var(--glass-bg);
+      backdrop-filter: blur(30px);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow-heavy);
+      padding: 1rem 0;
+      margin-top: 1rem;
+    }
+
+    .dropdown-item {
+      padding: 0.8rem 1.5rem;
+      transition: var(--transition-smooth);
+      color: var(--text-primary);
+    }
+
+    .dropdown-item:hover {
+      background: var(--premium-gradient);
+      color: white;
+      transform: translateX(5px);
     }
   </style>
 </head>
@@ -1187,10 +1250,10 @@
       </div>
 
       <nav class="nav-links">
-        <a href="/citizen-dashboard.html" class="nav-link">Dashboard</a>
-        <a href="/report.html" class="nav-link">New Report</a>
-        <a href="/my-reports.html" class="nav-link active">My Reports</a>
-        <a href="/achievements.html" class="nav-link">Achievements</a>
+        <a href="/dashboard" class="nav-link">Dashboard</a>
+        <a href="/report" class="nav-link">New Report</a>
+        <a href="/my-reports" class="nav-link">My Reports</a>
+        <a href="/achievements" class="nav-link active">Achievements</a>
         <a href="/rewards.html" class="nav-link">Rewards</a>
       </nav>
 
@@ -1218,19 +1281,19 @@
               <div class="fw-semibold" id="ddUserName">Loading...</div>
               <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
             </div>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile">
               <i class="fas fa-user"></i> Profile
             </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports">
               <i class="fas fa-list"></i> My Reports
             </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements">
               <i class="fas fa-trophy"></i> Achievements
             </a>
             <a class="dropdown-item d-flex align-items-center gap-2" href="/rewards.html">
               <i class="fas fa-gift"></i> Rewards
             </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings.html">
+            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings">
               <i class="fas fa-cog"></i> Settings
             </a>
             <hr class="dropdown-divider">
@@ -1255,138 +1318,135 @@
     <!-- Hero Section -->
     <section class="hero-section scroll-reveal">
       <div class="hero-content">
-        <div class="d-flex justify-content-between align-items-center">
-          <div>
-            <h1 class="hero-title">My Reports</h1>
-            <p class="hero-subtitle">Track and manage all your civic reports in one place.</p>
-          </div>
-          <button class="btn btn-primary" onclick="window.location.href='/report.html'">
-            <i class="fas fa-plus-circle me-2"></i>New Report
-          </button>
-        </div>
+        <h1 class="hero-title">Your Achievements</h1>
+        <p class="hero-subtitle">Track your progress and earn rewards for your civic contributions</p>
         
-        <div class="hero-stats" id="statsCards">
-          <!-- Will be populated by JavaScript -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Performance Metrics -->
-    <section class="achievement-section" id="performanceMetrics">
-      <!-- Will be populated by JavaScript -->
-    </section>
-
-    <!-- Filters & Search -->
-    <section class="achievement-section filters-card">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-filter"></i>
-          Filter Reports
-        </h2>
-        <button class="btn btn-outline-secondary" id="resetFilters">Reset</button>
-      </div>
-      
-      <div class="row g-3">
-        <div class="col-md-5">
-          <div class="input-group">
-            <span class="input-group-text bg-transparent"><i class="fas fa-search"></i></span>
-            <input type="text" class="form-control" id="searchReports" placeholder="Search reports...">
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="stat-value" id="totalReports">0</div>
+            <div class="stat-label">Total Reports</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-value" id="resolvedReports">0</div>
+            <div class="stat-label">Reports Resolved</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-value" id="totalPoints">0</div>
+            <div class="stat-label">Points Earned</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div class="stat-value" id="totalBadges">0</div>
+            <div class="stat-label">Badges Earned</div>
           </div>
         </div>
-        <div class="col-md-2">
-          <select class="form-select" id="dateRangeFilter">
-            <option selected>Last 30 days</option>
-            <option>Last 7 days</option>
-            <option>Last 90 days</option>
-            <option>This year</option>
-            <option>All time</option>
-          </select>
-        </div>
-        <div class="col-md-2">
-          <select class="form-select" id="categoryFilter">
-            <option selected>All Categories</option>
-            <option>Roads</option>
-            <option>Water</option>
-            <option>Electricity</option>
-            <option>Sanitation</option>
-            <option>Others</option>
-          </select>
-        </div>
-        <div class="col-md-3">
-          <select class="form-select" id="statusFilter">
-            <option value="all" selected>All Status</option>
-            <option value="active">Active</option>
-            <option value="in-progress">In Progress</option>
-            <option value="resolved">Resolved</option>
-            <option value="overdue">Overdue</option>
-          </select>
-        </div>
       </div>
     </section>
 
-    <!-- Reports List -->
+    <!-- Badges Section -->
     <section class="achievement-section">
       <div class="section-header">
         <h2 class="section-title">
-          <i class="fas fa-list"></i>
-          Your Reports
+          <i class="fas fa-trophy"></i>
+          Badges & Achievements
         </h2>
+        <div class="badge bg-primary text-white px-3 py-1 rounded-pill" id="badgeProgress">
+          <span id="badgeCount">0</span> badges earned
+        </div>
       </div>
       
-      <div id="reportsList" class="fade-in-up">
-        <!-- Will be populated by JavaScript -->
-      </div>
-
-      <!-- Pagination -->
-      <nav aria-label="Reports pagination" class="mt-4">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="text-muted">
-            Showing <span id="showingFrom">1</span> to <span id="showingTo">5</span> of <span id="totalItems">0</span> reports
-          </div>
-          <div class="d-flex align-items-center gap-2">
-            <div class="me-3">
-              <select class="form-select form-select-sm" id="itemsPerPage" style="width: auto; display: inline-block;">
-                <option value="5">5 per page</option>
-                <option value="10" selected>10 per page</option>
-                <option value="25">25 per page</option>
-                <option value="50">50 per page</option>
-              </select>
-            </div>
-            <ul class="pagination mb-0" id="pagination">
-              <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-              </li>
-              <li class="page-item active"><a class="page-link" href="#">1</a></li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item">
-                <a class="page-link" href="#">Next</a>
-              </li>
-            </ul>
-          </div>
+      <div class="badges-grid" id="badgesContainer">
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading your badges...
         </div>
-      </nav>
+      </div>
+    </section>
+
+    <!-- Badge Roadmap -->
+    <section class="achievement-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-map-marker-alt"></i>
+          Achievement Roadmap
+        </h2>
+        <div class="badge bg-info text-white px-3 py-1 rounded-pill" id="nextMilestone">
+          Next milestone loading...
+        </div>
+      </div>
+      
+      <div id="roadmapContainer">
+        <div class="loading">
+          <div class="spinner"></div>
+          Loading roadmap...
+        </div>
+      </div>
+    </section>
+
+    <!-- Points History -->
+    <section class="achievement-section">
+      <div class="section-header">
+        <h2 class="section-title">
+          <i class="fas fa-history"></i>
+          Points History
+        </h2>
+        <a href="/rewards.html" class="btn btn-primary">
+          <i class="fas fa-gift"></i> Redeem Rewards
+        </a>
+      </div>
+      
+      <div class="points-table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Points</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody id="pointsHistoryTable">
+            <tr>
+              <td colspan="3">
+                <div class="loading">
+                  <div class="spinner"></div>
+                  Loading points history...
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="pagination-container" id="paginationContainer" style="display: none;">
+        <div class="pagination-info">
+          Showing <span id="pageInfo">0-0 of 0</span> entries
+        </div>
+        <div class="pagination-controls">
+          <button class="pagination-btn" id="prevBtn" disabled>
+            <i class="fas fa-chevron-left"></i> Previous
+          </button>
+          <div id="pageNumbers"></div>
+          <button class="pagination-btn" id="nextBtn" disabled>
+            Next <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Report Details Modal -->
-  <div class="modal fade" id="reportDetailsModal" tabindex="-1" aria-labelledby="reportDetailsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="reportDetailsModalLabel">Report Details</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body" id="reportDetailsContent">
-          <!-- Dynamic content will be loaded here -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Premium Footer -->
+   <!-- Premium Footer -->
   <footer class="premium-footer">
     <div class="footer-content">
       <div class="row">
@@ -1425,7 +1485,7 @@
                 </a>
               </li>
               <li class="mb-2">
-                <a href="/citizen-dashboard.html" class="footer-link">
+                <a href="/dashboard" class="footer-link">
                   <i class="fas fa-tachometer-alt me-2"></i>Dashboard
                 </a>
               </li>
@@ -1463,7 +1523,7 @@
         </div>
 
         <!-- Community Section -->
-        <div class="col-md-4 mb-4">
+        <div class="col-md-3 mb-4">
           <div class="footer-section">
             <h6>Community</h6>
             <ul class="list-unstyled">
@@ -1503,13 +1563,12 @@
 
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
   <script src="js/auth.js"></script>
-  <script src="js/my-reports.js"></script>
+  <script src="js/achievements.js"></script>
   
   <script>
-    // Scroll Reveal Animation
-    function revealOnScroll() {
+     // Scroll Reveal Animation
+     function revealOnScroll() {
       const reveals = document.querySelectorAll('.scroll-reveal');
       
       reveals.forEach(reveal => {
@@ -1593,16 +1652,15 @@
         notifBell.style.animation = '';
       }, 600);
     });
-
-    // Navigation active state
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', (e) => {
+        // Add active class
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
         link.classList.add('active');
       });
     });
 
-    // Header scroll effects
+    // Add scroll effects
     let lastScrollTop = 0;
     const header = document.querySelector('.premium-header');
     
@@ -1617,7 +1675,6 @@
       
       lastScrollTop = scrollTop;
     });
-
     // Keep hero section static (no parallax movement).
 
     // Stagger animation for cards
@@ -1639,7 +1696,7 @@
 
     // Observe all cards for stagger animation
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.stat-card, .report-card');
+      const cards = document.querySelectorAll('.stat-card, .action-card, .advanced-stat-card');
       cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';

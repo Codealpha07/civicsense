@@ -23,6 +23,14 @@ const reportsRoutes = require('./routes/reports');
 // Load environment variables
 dotenv.config({ path: path.join(__dirname, '.env') });
 
+// Validate required environment variables
+const requiredEnvVars = ['JWT_SECRET', 'MONGODB_URI', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS'];
+const missingEnvVars = requiredEnvVars.filter((key) => !process.env[key]);
+if (missingEnvVars.length > 0) {
+  console.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+  process.exit(1);
+}
+
 // Connect to MongoDB
 console.log('Connecting to MongoDB...');
 connectDB();
@@ -35,17 +43,9 @@ app.use(helmet({
   contentSecurityPolicy: false
 }));
 
-// Add CORS headers
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  next();
-});
-
-// Enable CORS with proper options
+// Enable CORS for API access from frontend
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*',
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -104,12 +104,6 @@ app.use((req, res, next) => {
 
 // Mount API routes
 app.use('/api/reports', reportsRoutes);
-
-// Serve admin portal static files first (more specific path)
-app.use('/adminportal', express.static(path.join(__dirname, '../adminportal')));
-
-// Then serve public directory (less specific path)
-app.use(express.static(path.join(__dirname, '../public')));
 
 // File upload middleware
 app.use(fileUpload({

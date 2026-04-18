@@ -201,7 +201,7 @@ class CivicDashboard {
   async checkAuthentication() {
     const token = localStorage.getItem('token');
     if (!token) {
-      window.location.href = '/citizen-login.html';
+      window.location.href = '/login';
       throw new Error('No authentication token');
     }
   }
@@ -748,7 +748,7 @@ class CivicDashboard {
     sessionStorage.clear();
     
     // Redirect to login page
-    window.location.href = '/citizen-login.html';
+    window.location.href = '/login';
   }
 
   handleError(message) {

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       // redirect to verification page with contact info
-      window.location.href = `/citizen-verify.html?email=${encodeURIComponent(email)}&mobile=${encodeURIComponent(mobile)}`;
+      window.location.href = `/verify?email=${encodeURIComponent(email)}&mobile=${encodeURIComponent(mobile)}`;
     } catch (err) {
       showMsg('signupMsg', 'Server error. Try again.', false);
     }
