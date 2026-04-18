@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CivicVerse – My Reports</title>
+  <title>CivicSense - My Reports</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1618,14 +1618,7 @@
       lastScrollTop = scrollTop;
     });
 
-    // Parallax effect for hero section
-    window.addEventListener('scroll', () => {
-      const scrolled = window.pageYOffset;
-      const hero = document.querySelector('.hero-section');
-      if (hero) {
-        hero.style.transform = `translateY(${scrolled * 0.1}px)`;
-      }
-    });
+    // Keep hero section static (no parallax movement).
 
     // Stagger animation for cards
     const observerOptions = {
@@ -1655,5 +1648,6 @@
       });
     });
   </script>
+  <script src="/js/shared-footer.js"></script>
 </body>
 </html>
