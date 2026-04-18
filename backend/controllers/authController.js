@@ -337,15 +337,16 @@ exports.verifyOtp = async (req, res, next) => {
     // Remove the OTP since it's been used
     delete otps[identifier];
 
+    let verifiedUser = null;
     // If this is for email verification, update user's verified status
     if (email) {
-      const user = await User.findOneAndUpdate(
+      verifiedUser = await User.findOneAndUpdate(
         { email: email.toLowerCase() },
         { verified: true },
         { new: true, runValidators: true }
-      );
+      ).select('-password');
 
-      if (!user) {
+      if (!verifiedUser) {
         return res.status(404).json({
           success: false,
           message: 'User not found'
@@ -353,10 +354,15 @@ exports.verifyOtp = async (req, res, next) => {
       }
     }
 
+    const token = verifiedUser ? generateToken(verifiedUser._id) : null;
+
     res.status(200).json({
       success: true,
       message: 'OTP verified successfully',
-      verified: true
+      verified: true,
+      token,
+      user: verifiedUser,
+      role: verifiedUser?.role
     });
     
   } catch (err) {

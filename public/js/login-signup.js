@@ -136,9 +136,12 @@ loginForm.addEventListener('submit', async function(e) {
         }
         // Save in localStorage for later use
         localStorage.removeItem('userId');
-            const uid = data.user?._id || data.user?.id || data.userId;
-            if (uid) localStorage.setItem('userId', uid);
+        const uid = data.user?._id || data.user?.id || data.userId;
+        if (uid) localStorage.setItem('userId', uid);
+        if (data.token) localStorage.setItem('token', data.token);
+        localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('role', data.role);
+        localStorage.setItem('user', JSON.stringify(data.user || {}));
         showLoginMsg('Login successful! Redirecting...', true);
         setTimeout(() => {
             window.location.href = role === 'Admin' ? '/admin-dashboard' : '/dashboard';
@@ -213,6 +216,13 @@ verifyOtpBtn.addEventListener('click', async function() {
             showOtpMsg(data.message || 'OTP verification failed.', false);
             return;
         }
+        const resolvedUser = data.user || {};
+        const uid = resolvedUser._id || resolvedUser.id || data.userId;
+        if (uid) localStorage.setItem('userId', uid);
+        if (data.token) localStorage.setItem('token', data.token);
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('role', data.role || role);
+        localStorage.setItem('user', JSON.stringify(resolvedUser));
         showOtpMsg('OTP verified! Redirecting...', true);
         setTimeout(() => {
             window.location.href = role === 'Admin' ? '/admin-dashboard' : '/dashboard';

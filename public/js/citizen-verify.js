@@ -109,9 +109,27 @@ document.addEventListener('DOMContentLoaded', () => {
         showMsg('otpMsg', data.message || 'Verification failed.', false);
         return;
       }
+      const resolvedUser = data.user || {};
+      const userId = resolvedUser._id || resolvedUser.id || null;
+      const role = data.role || resolvedUser.role || 'Citizen';
+      const firstName = resolvedUser.firstName || '';
+
+      if (data.token) {
+        localStorage.setItem('token', data.token);
+      }
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('role', role);
+      if (userId) localStorage.setItem('userId', userId);
+      if (firstName) localStorage.setItem('firstName', firstName);
+      localStorage.setItem('user', JSON.stringify({
+        ...resolvedUser,
+        firstName,
+        email: resolvedUser.email || email || ''
+      }));
+
       showMsg('otpMsg', 'Verified! Redirecting...', true);
       setTimeout(() => {
-        window.location.href = '/citizen-dashboard';
+        window.location.href = '/dashboard';
       }, 1200);
     } catch (err) {
       showMsg('otpMsg', 'Server error. Try again.', false);
