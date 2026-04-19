@@ -25,7 +25,7 @@
     { href: '/my-reports',    icon: 'fa-list',       label: 'Reports' },
     { href: '/report',        icon: 'fa-plus',       label: 'Report',   isFab: true },
     { href: '/rewards.html',  icon: 'fa-gift',       label: 'Rewards' },
-    { href: '/profile',       icon: 'fa-user',       label: 'Profile' },
+    { href: '/achievements',  icon: 'fa-trophy',     label: 'Badges' },
   ];
 
   // ── Inject CSS ───────────────────────────────────────────────
