@@ -53,6 +53,11 @@
       box-sizing: border-box;
     }
 
+    html {
+        font-size: 14px;
+    }
+
+    html { font-size: 14px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
@@ -148,7 +153,7 @@
     }
 
     .header-content {
-      max-width: 1600px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
       display: flex;
@@ -475,9 +480,9 @@
 
     /* Main Content */
     .main-content {
-      margin-top: 100px;
+      margin-top: 130px;
       padding: 2.5rem;
-      max-width: 1600px;
+      max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -539,8 +544,8 @@
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
       margin-top: 3rem;
     }
 
@@ -616,8 +621,8 @@
     /* Quick Actions */
     .quick-actions {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 4rem;
     }
 
@@ -718,8 +723,8 @@
     /* Advanced Stats Grid */
     .advanced-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
       margin-bottom: 4rem;
     }
 
@@ -1428,43 +1433,34 @@
         </div>
 
         <div class="user-profile">
-          <div class="profile-avatar" id="profileAvatar">
-            <img id="userAvatar" src="/images/default-avatar.png" alt="User Avatar">
-            <div id="avatarInitials" class="avatar-initials" style="display: none;">U</div>
+          <div class="profile-avatar" id="profileAvatar" style="width: 50px; height: 50px; border-radius: 16px; overflow: hidden; background: var(--premium-gradient);">
+            <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="User Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            <div id="avatarInitials" class="avatar-initials" style="display: none; height: 100%; align-items: center; justify-content: center; color: white; font-weight: bold;">U</div>
           </div>
           
-          <!-- Dropdown Menu -->
-          <div class="dropdown-menu dropdown-menu-end shadow-sm" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 250px; max-width: 280px; z-index: 1050; margin-top: 0.5rem;">
-            <div class="px-3 py-2 border-bottom">
-              <div class="fw-semibold" id="ddUserName">Loading...</div>
-              <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
+          <div class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-heavy overflow-hidden" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 280px; z-index: 1050; margin-top: 1rem; border-radius: 24px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px);">
+            <div class="p-4 border-bottom text-center mb-2" style="background: var(--premium-gradient);">
+              <div class="profile-avatar mx-auto mb-3" style="width: 70px; height: 70px; border: 4px solid rgba(255,255,255,0.3); border-radius: 50%; overflow: hidden;">
+                <img id="ddUserAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h6 class="fw-bold text-white mb-0" id="ddUserName">Citizen User</h6>
+              <div class="small text-white opacity-75" id="ddUserEmail">citizen@civicsense.com</div>
             </div>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile">
-              <i class="fas fa-user"></i> Profile
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports">
-              <i class="fas fa-list"></i> My Reports
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements">
-              <i class="fas fa-trophy"></i> Achievements
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/rewards.html">
-              <i class="fas fa-gift"></i> Rewards
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings">
-              <i class="fas fa-cog"></i> Settings
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item text-muted small" href="/support.html">
-              <i class="fas fa-question-circle me-2"></i>Support
-            </a>
-            <a class="dropdown-item text-muted small" href="/privacy.html">
-              <i class="fas fa-shield-alt me-2"></i>Privacy
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#" id="logoutBtn">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
+            <div class="px-2 pb-3">
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/profile">
+                  <div class="bg-light p-2 rounded-3 text-primary"><i class="fas fa-user-circle"></i></div> My Profile
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/my-reports">
+                  <div class="bg-light p-2 rounded-3 text-success"><i class="fas fa-list-alt"></i></div> My Reports
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/achievements">
+                  <div class="bg-light p-2 rounded-3 text-warning"><i class="fas fa-medal"></i></div> Achievements
+                </a>
+                <hr class="dropdown-divider opacity-10 mx-3">
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4 text-danger" href="#" id="logoutBtn">
+                  <div class="bg-soft-danger p-2 rounded-3"><i class="fas fa-sign-out-alt"></i></div> Logout
+                </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1475,38 +1471,51 @@
   <main class="main-content">
     <!-- Hero Section -->
     <section class="hero-section scroll-reveal">
-      <div class="hero-content">
-        <h1 class="hero-title">Welcome back, <span id="greeting">Citizen</span>!</h1>
-        <p class="hero-subtitle">Your civic engagement is making a real difference in the community</p>
+      <div class="row align-items-center">
+        <div class="col-lg-7 hero-content">
+          <div class="d-inline-flex align-items-center bg-soft-accent px-3 py-1 rounded-pill mb-3">
+            <span class="badge bg-premium rounded-circle p-1 me-2"><i class="fas fa-bolt text-white"></i></span>
+            <span class="fw-bold small" style="color: var(--text-accent);">Dashboard Active</span>
+          </div>
+          <h1 class="hero-title mb-3">Welcome back, <br><span id="greeting" style="background: var(--premium-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Citizen</span>!</h1>
+          <p class="hero-subtitle mb-4">Your civic engagement is making a real difference in the community. Let's keep the momentum going.</p>
+          
+          <div class="d-flex gap-3 mt-4">
+            <button class="btn btn-premium px-4 py-2 fw-bold" style="background: var(--premium-gradient); color: white; border: none; border-radius: 12px;" onclick="window.location.href='/report.html'">
+              <i class="fas fa-plus me-2"></i> Report Issue
+            </button>
+            <button class="btn btn-outline-primary px-4 py-2 fw-bold" style="border-radius: 12px; border-color: var(--text-accent); color: var(--text-accent);" onclick="window.location.href='/my-reports.html'">
+              View Activity
+            </button>
+          </div>
+        </div>
         
-        <div class="hero-stats">
-          <div class="stat-card hover-lift">
-            <div class="stat-icon">
-              <i class="fas fa-chart-line"></i>
+        <div class="col-lg-5 d-none d-lg-block">
+          <div class="row g-3">
+            <div class="col-6">
+              <div class="stat-card p-3 glass-card text-center mb-3 hover-lift border-0 shadow-sm" style="border-radius: 16px;">
+                <div class="stat-icon mx-auto" style="width: 45px; height: 45px; font-size: 1.2rem;"><i class="fas fa-chart-line text-white"></i></div>
+                <div class="stat-value h3 mb-1" id="statReported">0</div>
+                <div class="stat-label small">Total Reports</div>
+              </div>
+              <div class="stat-card p-3 glass-card text-center hover-lift border-0 shadow-sm" style="border-radius: 16px;">
+                <div class="stat-icon mx-auto" style="width: 45px; height: 45px; font-size: 1.2rem;"><i class="fas fa-check-circle text-white"></i></div>
+                <div class="stat-value h3 mb-1" id="statResolved">0</div>
+                <div class="stat-label small">Resolved</div>
+              </div>
             </div>
-            <div class="stat-value" id="statReported">0</div>
-            <div class="stat-label">Total Reports</div>
-          </div>
-          <div class="stat-card hover-lift">
-            <div class="stat-icon">
-              <i class="fas fa-check-circle"></i>
+            <div class="col-6 mt-4">
+              <div class="stat-card p-3 glass-card text-center mb-3 hover-lift border-0 shadow-sm" style="border-radius: 16px;">
+                <div class="stat-icon mx-auto" style="width: 45px; height: 45px; font-size: 1.2rem; background: var(--warning-gradient);"><i class="fas fa-medal text-white"></i></div>
+                <div class="stat-value h3 mb-1" id="statPoints">0</div>
+                <div class="stat-label small">Impact Points</div>
+              </div>
+              <div class="stat-card p-3 glass-card text-center hover-lift border-0 shadow-sm" style="border-radius: 16px;">
+                <div class="stat-icon mx-auto" style="width: 45px; height: 45px; font-size: 1.2rem; background: var(--success-gradient);"><i class="fas fa-percentage text-white"></i></div>
+                <div class="stat-value h3 mb-1" id="statRate">0%</div>
+                <div class="stat-label small">Success Rate</div>
+              </div>
             </div>
-            <div class="stat-value" id="statResolved">0</div>
-            <div class="stat-label">Resolved Issues</div>
-          </div>
-          <div class="stat-card hover-lift">
-            <div class="stat-icon">
-              <i class="fas fa-medal"></i>
-            </div>
-            <div class="stat-value" id="statPoints">0</div>
-            <div class="stat-label">Impact Points</div>
-          </div>
-          <div class="stat-card hover-lift">
-            <div class="stat-icon">
-              <i class="fas fa-percentage"></i>
-            </div>
-            <div class="stat-value" id="statRate">0%</div>
-            <div class="stat-label">Success Rate</div>
           </div>
         </div>
       </div>
@@ -1514,115 +1523,129 @@
 
     <!-- Quick Actions -->
     <section class="quick-actions scroll-reveal">
-      <div class="action-card hover-lift" onclick="window.location.href='/report.html'">
-        <div class="action-icon">
+      <div class="action-card hover-lift shadow-sm" style="border-radius: 24px;" onclick="window.location.href='/report.html'">
+        <div class="action-icon" style="background: var(--premium-gradient); color: white; border: none;">
           <i class="fas fa-plus"></i>
         </div>
-        <h3 class="action-title">New Report</h3>
-        <p class="action-description">Submit a new issue or concern to help improve your community</p>
+        <h3 class="action-title fw-bold">New Report</h3>
+        <p class="action-description small">Submit a new issue or concern to help improve your community in real-time.</p>
       </div>
-      <div class="action-card hover-lift" onclick="window.location.href='/my-reports.html'">
-        <div class="action-icon">
+      <div class="action-card hover-lift shadow-sm" style="border-radius: 24px;" onclick="window.location.href='/my-reports.html'">
+        <div class="action-icon" style="background: var(--success-gradient); color: white; border: none;">
           <i class="fas fa-list"></i>
         </div>
-        <h3 class="action-title">My Reports</h3>
-        <p class="action-description">Track the progress of your submitted reports and updates</p>
+        <h3 class="action-title fw-bold">My Reports</h3>
+        <p class="action-description small">Track the progress, status, and updates of your previously submitted civic reports.</p>
       </div>
-      <div class="action-card hover-lift" onclick="window.location.href='/achievements.html'">
-        <div class="action-icon">
+      <div class="action-card hover-lift shadow-sm" style="border-radius: 24px;" onclick="window.location.href='/achievements.html'">
+        <div class="action-icon" style="background: var(--warning-gradient); color: white; border: none;">
           <i class="fas fa-trophy"></i>
         </div>
-        <h3 class="action-title">Achievements</h3>
-        <p class="action-description">View your badges and milestones in civic engagement</p>
+        <h3 class="action-title fw-bold">Achievements</h3>
+        <p class="action-description small">View your badges, milestones, and unlock new ranks in civic engagement.</p>
       </div>
-      <div class="action-card hover-lift" onclick="window.location.href='/rewards.html'">
-        <div class="action-icon">
+      <div class="action-card hover-lift shadow-sm" style="border-radius: 24px;" onclick="window.location.href='/rewards.html'">
+        <div class="action-icon" style="background: var(--secondary-gradient); color: white; border: none;">
           <i class="fas fa-gift"></i>
         </div>
-        <h3 class="action-title">Rewards</h3>
-        <p class="action-description">Discover rewards and incentives for your civic contributions</p>
+        <h3 class="action-title fw-bold">Rewards</h3>
+        <p class="action-description small">Redeem your accumulated Impact Points for exclusive rewards and local perks.</p>
       </div>
     </section>
 
     <!-- Advanced Stats -->
     <section class="advanced-stats scroll-reveal">
-      <div class="advanced-stat-card hover-lift">
+      <div class="advanced-stat-card hover-lift shadow-sm border-0" style="background: var(--bg-secondary);">
         <div class="stat-header">
           <span class="stat-label">Total Reports</span>
-          <span class="stat-trend up">+12%</span>
+          <span class="stat-trend bg-soft-accent text-accent px-3 py-1 rounded-pill small fw-bold">
+            <i class="fas fa-arrow-up me-1"></i> 12%
+          </span>
         </div>
-        <div class="stat-value" id="totalReports">0</div>
+        <div class="stat-value h2 fw-black mb-3" id="totalReports">0</div>
         <div class="stat-progress">
-          <div class="stat-progress-bar" style="width: 0%" id="totalReportsProgress"></div>
+          <div class="stat-progress-bar bg-premium" style="width: 0%" id="totalReportsProgress"></div>
         </div>
       </div>
       
-      <div class="advanced-stat-card hover-lift">
+      <div class="advanced-stat-card hover-lift shadow-sm border-0" style="background: var(--bg-secondary);">
         <div class="stat-header">
           <span class="stat-label">Resolved Issues</span>
-          <span class="stat-trend up">+8%</span>
+          <span class="stat-trend px-3 py-1 rounded-pill small fw-bold" style="background: rgba(72,187,120,0.1); color: #38a169;">
+            <i class="fas fa-arrow-up me-1"></i> 8%
+          </span>
         </div>
-        <div class="stat-value" id="resolvedIssues">0</div>
+        <div class="stat-value h2 fw-black mb-3" id="resolvedIssues">0</div>
         <div class="stat-progress">
-          <div class="stat-progress-bar" style="width: 0%" id="resolvedProgress"></div>
+          <div class="stat-progress-bar bg-success" style="width: 0%" id="resolvedProgress"></div>
         </div>
       </div>
       
-      <div class="advanced-stat-card hover-lift">
+      <div class="advanced-stat-card hover-lift shadow-sm border-0" style="background: var(--bg-secondary);">
         <div class="stat-header">
           <span class="stat-label">Response Rate</span>
-          <span class="stat-trend up">+15%</span>
+          <span class="stat-trend px-3 py-1 rounded-pill small fw-bold" style="background: rgba(72,187,120,0.1); color: #38a169;">
+            <i class="fas fa-bolt me-1"></i> Fast
+          </span>
         </div>
-        <div class="stat-value" id="responseRate">0%</div>
+        <div class="stat-value h2 fw-black mb-3" id="responseRate">0%</div>
         <div class="stat-progress">
-          <div class="stat-progress-bar" style="width: 0%" id="responseProgress"></div>
+          <div class="stat-progress-bar bg-warning" style="width: 0%" id="responseProgress"></div>
         </div>
       </div>
       
-      <div class="advanced-stat-card hover-lift">
+      <div class="advanced-stat-card hover-lift shadow-sm border-0" style="background: var(--bg-secondary);">
         <div class="stat-header">
-          <span class="stat-label">Impact Score</span>
-          <span class="stat-trend up">+22%</span>
+          <span class="stat-label flex-grow-1">Impact Score</span>
+          <span class="badge bg-premium rounded-pill px-3 py-1"><i class="fas fa-star text-white"></i> Elite</span>
         </div>
-        <div class="stat-value" id="impactScore">0</div>
+        <div class="stat-value h2 fw-black mb-3 text-accent" id="impactScore">0</div>
         <div class="stat-progress">
-          <div class="stat-progress-bar" style="width: 0%" id="impactProgress"></div>
+          <div class="stat-progress-bar" style="width: 0%; background: var(--premium-gradient);" id="impactProgress"></div>
         </div>
       </div>
     </section>
 
     <!-- Impact Summary -->
-    <section class="impact-section scroll-reveal">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-star"></i>
+    <section class="impact-section scroll-reveal shadow-sm border-0" style="background: var(--bg-secondary);">
+      <div class="section-header d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title fw-bold m-0" style="font-size: 1.75rem;">
+          <div class="d-inline-flex bg-soft-accent p-2 rounded-3 me-2">
+            <i class="fas fa-star" style="color: var(--text-accent);"></i>
+          </div>
           Impact Summary
         </h2>
+        <span class="badge bg-light text-dark rounded-pill border px-3 py-2">Updated Live</span>
       </div>
       
-      <div id="impactSummary">
+      <div id="impactSummary" class="mt-4">
         <!-- Impact summary will be populated by JavaScript -->
-        <div class="loading">
-          <div class="spinner"></div>
-          Loading your impact summary...
+        <div class="loading text-center p-5 glass-card shadow-sm border-0" style="border-radius: 16px;">
+          <div class="spinner-border text-primary ms-auto" role="status" aria-hidden="true" style="width: 3rem; height: 3rem;"></div>
+          <p class="mt-3 text-muted fw-bold">Analyzing your civic impact...</p>
         </div>
       </div>
     </section>
 
     <!-- Recent Activity -->
-    <section class="activity-section scroll-reveal">
-      <div class="section-header">
-        <h2 class="section-title">
-          <i class="fas fa-history"></i>
+    <section class="activity-section scroll-reveal shadow-sm border-0" style="background: var(--bg-secondary);">
+      <div class="section-header d-flex justify-content-between align-items-center mb-4">
+        <h2 class="section-title fw-bold m-0" style="font-size: 1.75rem;">
+          <div class="d-inline-flex p-2 rounded-3 me-2" style="background: rgba(72,187,120,0.1);">
+            <i class="fas fa-history text-success"></i>
+          </div>
           Recent Activity
         </h2>
-        <a href="/my-reports" class="btn btn-outline-primary">View All</a>
+        <a href="/my-reports.html" class="btn btn-premium-sm px-4 fw-bold" style="background: var(--premium-gradient); color: white; border-radius: 30px;">
+          View All <i class="fas fa-arrow-right ms-1"></i>
+        </a>
       </div>
       
-      <div id="recentActivityContainer">
-        <div class="loading">
-          <div class="spinner"></div>
-          Loading recent activity...
+      <div id="recentActivityContainer" class="mt-4">
+        <!-- Activity will be populated by JavaScript -->
+        <div class="loading text-center p-5 glass-card shadow-sm border-0" style="border-radius: 16px;">
+          <div class="spinner-border text-success ms-auto" role="status" aria-hidden="true" style="width: 3rem; height: 3rem;"></div>
+          <p class="mt-3 text-muted fw-bold">Fetching recent updates...</p>
         </div>
       </div>
     </section>

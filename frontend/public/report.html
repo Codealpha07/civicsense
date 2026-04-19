@@ -55,6 +55,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 14px;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
@@ -150,7 +154,7 @@
         }
 
         .header-content {
-            max-width: 1600px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
             display: flex;
@@ -449,7 +453,7 @@
 
         /* Main Content */
         .main-content {
-            margin-top: 100px;
+            margin-top: 130px;
             padding: 2.5rem;
             max-width: 1200px;
             margin-left: auto;
@@ -889,43 +893,35 @@
                 </div>
 
                 <div class="user-profile">
-                    <div class="profile-avatar" id="profileAvatar">
-                        <img id="userAvatar" src="/images/default-avatar.png" alt="User Avatar">
+                  <div class="profile-avatar" id="profileAvatar" style="width: 50px; height: 50px; border-radius: 16px; overflow: hidden; background: var(--premium-gradient);">
+                    <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="User Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                    <div id="avatarInitials" class="avatar-initials" style="display: none; height: 100%; align-items: center; justify-content: center; color: white; font-weight: bold;">U</div>
+                  </div>
+                  
+                  <div class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-heavy overflow-hidden" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 280px; z-index: 1050; margin-top: 1rem; border-radius: 24px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px);">
+                    <div class="p-4 border-bottom text-center mb-2" style="background: var(--premium-gradient);">
+                      <div class="profile-avatar mx-auto mb-3" style="width: 70px; height: 70px; border: 4px solid rgba(255,255,255,0.3); border-radius: 50%; overflow: hidden;">
+                        <img id="ddUserAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+                      </div>
+                      <h6 class="fw-bold text-white mb-0" id="ddUserName">Citizen User</h6>
+                      <div class="small text-white opacity-75" id="ddUserEmail">citizen@civicsense.com</div>
                     </div>
-                    
-                    <!-- Dropdown Menu -->
-                    <div class="dropdown-menu dropdown-menu-end shadow-sm" style="display: none; position: absolute; right: 0; top: 100%; min-width: 250px; max-width: 280px; z-index: 1050; margin-top: 0.5rem;">
-                        <div class="px-3 py-2 border-bottom">
-                            <div class="fw-semibold" id="ddUserName">Loading...</div>
-                            <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
-                        </div>
-                        <a class="dropdown-item d-flex align-items-center gap-2" href="/profile.html">
-                            <i class="fas fa-user"></i> Profile
+                    <div class="px-2 pb-3">
+                        <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/profile">
+                          <div class="bg-light p-2 rounded-3 text-primary"><i class="fas fa-user-circle"></i></div> My Profile
                         </a>
-                        <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports.html">
-                            <i class="fas fa-list"></i> My Reports
+                        <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/my-reports">
+                          <div class="bg-light p-2 rounded-3 text-success"><i class="fas fa-list-alt"></i></div> My Reports
                         </a>
-                        <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements.html">
-                            <i class="fas fa-trophy"></i> Achievements
+                        <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/achievements">
+                          <div class="bg-light p-2 rounded-3 text-warning"><i class="fas fa-medal"></i></div> Achievements
                         </a>
-                        <a class="dropdown-item d-flex align-items-center gap-2" href="/rewards.html">
-                            <i class="fas fa-gift"></i> Rewards
-                        </a>
-                        <a class="dropdown-item d-flex align-items-center gap-2" href="/settings.html">
-                            <i class="fas fa-cog"></i> Settings
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item text-muted small" href="/support.html">
-                            <i class="fas fa-question-circle me-2"></i>Support
-                        </a>
-                        <a class="dropdown-item text-muted small" href="/privacy.html">
-                            <i class="fas fa-shield-alt me-2"></i>Privacy
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#" id="logoutBtn">
-                            <i class="fas fa-sign-out-alt"></i> Logout
+                        <hr class="dropdown-divider opacity-10 mx-3">
+                        <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4 text-danger" href="#" id="logoutBtn">
+                          <div class="bg-soft-danger p-2 rounded-3"><i class="fas fa-sign-out-alt"></i></div> Logout
                         </a>
                     </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -933,150 +929,227 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <form id="reportForm" enctype="multipart/form-data">
-            <!-- Category Selection -->
-            <section class="form-section scroll-reveal" id="categorySection">
-                <h2 class="section-title">
-                    <i class="fas fa-tags"></i>
-                    Category Selection
-                </h2>
-                <div class="dropdown mb-3">
-                    <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Select Category ▼
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown" id="categoryMenu">
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-value="roads"><span class="me-2">🛣️</span> Roads</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-value="water"><span class="me-2">💧</span> Water</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-value="electric"><span class="me-2">⚡</span> Electric</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-value="environment"><span class="me-2">🌳</span> Environment</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-value="sanitation"><span class="me-2">🚛</span> Sanitation</a></li>
-                        <li><a class="dropdown-item d-flex align-items-center" href="#" data-value="infrastructure"><span class="me-2">🏗️</span> Infrastructure</a></li>
-                    </ul>
+        <div class="row justify-content-center">
+            <div class="col-lg-12 col-xl-11">
+                <div class="text-center mb-5 scroll-reveal">
+                    <h1 class="fw-bold mb-3" style="font-family: var(--bs-body-font-family);">Create <span style="background: var(--premium-gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Civic Report</span></h1>
+                    <p class="text-secondary">Capture the issue, let our AI analyze it, and help make your city better.</p>
                 </div>
-                <div class="category-icons" id="categoryIcons">
-                    <button type="button" class="category-icon" data-value="roads">
-                        <span class="fs-3">🛣️</span>
-                        <small>Roads</small>
-                    </button>
-                    <button type="button" class="category-icon" data-value="water">
-                        <span class="fs-3">💧</span>
-                        <small>Water</small>
-                    </button>
-                    <button type="button" class="category-icon" data-value="electric">
-                        <span class="fs-3">⚡</span>
-                        <small>Electric</small>
-                    </button>
-                    <button type="button" class="category-icon" data-value="environment">
-                        <span class="fs-3">🌳</span>
-                        <small>Environment</small>
-                    </button>
-                    <button type="button" class="category-icon" data-value="sanitation">
-                        <span class="fs-3">🚛</span>
-                        <small>Sanitation</small>
-                    </button>
-                    <button type="button" class="category-icon" data-value="infrastructure">
-                        <span class="fs-3">🏗️</span>
-                        <small>Infrastructure</small>
-                    </button>
-                </div>
-                <input type="hidden" id="selectedCategory" name="category" required>
-                <div class="mt-3">
-                    <label for="departmentBox" class="form-label">Department</label>
-                    <input type="text" class="form-control" id="departmentBox" name="department" readonly required>
-                </div>
-            </section>
-
-            <!-- Location Selection -->
-            <section class="form-section scroll-reveal" id="locationSection">
-                <h2 class="section-title">
-                    <i class="fas fa-map-marker-alt"></i>
-                    Location
-                </h2>
-                <p class="text-muted mb-3">📍 <span id="currentLocation">Click on the map to select a location</span></p>
-                <div id="map"></div>
-                <div class="mt-3">
-                    <label for="addressBox" class="form-label">Address</label>
-                    <input type="text" class="form-control" id="addressBox" name="address" placeholder="Enter address" required>
-                </div>
-                <div class="mt-3">
-                    <label for="additionalAddress" class="form-label">Additional Details (Optional)</label>
-                    <input type="text" class="form-control" id="additionalAddress" name="additionalAddress" placeholder="Floor, Landmark, etc.">
-                </div>
-            </section>
-
-            <!-- Image Upload -->
-            <section class="form-section scroll-reveal" id="imageSection">
-                <h2 class="section-title">
-                    <i class="fas fa-camera"></i>
-                    Image Upload & AI Analysis
-                </h2>
-                <p class="text-muted mb-3">🤖 AI will analyze your image automatically</p>
                 
-                <!-- IMAGE INPUT BUTTONS -->
-                <div class="d-flex gap-3 mb-3">
-                    <label class="btn btn-primary">
-                        <i class="fas fa-camera me-2"></i>Camera
-                        <input type="file" id="cameraInput" accept="image/*" capture="environment" style="position:absolute; left:-9999px; width:0; height:0; opacity:0;">
-                    </label>
-                    <label class="btn btn-outline-primary">
-                        <i class="fas fa-images me-2"></i>Gallery
-                        <input type="file" id="galleryInput" accept="image/*" style="position:absolute; left:-9999px; width:0; height:0; opacity:0;">
-                    </label>
-                </div>
-
-                <!-- IMAGE PREVIEW -->
-                <div id="previewWrapper" class="preview-wrapper d-none">
-                    <img id="previewImage" class="img-fluid rounded" style="max-height:200px;" alt="Preview">
-                    <button type="button" class="btn btn-sm btn-danger mt-2" id="removeImage">
-                        <i class="fas fa-trash me-1"></i> Remove Image
-                    </button>
-                </div>
-
-                <!-- AI ANALYSIS CARD -->
-                <div id="aiCard" class="ai-card d-none mt-4">
-                    <div class="card-header">
-                        <h5 class="h6 mb-0">
-                            <i class="fas fa-robot me-2"></i>AI Analysis
-                            <span id="aiStatus" class="badge bg-light text-primary ms-2">Analyzing...</span>
-                        </h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="mb-2"><strong>Issue Type:</strong> <span id="aiIssueType" class="text-muted">-</span></p>
-                                <p class="mb-2"><strong>Category:</strong> <span id="aiCategory" class="text-muted">-</span></p>
-                                <p class="mb-2"><strong>GPS Location:</strong> <span id="aiGps" class="text-muted">-</span></p>
-                                <p class="mb-2"><strong>Priority:</strong> <span id="aiPriority" class="badge bg-warning text-dark">-</span></p>
+                <form id="reportForm" class="shadow-lg p-5 glass-card border-0" style="background: var(--bg-secondary); border-radius: 24px;" enctype="multipart/form-data">
+                    
+                    <!-- Category Selection -->
+                    <section class="form-section scroll-reveal p-0 mb-5 border-0 shadow-none bg-transparent" id="categorySection">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-inline-flex bg-soft-accent p-3 rounded-circle me-3" style="background: rgba(102, 126, 234, 0.1);">
+                                <i class="fas fa-tags fs-4" style="color: var(--text-accent);"></i>
                             </div>
-                            <div class="col-md-12 mt-3">
-                                <label for="aiDescription" class="form-label fw-semibold">Generated Description</label>
-                                <div class="position-relative">
-                                    <textarea class="form-control" id="aiDescription" name="description" rows="3" required 
-                                              placeholder="AI is analyzing your image..."></textarea>
-                                    <div id="descriptionLoader" class="position-absolute top-0 end-0 p-2 d-none">
-                                        <div class="spinner-border spinner-border-sm text-primary" role="status">
-                                            <span class="visually-hidden">Loading...</span>
+                            <h3 class="fw-bold m-0">1. Select Category</h3>
+                        </div>
+                        
+                        <div class="d-none">
+                            <button class="btn btn-outline-primary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select Category ▼
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="categoryDropdown" id="categoryMenu">
+                                <li><a class="dropdown-item" href="#" data-value="roads">Roads</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="water">Water</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="electric">Electric</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="environment">Environment</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="sanitation">Sanitation</a></li>
+                                <li><a class="dropdown-item" href="#" data-value="infrastructure">Infrastructure</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="category-icons" id="categoryIcons">
+                            <button type="button" class="category-icon shadow-sm" data-value="roads" style="border-radius: 20px;">
+                                <span class="fs-2 mb-2">🛣️</span>
+                                <small class="fw-bold">Roads</small>
+                            </button>
+                            <button type="button" class="category-icon shadow-sm" data-value="water" style="border-radius: 20px;">
+                                <span class="fs-2 mb-2">💧</span>
+                                <small class="fw-bold">Water</small>
+                            </button>
+                            <button type="button" class="category-icon shadow-sm" data-value="electric" style="border-radius: 20px;">
+                                <span class="fs-2 mb-2">⚡</span>
+                                <small class="fw-bold">Electric</small>
+                            </button>
+                            <button type="button" class="category-icon shadow-sm" data-value="environment" style="border-radius: 20px;">
+                                <span class="fs-2 mb-2">🌳</span>
+                                <small class="fw-bold">Parks</small>
+                            </button>
+                            <button type="button" class="category-icon shadow-sm" data-value="sanitation" style="border-radius: 20px;">
+                                <span class="fs-2 mb-2">🚛</span>
+                                <small class="fw-bold">Waste</small>
+                            </button>
+                            <button type="button" class="category-icon shadow-sm" data-value="infrastructure" style="border-radius: 20px;">
+                                <span class="fs-2 mb-2">🏗️</span>
+                                <small class="fw-bold">Civic</small>
+                            </button>
+                        </div>
+                        <input type="hidden" id="selectedCategory" name="category" required>
+                        <div class="mt-4">
+                            <label for="departmentBox" class="form-label fw-bold text-secondary">Assigned Department</label>
+                            <input type="text" class="form-control fw-bold border-0 bg-light" id="departmentBox" name="department" readonly required placeholder="Auto-assigned based on category...">
+                        </div>
+                    </section>
+
+                    <hr class="mb-5 border-secondary opacity-25">
+
+                    <!-- Image Upload -->
+                    <section class="form-section scroll-reveal p-0 mb-5 border-0 shadow-none bg-transparent" id="imageSection">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-inline-flex p-3 rounded-circle me-3" style="background: rgba(240, 147, 251, 0.1);">
+                                <i class="fas fa-camera fs-4" style="color: #f093fb;"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold m-0">2. Photo & AI Analysis</h3>
+                                <p class="text-secondary small m-0 mt-1">Our AI will automatically caption and assess the issue.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- IMAGE INPUT BUTTONS -->
+                        <div class="d-flex justify-content-center gap-3 mb-4">
+                            <label class="btn px-4 py-3 shadow-sm hover-lift" style="background: var(--premium-gradient); color: white; border-radius: 16px; font-weight: 700; width: 45%;">
+                                <i class="fas fa-camera fs-4 d-block mb-2"></i> Take Photo
+                                <input type="file" id="cameraInput" accept="image/*" capture="environment" style="position:absolute; left:-9999px; width:0; height:0; opacity:0;">
+                            </label>
+                            <label class="btn px-4 py-3 shadow-sm hover-lift" style="background: var(--bg-tertiary); color: var(--text-primary); border: 2px dashed var(--glass-border); border-radius: 16px; font-weight: 700; width: 45%;">
+                                <i class="fas fa-images fs-4 d-block mb-2 text-accent"></i> Upload Gallery
+                                <input type="file" id="galleryInput" accept="image/*" style="position:absolute; left:-9999px; width:0; height:0; opacity:0;">
+                            </label>
+                        </div>
+
+                        <!-- IMAGE PREVIEW -->
+                        <div id="previewWrapper" class="preview-wrapper d-none text-center bg-light rounded-4 p-3 mb-4 border-0 shadow-sm">
+                            <img id="previewImage" class="img-fluid rounded-3 shadow-sm" style="max-height:250px;" alt="Preview">
+                            <br>
+                            <button type="button" class="btn btn-sm btn-outline-danger mt-3 fw-bold rounded-pill px-3" id="removeImage">
+                                <i class="fas fa-trash me-1"></i> Remove Image
+                            </button>
+                        </div>
+
+                        <!-- AI ANALYSIS CARD -->
+                        <div id="aiCard" class="ai-card d-none mt-4 shadow-heavy border-0" style="border-radius: 20px;">
+                            <div class="card-header bg-dark d-flex justify-content-between align-items-center">
+                                <h5 class="h6 mb-0 text-white fw-bold">
+                                    <i class="fas fa-robot me-2 text-info"></i>CivicSense AI Engine
+                                </h5>
+                                <span id="aiStatus" class="badge bg-primary rounded-pill px-3 py-1">Analyzing...</span>
+                            </div>
+                            <div class="card-body bg-light">
+                                <div class="row g-4">
+                                    <div class="col-md-5">
+                                        <div class="bg-white p-3 rounded-4 shadow-sm h-100">
+                                            <p class="mb-2 small text-secondary fw-bold text-uppercase">Detected Issue</p>
+                                            <p class="h5 fw-bold text-dark mb-3" id="aiIssueType">-</p>
+                                            
+                                            <p class="mb-1 small text-secondary"><strong>Category:</strong> <span id="aiCategory" class="text-dark">-</span></p>
+                                            <p class="mb-0 small text-secondary"><strong>Location Check:</strong> <span id="aiGps" class="text-dark">-</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="position-relative h-100">
+                                            <label for="aiDescription" class="form-label fw-bold text-secondary">Generated Description</label>
+                                            <textarea class="form-control border-0 shadow-sm rounded-4 p-3" id="aiDescription" name="description" rows="5" required placeholder="AI is generating a comprehensive description..." style="resize: none; background: white;"></textarea>
+                                            <div id="descriptionLoader" class="position-absolute d-none" style="top: 2.5rem; right: 1rem;">
+                                                <div class="spinner-grow spinner-grow-sm text-primary" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-text">Feel free to edit the generated description as needed.</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr class="mb-5 border-secondary opacity-25">
+
+                    <!-- Location Selection -->
+                    <section class="form-section scroll-reveal p-0 mb-5 border-0 shadow-none bg-transparent" id="locationSection">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="d-inline-flex p-3 rounded-circle me-3" style="background: rgba(72,187,120,0.1);">
+                                <i class="fas fa-map-marker-alt fs-4 text-success"></i>
+                            </div>
+                            <h3 class="fw-bold m-0">3. Confirm Location</h3>
+                        </div>
+                        <div id="map" class="shadow-sm rounded-4 mb-4 border-0" style="height: 350px; z-index: 1;"></div>
+                        <p class="text-secondary small text-center mb-4"><i class="fas fa-info-circle me-1"></i> <span id="currentLocation">Drag marker or click map to pinpoint the exact location.</span></p>
+                        
+                        <div class="row g-3">
+                            <div class="col-md-7">
+                                <label for="addressBox" class="form-label fw-bold text-secondary small text-uppercase">Street Address</label>
+                                <input type="text" class="form-control rounded-pill px-4 bg-light border-0" id="addressBox" name="address" placeholder="Fetching location..." required>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="additionalAddress" class="form-label fw-bold text-secondary small text-uppercase">Landmark (Optional)</label>
+                                <input type="text" class="form-control rounded-pill px-4 bg-light border-0" id="additionalAddress" name="additionalAddress" placeholder="Near metro station, etc.">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Submit Area -->
+                    <div class="d-flex justify-content-between align-items-center bg-light p-4 rounded-4 mt-5">
+                        <button type="button" class="btn btn-light fw-bold text-secondary px-4 py-3 rounded-pill shadow-sm" id="previewReport">
+                            <i class="fas fa-eye me-2"></i> Preview Draft
+                        </button>
+                        <button type="submit" class="btn btn-premium px-5 py-3 fw-bold fs-5 shadow-heavy hover-lift" id="submitReport" style="background: var(--premium-gradient); color: white; border-radius: 30px;">
+                            <i class="fas fa-paper-plane me-2"></i> Submit to Authority
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Preview Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content glass-card border-0 shadow-heavy" style="border-radius: 28px; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px);">
+                <div class="modal-header border-0 pb-0 pt-4 px-4">
+                    <h4 class="fw-bold mb-0" style="color: var(--text-accent);">Report Preview</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-5">
+                            <div class="bg-light p-2 rounded-4 shadow-sm text-center">
+                                <img id="modalPreviewImg" src="" alt="Preview" class="img-fluid rounded-4" style="max-height: 250px;">
+                                <div class="mt-3">
+                                    <span class="badge bg-soft-accent text-accent px-3 py-2 rounded-pill" id="modalCategory">Category</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <h3 class="fw-bold mb-3" id="modalTitle">Title</h3>
+                            <p class="text-secondary mb-4" id="modalDesc" style="line-height: 1.8;">Description text...</p>
+                            
+                            <hr class="opacity-10 my-4">
+                            
+                            <div class="d-flex align-items-start gap-2 mb-2">
+                                <i class="fas fa-map-marker-alt text-danger mt-1"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-1">Location Details</h6>
+                                    <p class="small text-secondary m-0" id="modalAddress">Address text...</p>
+                                </div>
+                            </div>
+                            <div class="d-flex align-items-center gap-2">
+                                <i class="fas fa-building text-primary"></i>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Assigned: <span class="text-secondary fw-normal" id="modalDept">-</span></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <!-- Submit Button -->
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-outline-secondary" id="previewReport">
-                    <i class="fas fa-eye me-2"></i>Preview
-                </button>
-                <button type="submit" class="btn btn-primary px-4" id="submitReport">
-                    <i class="fas fa-paper-plane me-2"></i>Submit Report
-                </button>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-light px-4 py-3 rounded-pill fw-bold" data-bs-dismiss="modal">Close & Edit</button>
+                    <button type="button" class="btn btn-premium px-5 py-3 rounded-pill fw-bold shadow-sm" id="confirmSubmit" style="background: var(--premium-gradient); color: white;">Looks Good, Submit!</button>
+                </div>
             </div>
-        </form>
-    </main>
+        </div>
+    </div>
 
     <!-- Premium Footer -->
     <footer class="premium-footer">
@@ -1196,7 +1269,7 @@
 
         // Profile Dropdown
         const profileAvatar = document.getElementById('profileAvatar');
-        const dropdownMenu = document.querySelector('.dropdown-menu');
+        const dropdownMenu = document.getElementById('profileDropdown');
         let dropdownOpen = false;
 
         profileAvatar.addEventListener('click', (e) => {
@@ -1208,6 +1281,12 @@
         document.addEventListener('click', () => {
             dropdownOpen = false;
             dropdownMenu.style.display = 'none';
+        });
+
+        // Fix active highlighting in dropdown
+        const dropdownItems = document.querySelectorAll('.dropdown-item');
+        dropdownItems.forEach(item => {
+            item.classList.remove('active');
         });
 
         // Notification Bell Animation

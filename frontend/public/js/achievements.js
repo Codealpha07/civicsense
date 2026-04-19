@@ -248,6 +248,16 @@ function updateUserInterface(user) {
     
     // Update avatar display
     updateAvatarDisplay(user);
+
+    // Sync to other identity fields
+    const ddAvatar = document.getElementById('ddUserAvatar');
+    if (ddAvatar) {
+        if (user.photo) {
+            ddAvatar.src = `/uploads/${user.photo}`;
+        } else {
+            ddAvatar.src = `https://ui-avatars.com/api/?name=${user.firstName}+${user.lastName}&background=random&color=fff`;
+        }
+    }
 }
 
 // Update avatar display with initials fallback

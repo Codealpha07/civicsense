@@ -1,153 +1,221 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CivicSense - Report Submitted Successfully</title>
-    
+    <title>CivicSense - Report Submitted</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
-    <!-- Custom Styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --premium-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --shadow-heavy: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-bs-theme="dark"] {
+            --text-primary: #f7fafc;
+            --text-secondary: #a0aec0;
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+        }
+
+        html { font-size: 14px; }
         body {
-            background-color: #f4f6f9;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
         .success-card {
-            max-width: 600px;
-            margin: 50px auto;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border-radius: 15px;
-      overflow: hidden;
-    }
-        .success-header {
-            background-color: #28a745;
+            background: var(--bg-secondary);
+            border-radius: 30px;
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            box-shadow: var(--shadow-heavy);
+            animation: slideUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .success-banner {
+            background: var(--success-gradient);
+            padding: 3rem;
+            text-align: center;
             color: white;
-            padding: 20px;
-      text-align: center;
         }
-        .success-body {
-            padding: 30px;
-            background-color: white;
+
+        .success-body { padding: 3rem; }
+
+        .report-preview-img {
+            width: 100%;
+            max-height: 350px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
-        .report-image {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
+
+        .info-pill {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
-        .badge-category {
-            font-size: 0.9em;
-            margin-bottom: 10px;
-    }
-  </style>
+
+        .btn-premium {
+            background: var(--premium-gradient);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(118, 75, 162, 0.3);
+            color: white;
+        }
+
+        .id-badge {
+            background: var(--bg-primary);
+            border: 1px dashed #667eea;
+            padding: 1rem;
+            border-radius: 15px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
+    <main class="main-content">
         <div class="success-card">
-            <div class="success-header">
-                <h2><i class="fas fa-check-circle me-2"></i>Report Submitted Successfully</h2>
+            <div class="success-banner">
+                <div class="d-inline-flex bg-white p-3 rounded-circle mb-3 shadow-sm">
+                    <i class="fas fa-check fs-1 text-success"></i>
+                </div>
+                <h1 class="fw-bold m-0">Report Submitted!</h1>
+                <p class="mt-2 opacity-75">Your civic contribution has been recorded successfully.</p>
             </div>
-            <div class="success-body">
-                <div id="reportDetailsContainer">
-                    <div class="text-center">
-                        <div class="spinner-border text-primary" role="status">
-                            <span class="visually-hidden">Loading...</span>
-        </div>
-                        <p class="mt-2">Loading report details...</p>
-          </div>
-        </div>
 
-                <div class="text-center mt-4">
-                    <a href="/my-reports" class="btn btn-primary me-2">
-                        <i class="fas fa-list me-2"></i>View All Reports
-                    </a>
-                    <a href="/report" class="btn btn-outline-secondary">
-                        <i class="fas fa-plus me-2"></i>Create Another Report
-                    </a>
-              </div>
+            <div class="success-body" id="successBody">
+                <div class="text-center py-5" id="loader">
+                    <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status text-center"></div>
+                    <p class="mt-3 text-secondary fw-bold">Retrieving report details...</p>
+                </div>
+
+                <div id="reportContent" class="d-none">
+                    <div class="row align-items-center g-5">
+                        <div class="col-md-5 text-center">
+                            <img id="reportImg" src="" alt="Report Image" class="report-preview-img">
+                            <div class="text-center mt-3">
+                                <span class="id-badge d-block mx-auto" id="reportIdDisplay" style="max-width: fit-content;">#ID_PLACEHOLDER</span>
+                                <small class="text-secondary mt-2 d-block">Reference Transaction ID</small>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="mb-4">
+                                <span class="info-pill mb-2" id="reportCategory">Category</span>
+                                <h2 class="fw-bold mb-3" id="reportTitle">Loading Title...</h2>
+                                <p class="text-secondary" id="reportDesc" style="font-size: 1.1rem; line-height: 1.8;"></p>
+                            </div>
+
+                            <div class="bg-light p-4 rounded-4 mb-5 border-0 shadow-sm" style="background-color: rgba(102, 126, 234, 0.05); border-left: 4px solid #667eea !important;">
+                                <h6 class="fw-bold mb-2"><i class="fas fa-map-marker-alt me-2 text-accent" style="color:#667eea;"></i> Location Details</h6>
+                                <p class="small text-secondary m-0" id="reportAddress">-</p>
+                            </div>
+
+                            <div class="d-flex gap-3">
+                                <a href="/my-reports.html" class="btn btn-premium flex-grow-1 text-center">
+                                    <i class="fas fa-list me-2"></i> My Activity
+                                </a>
+                                <a href="/report.html" class="btn btn-outline-secondary px-4 rounded-pill d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="errorState" class="d-none text-center">
+                    <i class="fas fa-exclamation-triangle fs-1 text-warning mb-3"></i>
+                    <h3 class="fw-bold">Retrieval Delay</h3>
+                    <p class="text-secondary">We've saved your report, but couldn't fetch the summary right now. Don't worry, you can see it in your activity log.</p>
+                    <a href="/my-reports.html" class="btn btn-premium mt-3">Go to My Reports</a>
+                </div>
             </div>
-          </div>
         </div>
+    </main>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const reportDetailsContainer = document.getElementById('reportDetailsContainer');
-            
-            // Retrieve report details from localStorage
-            const reportDetails = JSON.parse(localStorage.getItem('lastSubmittedReport') || '{}');
-            
-            // Get report ID from URL
+        document.addEventListener('DOMContentLoaded', async () => {
             const urlParams = new URLSearchParams(window.location.search);
             const reportId = urlParams.get('reportId');
-
-            // Validate report details
-            if (!reportDetails.id || reportDetails.id !== reportId) {
-                reportDetailsContainer.innerHTML = `
-                    <div class="alert alert-warning text-center">
-                        <i class="fas fa-exclamation-triangle me-2"></i>
-                        Unable to retrieve report details. Please check your reports.
-          </div>
-                `;
+            
+            if (!reportId) {
+                document.getElementById('loader').classList.add('d-none');
+                document.getElementById('errorState').classList.remove('d-none');
                 return;
             }
 
-            // Generate report details HTML
-            const detailsHTML = `
-                <h4 class="text-center mb-4">${reportDetails.title}</h4>
+            try {
+                const res = await fetch(`/api/reports/${reportId}`);
+                if (!res.ok) throw new Error('Fetch failed');
+                const report = await res.json();
+
+                // Populate UI
+                document.getElementById('reportTitle').textContent = report.title || 'Civic Issue';
+                document.getElementById('reportDesc').textContent = report.description || 'No description provided.';
+                document.getElementById('reportCategory').innerHTML = `<i class="fas fa-tag"></i> ${report.category || 'General'}`;
+                document.getElementById('reportAddress').textContent = report.location?.address || 'Location details in dashboard';
+                document.getElementById('reportIdDisplay').textContent = `#${report._id.substring(report._id.length - 8).toUpperCase()}`;
                 
-                ${reportDetails.images && reportDetails.images.length > 0 ? `
-                    <div class="text-center mb-3">
-                        <img src="data:image/jpeg;base64,${reportDetails.images[0]}" 
-                             alt="Report Image" class="report-image">
-          </div>
-                ` : ''}
-                
-                <div class="text-center mb-3">
-                    <span class="badge bg-primary badge-category">
-                        <i class="fas fa-tag me-2"></i>${reportDetails.category}
-                    </span>
-                </div>
-                
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Description</h5>
-                        <p class="card-text">${reportDetails.description}</p>
-          </div>
-        </div>
+                if (report.images && report.images.length > 0) {
+                    document.getElementById('reportImg').src = report.images[0];
+                } else {
+                    document.getElementById('reportImg').classList.add('d-none');
+                }
 
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Location</h5>
-                        <p class="card-text">
-                            <i class="fas fa-map-marker-alt me-2"></i>${reportDetails.location}
-                        </p>
-                        <small class="text-muted">
-                            Coordinates: ${reportDetails.coordinates[1].toFixed(6)}, 
-                            ${reportDetails.coordinates[0].toFixed(6)}
-                        </small>
-    </div>
-  </div>
-
-                <div class="alert alert-success text-center">
-                    <strong>Report ID:</strong> ${reportId}
-                    <br>
-                    <small>Keep this ID for future reference</small>
-    </div>
-            `;
-
-            // Update container with details
-            reportDetailsContainer.innerHTML = detailsHTML;
-
-            // Clear localStorage after displaying details
-            localStorage.removeItem('lastSubmittedReport');
+                document.getElementById('loader').classList.add('d-none');
+                document.getElementById('reportContent').classList.remove('d-none');
+            } catch (err) {
+                console.error(err);
+                document.getElementById('loader').classList.add('d-none');
+                document.getElementById('errorState').classList.remove('d-none');
+            }
         });
-  </script>
-  <script src="/js/shared-footer.js"></script>
+    </script>
+    <script src="/js/shared-footer.js"></script>
 </body>
 </html>

@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "A citizen complaint management system",
   "main": "backend/server.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
-    "ml-api": "cd ml_api && uvicorn main:app --reload"
+    "build": "echo 'No build step required'"
   },
   "dependencies": {
     "axios": "^1.10.0",
@@ -28,10 +31,7 @@
     "mongoose": "^8.16.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
-    "mysql": "^2.18.1",
-    "mysql2": "^3.14.1",
     "nodemailer": "^6.10.1",
-    "sequelize": "^6.32.1",
     "twilio": "^4.23.0",
     "xss-clean": "^0.1.4"
   },

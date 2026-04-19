@@ -1,0 +1,60 @@
+# render.yaml — Render.com deployment configuration
+# Place this file in your repo root (civicsense/)
+# Then connect repo on Render → "New Blueprint"
+
+services:
+  - type: web
+    name: civicsense-api
+    runtime: node
+    region: singapore  # closest to India
+    rootDir: .
+    buildCommand: npm install
+    startCommand: node backend/server.js
+    plan: free
+
+    # Environment variables — set secret values in Render dashboard
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: FRONTEND_STATIC_DIR
+        value: /opt/render/project/src/frontend/public
+      - key: UPLOADS_DIR
+        value: /opt/render/project/src/uploads
+      - key: TEMP_UPLOAD_DIR
+        value: /opt/render/project/src/uploads/tmp
+
+      # These must be set manually in Render Dashboard (sensitive):
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: SMTP_FROM
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: TWILIO_ACCOUNT_SID
+        sync: false
+      - key: TWILIO_AUTH_TOKEN
+        sync: false
+      - key: TWILIO_FROM_PHONE
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+
+    # Persistent disk for user-uploaded files
+    disk:
+      name: civicsense-uploads
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 1

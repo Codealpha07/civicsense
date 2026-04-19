@@ -153,6 +153,21 @@ async function initializeUserData() {
     // Update avatar
     updateAvatarDisplay(data.photo, data.firstName, data.lastName);
 
+    // Sync to dropdown elements
+    const ddName = document.getElementById('ddUserName');
+    const ddEmail = document.getElementById('ddUserEmail');
+    const ddAvatar = document.getElementById('ddUserAvatar');
+    
+    if (ddName) ddName.textContent = `${data.firstName} ${data.lastName}`;
+    if (ddEmail) ddEmail.textContent = data.email;
+    if (ddAvatar) {
+        if (data.photo) {
+            ddAvatar.src = `/uploads/${data.photo}`;
+        } else {
+            ddAvatar.src = `https://ui-avatars.com/api/?name=${data.firstName}+${data.lastName}&background=random&color=fff`;
+        }
+    }
+
     // Store user data in localStorage
     localStorage.setItem('user', JSON.stringify(data));
     localStorage.setItem('userId', data._id);
@@ -1750,6 +1765,28 @@ function setupEventListeners() {
     });
     console.log('✅ Theme switch handler setup');
   }
+  
+  // Profile Dropdown Toggle
+  const profileAvatar = document.getElementById('profileAvatar');
+  const profileDropdown = document.getElementById('profileDropdown');
+  
+  if (profileAvatar && profileDropdown) {
+    profileAvatar.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isVisible = profileDropdown.style.display === 'block';
+      profileDropdown.style.display = isVisible ? 'none' : 'block';
+    });
+
+    document.addEventListener('click', () => {
+      profileDropdown.style.display = 'none';
+    });
+  }
+
+  // Fix active highlighting in dropdown
+  const dropdownItems = document.querySelectorAll('.dropdown-item');
+  dropdownItems.forEach(item => {
+      item.classList.remove('active');
+  });
   
   console.log('✅ Event listeners setup completed');
 }

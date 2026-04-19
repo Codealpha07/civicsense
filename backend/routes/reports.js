@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const axios = require('axios');
 const Report = require('../models/Report');
 const { sendReportNotification } = require('../services/emailService');
 const fs = require('fs');
@@ -114,6 +115,91 @@ router.post('/', protect, async (req, res) => {
   } catch (err) {
     console.error('Full error:', err);
     res.status(500).json({ success: false, message: 'Server Error' });
+  }
+});
+
+// @route   POST api/reports/analyze-image
+// @desc    Analyze image using Gemini AI
+// @access  Private
+router.post('/analyze-image', protect, async (req, res) => {
+  try {
+    const { image, mimeType, location } = req.body;
+
+    if (!image) {
+      return res.status(400).json({ success: false, message: 'Image data is required' });
+    }
+
+    const apiKey = (process.env.GEMINI_API_KEY || '').trim();
+    if (!apiKey) {
+      return res.status(500).json({ success: false, message: 'Gemini API key is not configured' });
+    }
+
+    const promptText = location 
+      ? `Analyze the public issue in this image at ${location}. 
+         Return your response in this EXACT format:
+         SUMMARY: concise 3-5 word title
+         DESCRIPTION: detailed 1-2 sentence explanation
+         
+         Be factual and concise.`
+      : `Analyze the public issue in this image. 
+         Return your response in this EXACT format:
+         SUMMARY: concise 3-5 word title
+         DESCRIPTION: detailed 1-2 sentence explanation
+         
+         Be factual and concise.`;
+
+    const requestBody = {
+      contents: [{
+        parts: [
+          { text: promptText },
+          {
+            inline_data: {
+              mime_type: mimeType || 'image/jpeg',
+              data: image
+            }
+          }
+        ]
+      }]
+    };
+
+    // Try multiple models in order of preference based on confirmed available models
+    const models = ['gemini-flash-latest', 'gemini-2.0-flash', 'gemini-2.5-flash', 'gemini-1.5-flash'];
+    let lastError = null;
+
+    for (const model of models) {
+      try {
+        console.log(`Attempting AI analysis with model: ${model}`);
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`;
+        
+        const response = await axios.post(apiUrl, requestBody, {
+          headers: { 'Content-Type': 'application/json' },
+          timeout: 20000
+        });
+
+        const analysis = response.data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+        if (analysis) {
+          console.log(`AI Analysis successful with model: ${model}`);
+          return res.json({ success: true, analysis });
+        }
+      } catch (err) {
+        lastError = err.response?.data?.error?.message || err.message;
+        console.warn(`Model ${model} failed: ${lastError}`);
+        // If it's a critical API key issue, stop trying
+        if (lastError && (lastError.toLowerCase().includes('api key') || lastError.toLowerCase().includes('expired'))) break;
+      }
+    }
+
+    throw new Error(lastError || 'All AI models failed to respond');
+  } catch (err) {
+    const errorMsg = err.response?.data?.error?.message || err.message;
+    console.error('AI Analysis Error Detail:', errorMsg);
+    if (err.response?.data) console.error('Full Gemini Error:', JSON.stringify(err.response.data));
+    
+    res.status(500).json({ 
+      success: false, 
+      message: 'Failed to analyze image',
+      error: errorMsg 
+    });
   }
 });
 

@@ -19,6 +19,24 @@
         link.removeAttribute('aria-current');
       }
     });
+
+    // Logout logic
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Clear auth data
+        localStorage.removeItem('token');
+        localStorage.removeItem('department');
+        localStorage.removeItem('role');
+        
+        // Redirect to main landing page (citizen portal)
+        // Usually http://localhost:3000 in dev
+        window.location.href = 'http://localhost:3000/';
+      });
+    }
+
   } catch (e) {
     console.error('Failed to load common header:', e);
   }
