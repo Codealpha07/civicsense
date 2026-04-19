@@ -1458,16 +1458,43 @@
             .hamburger-btn { display: flex !important; }
             .nav-links { display: none !important; }
             .nav-cta { display: none !important; }
-
+            
             .hero { padding: 120px 0 60px !important; }
             .hero-title { font-size: 2.7rem !important; letter-spacing: -0.02em !important; }
-            
+
+            /* Premium Compact 2x2 Feature Grid */
             .features-grid { 
-                grid-template-columns: 1fr !important;
-                padding: 0 1.25rem !important; 
-                gap: 1.5rem !important; 
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                padding: 0 1rem !important; 
+                gap: 1rem !important;
+                width: 100% !important;
             }
-            .feature-card { padding: 2rem 1.5rem !important; width: 100% !important; box-sizing: border-box !important; }
+            .feature-card {
+                padding: 1.25rem 1rem !important;
+                border-radius: 20px !important;
+                text-align: center !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                min-height: auto !important;
+            }
+            .feature-icon {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 1.25rem !important;
+                margin-bottom: 0.75rem !important;
+                margin-left: auto !important;
+                margin-right: auto !important;
+            }
+            .feature-card h3 {
+                font-size: 0.95rem !important;
+                margin-bottom: 0px !important;
+                line-height: 1.2 !important;
+            }
+            .feature-card p, .feature-tags {
+                display: none !important; /* Hide for ultra-compact grid */
+            }
             .stat-card { padding: 1.5rem 1rem !important; }
 
             /* Mobile Modal Compactness */
