@@ -887,3 +887,63 @@
     font-size: 0.95rem !important;
   }
 }
+
+/* ── 27. Recent Activity Fixes ───────────────────────────────── */
+@media (max-width: 768px) {
+  .activity-section {
+    padding: 1.25rem 1rem !important;
+    margin: 1rem 0 !important;
+  }
+  .activity-section .section-title {
+    font-size: 1.4rem !important;
+  }
+  .activity-section .btn-premium-sm {
+    padding: 6px 16px !important;
+    font-size: 0.8rem !important;
+  }
+  
+  /* Activity Cards */
+  .activity-section .glass-card {
+    padding: 1rem !important;
+    border-radius: 16px !important;
+  }
+  .activity-section .d-flex {
+    flex-wrap: wrap !important;
+  }
+  /* Force vertical layout for status/category on very small screens */
+  .activity-section .flex-grow-1 {
+    width: 100% !important;
+    margin-top: 0.5rem !important;
+  }
+  .activity-section .activity-icon {
+    margin-bottom: 0.5rem !important;
+  }
+  .activity-section h6 {
+    font-size: 1rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+  .activity-section .badge {
+    font-size: 0.7rem !important;
+    padding: 4px 8px !important;
+  }
+  .activity-section .text-muted.small {
+    font-size: 0.75rem !important;
+    display: block !important;
+    margin-top: 0.25rem !important;
+  }
+  .activity-section .view-details-btn {
+    width: 100% !important;
+    margin-top: 1rem !important;
+    padding: 10px !important;
+  }
+}
+
+/* ── 28. General Section Titles ─────────────────────────────── */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.4rem !important;
+  }
+  .section-header i {
+    font-size: 1.2rem !important;
+  }
+}
