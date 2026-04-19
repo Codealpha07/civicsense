@@ -15,11 +15,11 @@
   body {
     overflow-x: hidden !important;
   }
-  /* Bottom nav clearance */
+  /* Bottom nav clearance — using specific shorthand to avoid overrides */
   .main-content,
   main,
   .page-content {
-    padding-bottom: 80px !important;
+    padding-bottom: 100px !important;
   }
   /* Disable heavy desktop animations on mobile for performance */
   .orb,
@@ -117,11 +117,24 @@
   .mobile-hamburger:active { background: rgba(102,126,234,0.12); }
 }
 
-/* ── 1b. Hide desktop footer on mobile — use bottom nav instead ── */
+/* ── 1b. Mobile Footer — Compact & Clean ── */
 @media (max-width: 768px) {
-  .premium-footer,
-  footer.premium-footer {
+  /* Hide heavy links */
+  .footer-content .row > div:not(.footer-bottom) {
     display: none !important;
+  }
+  
+  /* Show only the bottom section */
+  .premium-footer {
+    padding: 1rem 0 !important;
+    background: transparent !important;
+    border: none !important;
+  }
+  
+  .footer-bottom {
+    border-top: none !important;
+    padding-top: 0 !important;
+    margin-bottom: 110px !important; /* Space for bottom nav */
   }
 }
 
@@ -129,7 +142,10 @@
 @media (max-width: 768px) {
   .main-content {
     margin-top: 68px !important;
-    padding: 0.65rem !important;
+    /* Use separate padding to avoid shorthand wipeout of bottom padding */
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+    padding-top: 0 !important;
     max-width: 100% !important;
     overflow-x: hidden;
   }
