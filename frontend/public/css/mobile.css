@@ -822,7 +822,10 @@
     padding: 1rem 0.5rem 0.5rem !important;
   }
   .footer-content .row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
     gap: 0.75rem 0.25rem !important;
+    text-align: center !important;
   }
   .footer-section h6 {
     font-size: 0.85rem !important;
