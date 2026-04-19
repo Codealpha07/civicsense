@@ -1462,8 +1462,12 @@
             .hero { padding: 120px 0 60px !important; }
             .hero-title { font-size: 2.7rem !important; letter-spacing: -0.02em !important; }
             
-            .features-grid { padding: 0 1.25rem !important; gap: 1.5rem !important; }
-            .feature-card { padding: 2rem 1.5rem !important; }
+            .features-grid { 
+                grid-template-columns: 1fr !important;
+                padding: 0 1.25rem !important; 
+                gap: 1.5rem !important; 
+            }
+            .feature-card { padding: 2rem 1.5rem !important; width: 100% !important; box-sizing: border-box !important; }
             .stat-card { padding: 1.5rem 1rem !important; }
 
             /* Mobile Modal Compactness */
@@ -1488,7 +1492,7 @@
                 gap: 0.85rem !important;
             }
             .option-card {
-                padding: 0.85rem !!important;
+                padding: 0.85rem !important;
                 gap: 1rem !important;
             }
             .option-icon {
