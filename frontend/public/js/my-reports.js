@@ -93,6 +93,16 @@ async function loadUserData() {
       
       // Update avatar display
       updateAvatarDisplay(userData.data.photo, userData.data.firstName, userData.data.lastName);
+      
+      // Update dropdown avatar explicitly
+      const ddAvatar = document.getElementById('ddUserAvatar');
+      if (ddAvatar) {
+          if (userData.data.photo) {
+              ddAvatar.src = `/uploads/${userData.data.photo}`;
+          } else {
+              ddAvatar.src = `https://ui-avatars.com/api/?name=${userData.data.firstName}+${userData.data.lastName}&background=random&color=fff`;
+          }
+      }
     } else {
       throw new Error(userData.message || 'Failed to load user data');
     }
@@ -508,85 +518,82 @@ function createReportCard(report) {
   const phoneSection = `<div class="mb-1"><strong>Phone:</strong> ${report.userMobile || '-'}</div>`;
   const resolvedSection = report.dateResolved ? `<div class="mb-1"><strong>Resolved on:</strong> ${formatDate(report.dateResolved)}</div>` : '';
   
+  const getImgUrl = (path) => {
+    if (!path) return 'https://images.unsplash.com/photo-1595240212001-c889de340801?q=80&w=2670&auto=format&fit=crop';
+    if (path.startsWith('data:') || path.startsWith('http')) return path;
+    if (path.startsWith('/uploads/')) return path;
+    if (path.startsWith('uploads/')) return '/' + path;
+    return '/uploads/' + path;
+  };
+
+  const reportImg = getImgUrl(report.photos && report.photos.length > 0 ? report.photos[0] : null);
+
   return `
-    <div class="card report-card fade-in-up">
-      <div class="card-body">
-        <div class="d-flex justify-content-between align-items-start mb-3">
-          <div class="d-flex align-items-center gap-2">
-            <span class="status-badge ${statusClass}">${statusText}</span>
-            <div class="category-icon">
-              <i class="${categoryIcon}"></i>
-            </div>
-            <div>
-              <h6 class="mb-0">${report.category}</h6>
-              <small class="text-muted">${report.id}</small>
-            </div>
-          </div>
-          <div class="text-end">
-            <div class="text-muted small">${formatDate(report.dateReported)}</div>
-            <div class="small">
-              <i class="fas fa-map-marker-alt text-danger me-1"></i>
-              <span class="text-muted">${report.location}</span>
-            </div>
-          </div>
-        </div>
-        
-        <h5 class="card-title">${report.title}</h5>
-        <p class="card-text text-muted">"${report.description}"</p>
-        ${resolvedSection}
-        
-        <!-- Progress Tracker -->
-        <div class="mb-3">
-          <div class="d-flex justify-content-between mb-1">
-            ${report.stages.map((stage, index) => `
-              <div class="progress-step ${stage.completed ? 'completed' : ''} ${stage.name === report.currentStage ? 'active' : ''}">
-                <div class="step-dot"></div>
-                <div class="d-none d-sm-block">${stage.name}</div>
+    <div class="card report-card scroll-reveal">
+      <div class="report-card-inner">
+        <div class="row g-4">
+          <div class="col-lg-4">
+            <div class="report-img-container">
+              <img src="${reportImg}" alt="${report.title}">
+              <div class="status-badge ${statusClass}" style="position: absolute; top: 1rem; left: 1rem; z-index: 2;">
+                ${statusText}
               </div>
-            `).join('')}
-          </div>
-          <div class="progress">
-            <div class="progress-bar" role="progressbar" style="width: ${report.progress}%" 
-                 aria-valuenow="${report.progress}" aria-valuemin="0" aria-valuemax="100"></div>
-          </div>
-        </div>
-        
-        <!-- Latest Update -->
-        <div class="alert alert-light mb-3 py-2 small">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <strong>Latest Update:</strong> ${report.lastUpdate}
-              ${report.overdueBy ? `<span class="badge bg-warning text-dark ms-2">Overdue by ${report.overdueBy}</span>` : ''}
             </div>
-            <div class="text-muted">${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago</div>
           </div>
-        </div>
-        
-        <!-- Action Buttons -->
-        <div class="d-flex flex-wrap gap-2">
-          <button class="btn btn-sm btn-outline-primary view-report-btn" data-id="${report.id}">
-            <i class="fas fa-eye me-1"></i> View Details
-          </button>
-          <button class="btn btn-sm btn-outline-secondary">
-            <i class="fas fa-map-marked-alt me-1"></i> Track on Map
-          </button>
-          ${report.status === 'resolved' ? `
-            <button class="btn btn-sm btn-outline-warning rate-resolution-btn" data-id="${report.id}">
-              <i class="fas fa-star me-1"></i> Rate Resolution
-            </button>
-          ` : ''}
-          <div class="dropdown ms-auto">
-            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-ellipsis-v"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><a class="dropdown-item" href="#" onclick="window.print()"><i class="fas fa-print me-2"></i>Print Report</a></li>
-              <li><a class="dropdown-item" href="#" onclick="exportReportData('${report.id}')"><i class="fas fa-file-export me-2"></i>Export</a></li>
-            </ul>
+          <div class="col-lg-8">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+              <div>
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="category-icon" style="width: 32px; height: 32px; font-size: 0.9rem;">
+                    <i class="${categoryIcon}"></i>
+                  </div>
+                  <span class="text-uppercase fw-bold text-secondary small" style="letter-spacing: 1px;">${report.category}</span>
+                </div>
+                <h4 class="fw-bold mb-1">${report.title}</h4>
+                <div class="d-flex align-items-center gap-3 text-muted small">
+                  <span><i class="fas fa-fingerprint me-1"></i> ${report._id || report.id}</span>
+                  <span><i class="fas fa-calendar-alt me-1"></i> ${formatDate(report.dateReported)}</span>
+                </div>
+              </div>
+              <div class="text-end d-none d-sm-block">
+                <div class="badge bg-light text-dark border p-2 rounded-3 mb-2">
+                   <i class="fas fa-map-marker-alt text-danger me-1"></i>
+                   ${report.location}
+                </div>
+              </div>
+            </div>
+
+            <p class="text-secondary mb-4" style="font-size: 1.05rem; line-height: 1.6;">${report.description}</p>
+            
+            <!-- Progress Tracker -->
+            <div class="mb-4">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="fw-bold small">Current Phase: <span class="text-accent">${report.currentStage}</span></span>
+                <span class="fw-bold small">${report.progress}%</span>
+              </div>
+              <div class="progress" style="height: 6px; background: rgba(0,0,0,0.05);">
+                <div class="progress-bar" role="progressbar" style="width: ${report.progress}%"></div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+              <div class="d-flex gap-2">
+                <button class="btn btn-primary px-4 view-report-btn" data-id="${report.id}">
+                  <i class="fas fa-expand-arrows-alt me-2"></i>Full Details
+                </button>
+                <button class="btn btn-outline-secondary px-3">
+                  <i class="fas fa-map-pin"></i>
+                </button>
+              </div>
+              
+              <div class="text-muted small">
+                 <i class="fas fa-sync-alt fa-spin-hover me-1"></i> Updated ${daysAgo} ${daysAgo === 1 ? 'day' : 'days'} ago
+              </div>
+            </div>
           </div>
         </div>
       </div>
-</div>`;
+    </div>`;
 }
 
 // Update stats cards
@@ -670,15 +677,14 @@ function updateStatsCards() {
         </div>
       </div>
     <div class="stat-card" style="opacity: 1; transform: translateY(0px); transition: 0.6s;">
-        <div class="card-body d-flex flex-column justify-content-center">
-          <div class = "stat-icon">
-            <i class="fas fa-exclamation-triangle"></i>
+      <div class="card-body d-flex flex-column justify-content-center">
+        <div class="stat-icon">
+          <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <h3 class="display-5 fw-bold metric-value text-dark">${overdueCount}</h3>
+        <p class="text-muted mb-0">Overdue</p>
       </div>
-          <h3 class="display-5 fw-bold metric-value text-dark">${overdueCount}</h3>
-          <p class="text-muted mb-0">Overdue</p>
     </div>
-            </div>
-            </div>
   `;
   
   animateMetricValues();

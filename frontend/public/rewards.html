@@ -56,6 +56,10 @@
       box-sizing: border-box;
     }
 
+    html {
+        font-size: 14px;
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
@@ -166,7 +170,7 @@
     }
 
     .header-content {
-      max-width: 1600px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
       display: flex;
@@ -500,9 +504,9 @@
 
     /* Main Content */
     .main-content {
-      margin-top: 100px;
-      padding: 2.5rem;
-      max-width: 1600px;
+      margin-top: 130px;
+      padding: 0 2rem;
+      max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -571,8 +575,8 @@
 
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
       margin-top: 3rem;
     }
 
@@ -1308,44 +1312,34 @@
         </div>
 
         <div class="user-profile">
-          <div class="profile-avatar" id="profileAvatar">
-            <img id="userAvatar" src="/images/default-avatar.png" alt="User Avatar">
-            <div id="avatarInitials" class="avatar-initials" style="display: none;">U</div>
+          <div class="profile-avatar" id="profileAvatar" style="width: 50px; height: 50px; border-radius: 16px; overflow: hidden; background: var(--premium-gradient);">
+            <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="User Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            <div id="avatarInitials" class="avatar-initials" style="display: none; height: 100%; align-items: center; justify-content: center; color: white; font-weight: bold;">U</div>
           </div>
-
-          <!-- Dropdown Menu -->
-          <div class="dropdown-menu dropdown-menu-end shadow-sm" id="profileDropdown"
-            style="display: none; position: absolute; right: -70px; top: 60px; min-width: 250px; max-width: 280px; z-index: 1050; margin-top: 0.5rem;">
-            <div class="px-3 py-2 border-bottom">
-              <div class="fw-semibold" id="ddUserName">Loading...</div>
-              <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
+          
+          <div class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-heavy overflow-hidden" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 280px; z-index: 1050; margin-top: 1rem; border-radius: 24px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px);">
+            <div class="p-4 border-bottom text-center mb-2" style="background: var(--premium-gradient);">
+              <div class="profile-avatar mx-auto mb-3" style="width: 70px; height: 70px; border: 4px solid rgba(255,255,255,0.3); border-radius: 50%; overflow: hidden;">
+                <img id="ddUserAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h6 class="fw-bold text-white mb-0" id="ddUserName">Citizen User</h6>
+              <div class="small text-white opacity-75" id="ddUserEmail">citizen@civicsense.com</div>
             </div>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile">
-              <i class="fas fa-user"></i> Profile
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports">
-              <i class="fas fa-list"></i> My Reports
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements">
-              <i class="fas fa-trophy"></i> Achievements
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/rewards.html">
-              <i class="fas fa-gift"></i> Rewards
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings">
-              <i class="fas fa-cog"></i> Settings
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item text-muted small" href="/support.html">
-              <i class="fas fa-question-circle me-2"></i>Support
-            </a>
-            <a class="dropdown-item text-muted small" href="/privacy.html">
-              <i class="fas fa-shield-alt me-2"></i>Privacy
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#" id="logoutBtn">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
+            <div class="px-2 pb-3">
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/profile">
+                  <div class="bg-light p-2 rounded-3 text-primary"><i class="fas fa-user-circle"></i></div> My Profile
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/my-reports">
+                  <div class="bg-light p-2 rounded-3 text-success"><i class="fas fa-list-alt"></i></div> My Reports
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/achievements">
+                  <div class="bg-light p-2 rounded-3 text-warning"><i class="fas fa-medal"></i></div> Achievements
+                </a>
+                <hr class="dropdown-divider opacity-10 mx-3">
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4 text-danger" href="#" id="logoutBtn">
+                  <div class="bg-soft-danger p-2 rounded-3"><i class="fas fa-sign-out-alt"></i></div> Logout
+                </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1353,78 +1347,203 @@
   </header>
 
   <!-- Main Content -->
-  <main class="main-content">
-    <!-- Hero Section -->
-    <section class="hero-section scroll-reveal">
-      <div class="hero-content">
-        <h1 class="hero-title">Rewards Center</h1>
-        <p class="hero-subtitle">Redeem your earned points for exciting rewards and civic perks.</p>
+<style>
+    /* New Styles for Enhancements */
+    .bg-premium-soft { background: rgba(102, 126, 234, 0.1); color: var(--text-accent); }
+    .bg-soft-accent { background: rgba(240, 147, 251, 0.1); color: #f093fb; padding: 0.5rem 1rem; border-radius: 50px; font-weight: 600; font-size: 0.85rem; }
+    .bg-premium { background: var(--premium-gradient) !important; }
+    
+    .level-progress-card { border: 1px solid var(--glass-border); position: relative; overflow: hidden; }
+    .level-progress-card::after { 
+        content: ''; position: absolute; top: 0; right: 0; 
+        width: 100px; height: 100px; background: var(--premium-gradient); 
+        filter: blur(50px); opacity: 0.1; z-index: 0;
+    }
 
-        <div class="hero-stats" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-star"></i>
+    .reward-item-card { 
+        background: var(--bg-secondary); border-radius: 20px; 
+        overflow: hidden; border: 1px solid var(--glass-border);
+        transition: var(--transition-bounce); position: relative;
+    }
+    .reward-item-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-heavy); }
+    .reward-img { width: 100%; height: 180px; object-fit: cover; }
+    .reward-badge { 
+        position: absolute; top: 15px; right: 15px; 
+        background: var(--premium-gradient); color: white;
+        padding: 4px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 700;
+    }
+    .points-cost { color: var(--text-accent); font-weight: 800; font-size: 1.25rem; }
+    .btn-premium-sm { 
+        background: var(--premium-gradient); color: white; 
+        border: none; padding: 0.5rem 1.5rem; border-radius: 12px;
+        font-weight: 600; font-size: 0.9rem; transition: var(--transition-smooth);
+    }
+    .btn-premium-sm:hover { transform: scale(1.05); box-shadow: var(--shadow-glow); color: white; }
+
+    .leaderboard-item {
+        display: flex; align-items: center; padding: 1rem 1.5rem;
+        background: var(--glass-bg); border-radius: 16px; margin-bottom: 0.75rem;
+        border: 1px solid var(--glass-border); transition: var(--transition-smooth);
+    }
+    .leaderboard-item:hover { background: rgba(255, 255, 255, 0.15); transform: translateX(10px); }
+    .leaderboard-item.top-3 .rank { color: #ffd700; font-size: 1.5rem; }
+    .rank { width: 40px; font-weight: 800; font-size: 1.1rem; color: var(--text-secondary); }
+    .leader-img { width: 45px; height: 45px; border-radius: 12px; margin: 0 1rem; }
+    .leader-info { flex: 1; }
+    .leader-info h6 { margin: 0; font-weight: 700; }
+    .leader-points { font-weight: 800; color: var(--text-accent); }
+    .leaderboard-item.current-user { border: 2px solid var(--text-accent); background: rgba(102, 126, 234, 0.1); }
+
+    .quest-card { background: var(--premium-gradient); color: white; border-radius: 20px; }
+    .quest-icon { width: 60px; height: 60px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto; }
+</style>
+
+  <main class="main-content">
+    <!-- Hero Section with Level System -->
+    <section class="hero-section scroll-reveal">
+      <div class="row align-items-center">
+        <div class="col-lg-7 hero-content">
+          <h1 class="hero-title">Your Civic Impact</h1>
+          <p class="hero-subtitle">You are making your community better, one report at a time. Unlock exclusive perks by staying active!</p>
+          
+          <!-- Level Progress Card -->
+          <div class="level-progress-card mt-4 p-4 glass-card shadow-sm" style="max-width: 500px;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <span class="badge rounded-pill bg-premium-soft px-3 py-2"><i class="fas fa-crown me-2"></i>Protector Level</span>
+              <span class="text-secondary fw-bold">Level 4</span>
             </div>
-            <div class="stat-value" id="currentPoints">0</div>
-            <div class="stat-label">Current Points</div>
+            <div class="progress mb-2" style="height: 12px; border-radius: 10px; background: rgba(0,0,0,0.05);">
+              <div class="progress-bar progress-bar-striped progress-bar-animated bg-premium" role="progressbar" style="width: 75%; border-radius: 10px;"></div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <small class="text-secondary">750 / 1000 XP</small>
+              <small class="text-accent fw-bold decoration-none">250 XP to Guardian</small>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-icon">
-              <i class="fas fa-gift"></i>
+          
+          <div class="hero-stats mt-4">
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-coins text-warning"></i></div>
+              <div class="stat-value" id="currentPoints">0</div>
+              <div class="stat-label">Civic Credits</div>
             </div>
-            <div class="stat-value" id="redeemedRewards">0</div>
-            <div class="stat-label">Rewards Redeemed</div>
+            <div class="stat-card">
+              <div class="stat-icon"><i class="fas fa-fire text-danger"></i></div>
+              <div class="stat-value">12</div>
+              <div class="stat-label">Day Streak</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block">
+          <div class="hero-illustration-container text-center">
+            <img src="https://img.freepik.com/free-vector/gift-reward-surprising-gratitude-appreciation-feedback-bonus-points-marketing-program-concept_335657-2591.jpg" alt="Rewards Illustration" class="img-fluid rounded-4 shadow-heavy">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Rewards Catalog -->
+    <!-- Marketplace Section -->
     <section class="achievement-section scroll-reveal">
       <div class="section-header">
         <h2 class="section-title">
           <i class="fas fa-shopping-bag"></i>
-          Rewards Catalog
+          Redemption Marketplace
         </h2>
+        <span class="bg-soft-accent">Fresh Offers</span>
       </div>
+      
+      <div class="row g-4 mt-2">
+        <!-- Reward Item 1 -->
+        <div class="col-md-4">
+          <div class="reward-item-card h-100 shadow-sm border-0">
+            <div class="reward-badge">Popular</div>
+            <img src="https://img.freepik.com/free-vector/taxi-app-concept_23-2148493198.jpg" alt="Transport" class="reward-img">
+            <div class="reward-body p-4">
+              <h5 class="fw-bold">Public Transport Pass</h5>
+              <p class="text-muted small">Get 50% extra credits on your next Metro or Bus card recharge.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="points-cost"><i class="fas fa-coins me-1"></i>500</div>
+                <button class="btn-premium-sm redeem-btn" onclick="redeemReward('Transit Pass', 500)">Redeem</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reward Item 2 -->
+        <div class="col-md-4">
+          <div class="reward-item-card h-100 shadow-sm border-0">
+            <img src="https://img.freepik.com/free-vector/electric-car-charging-infrastructure-concept_23-2148866574.jpg" alt="Parking" class="reward-img">
+            <div class="reward-body p-4">
+              <h5 class="fw-bold">Smart Parking Credit</h5>
+              <p class="text-muted small">2 hours of free parking session at any Municipal Smart Parking spot.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="points-cost"><i class="fas fa-coins me-1"></i>300</div>
+                <button class="btn-premium-sm redeem-btn" onclick="redeemReward('Parking Credit', 300)">Redeem</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Reward Item 3 -->
+        <div class="col-md-4">
+          <div class="reward-item-card h-100 shadow-sm border-0">
+            <div class="reward-badge bg-success">Eco</div>
+            <img src="https://img.freepik.com/free-vector/environment-protection-concept-illustration_114360-1282.jpg" alt="Gardening" class="reward-img">
+            <div class="reward-body p-4">
+              <h5 class="fw-bold">Green Citizen Kit</h5>
+              <p class="text-muted small">Receive a native tree sapling and organic gardening kit for your home.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="points-cost"><i class="fas fa-coins me-1"></i>750</div>
+                <button class="btn-premium-sm redeem-btn" onclick="redeemReward('Eco Kit', 750)">Redeem</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Reward Item 4 -->
+        <div class="col-md-4">
+          <div class="reward-item-card h-100 shadow-sm border-0">
+            <div class="reward-badge">Premium</div>
+            <img src="https://img.freepik.com/free-vector/receipt-concept-illustration_114360-3023.jpg" alt="Tax Discount" class="reward-img">
+            <div class="reward-body p-4">
+              <h5 class="fw-bold">Property Tax Discount</h5>
+              <p class="text-muted small">Claim a 5% discount voucher on your annual municipal property tax.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="points-cost"><i class="fas fa-coins me-1"></i>2500</div>
+                <button class="btn-premium-sm redeem-btn" onclick="redeemReward('Tax Discount', 2500)">Redeem</button>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div class="badges-grid" id="rewardsContainer">
-        <!-- Static Rewards Example -->
-        <div class="badge-card">
-          <div class="badge-icon">
-            <i class="fas fa-bus"></i>
+        <!-- Reward Item 5 -->
+        <div class="col-md-4">
+          <div class="reward-item-card h-100 shadow-sm border-0">
+            <div class="reward-badge bg-success">Health</div>
+            <img src="https://img.freepik.com/free-vector/health-professional-team-concept-illustration_114360-1634.jpg" alt="Health Checkup" class="reward-img">
+            <div class="reward-body p-4">
+              <h5 class="fw-bold">Free Health Checkup</h5>
+              <p class="text-muted small">A comprehensive preventive health checkup at partner municipal hospitals.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="points-cost"><i class="fas fa-coins me-1"></i>1200</div>
+                <button class="btn-premium-sm redeem-btn" onclick="redeemReward('Health Checkup', 1200)">Redeem</button>
+              </div>
+            </div>
           </div>
-          <h6>Free Transit Pass</h6>
-          <p>Get a 1-day free transit pass for local buses.</p>
-          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 500
-            Points</button>
         </div>
-        <div class="badge-card">
-          <div class="badge-icon">
-            <i class="fas fa-tree"></i>
+
+        <!-- Reward Item 6 -->
+        <div class="col-md-4">
+          <div class="reward-item-card h-100 shadow-sm border-0">
+            <img src="https://img.freepik.com/free-vector/water-utility-concept-illustration_114360-6078.jpg" alt="Utility Bill" class="reward-img">
+            <div class="reward-body p-4">
+              <h5 class="fw-bold">Utility Bill Credit</h5>
+              <p class="text-muted small">Receive ₹500 direct credit towards your next official water supply bill.</p>
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="points-cost"><i class="fas fa-coins me-1"></i>1500</div>
+                <button class="btn-premium-sm redeem-btn" onclick="redeemReward('Bill Credit', 1500)">Redeem</button>
+              </div>
+            </div>
           </div>
-          <h6>Plant a Tree</h6>
-          <p>Sponsor a tree planted in your name in a local park.</p>
-          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 1000
-            Points</button>
-        </div>
-        <div class="badge-card">
-          <div class="badge-icon">
-            <i class="fas fa-utensils"></i>
-          </div>
-          <h6>Free Meal Voucher</h6>
-          <p>₹300 food coupons redeemable at partner restaurants.</p>
-          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 2000
-            Points</button>
-        </div>
-        <div class="badge-card">
-          <div class="badge-icon">
-            <i class="fas fa-shopping-bag"></i>
-          </div>
-          <h6>E-commerce Voucher</h6>
-          <p>Get a voucher worth ₹200 for online shopping.</p>
-          <button class="btn btn-primary mt-3 w-100" onclick="alert('Reward redeemed successfully!')">Redeem for 2500
-            Points</button>
         </div>
       </div>
     </section>
@@ -1678,9 +1797,48 @@
       });
     }, observerOptions);
 
+    // Populate profile info from localStorage
+    function populateProfile() {
+      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      if (!user) return;
+      
+      const headerAvatar = document.getElementById('userAvatar');
+      const ddAvatar = document.getElementById('ddUserAvatar');
+      const ddName = document.getElementById('ddUserName');
+      const ddEmail = document.getElementById('ddUserEmail');
+      
+      if (user.name) {
+          if (ddName) ddName.textContent = user.name;
+      }
+      if (user.email) {
+          if (ddEmail) ddEmail.textContent = user.email;
+      }
+
+      const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || 'User')}&background=random&color=fff`;
+
+      if (user.photo) {
+        let avatarSrc = user.photo;
+        if (!avatarSrc.startsWith('data:') && !avatarSrc.startsWith('http')) {
+            avatarSrc = `/uploads/${avatarSrc}`;
+        }
+        if (headerAvatar) headerAvatar.src = avatarSrc;
+        if (ddAvatar) ddAvatar.src = avatarSrc;
+      } else {
+        if (headerAvatar) headerAvatar.src = defaultAvatar;
+        if (ddAvatar) ddAvatar.src = defaultAvatar;
+      }
+
+      // Fix active highlighting in dropdown (Rewards is not in the list, so clear all local active states)
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      dropdownItems.forEach(item => {
+          item.classList.remove('active');
+      });
+    }
+
     // Observe all cards for stagger animation
     document.addEventListener('DOMContentLoaded', () => {
-      const cards = document.querySelectorAll('.stat-card, .action-card, .advanced-stat-card');
+      populateProfile();
+      const cards = document.querySelectorAll('.stat-card, .action-card, .reward-item-card');
       cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';

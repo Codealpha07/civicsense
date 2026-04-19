@@ -31,11 +31,16 @@
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 14px;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
             color: white;
             overflow-x: hidden;
+            line-height: 1.5;
         }
 
         /* Floating Particles Background */
@@ -78,16 +83,16 @@
         /* Navigation with Glassmorphism */
         .navbar {
             position: fixed;
-            top: 20px;
+            top: 15px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(20px);
+            background: rgba(15, 23, 42, 0.82);
+            backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
             border-radius: 50px;
-            padding: 15px 30px;
+            padding: 10px 24px;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .navbar:hover {
@@ -108,6 +113,7 @@
             font-size: 1.5rem;
             font-weight: 800;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -197,8 +203,8 @@
         }
 
         @keyframes bgShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(5deg); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .hero-container {
@@ -244,26 +250,27 @@
         }
 
         .hero-title {
-            font-size: 4.5rem;
+            font-size: 3.75rem;
             font-weight: 900;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             background: linear-gradient(135deg, #ffffff 0%, var(--neon-blue) 50%, var(--neon-purple) 100%);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: slideInLeft 1s ease 0.4s both;
-            text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
-            letter-spacing: -0.02em;
+            text-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+            letter-spacing: -0.03em;
         }
 
         .hero-subtitle {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.8);
             margin-bottom: 2.5rem;
             line-height: 1.7;
             animation: slideInLeft 1s ease 0.6s both;
             font-weight: 400;
-            max-width: 90%;
+            max-width: 580px;
         }
 
         .hero-stats {
@@ -295,6 +302,7 @@
             font-size: 2.8rem;
             font-weight: 800;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-green));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: block;
@@ -397,8 +405,8 @@
         }
 
         .phone-3d {
-            width: 400px;
-            height: 760px;
+            width: 320px;
+            height: 650px;
             position: relative;
             transform-style: preserve-3d;
             animation: float3D 6s ease-in-out infinite;
@@ -423,54 +431,58 @@
 
         .phone-screen {
             position: absolute;
-            top: 30px;
-            left: 30px;
-            right: 30px;
-            bottom: 30px;
+            top: 18px;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
-            border-radius: 40px;
+            border-radius: 32px;
             overflow: hidden;
             box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
         }
 
         .app-ui {
-            padding: 40px 30px;
+            padding: 25px 20px;
             height: 100%;
             display: flex;
             flex-direction: column;
-            gap: 25px;
+            gap: 15px;
             position: relative;
         }
-
+        
         .app-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .app-title {
-            font-size: 1.6rem;
+            font-size: 1.25rem;
             font-weight: 800;
-            background: var(--primary-gradient);
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
             background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .notification-bubble {
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             background: var(--neon-pink);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: white;
             box-shadow: 0 0 20px rgba(255, 0, 128, 0.5);
             animation: pulse 2s infinite;
         }
+
+
 
         @keyframes pulse {
             0% { transform: scale(1); }
@@ -509,8 +521,8 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 25px;
+            border-radius: 18px;
+            padding: 18px;
             position: relative;
             overflow: hidden;
             transition: all 0.3s ease;
@@ -551,10 +563,10 @@
         }
 
         .report-title {
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-primary);
+            margin-bottom: 8px;
+            color: white;
         }
 
         .report-location {
@@ -581,7 +593,7 @@
         }
 
         .report-reward {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 600;
             color: #00ff88;
             display: flex;
@@ -636,15 +648,15 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(99, 102, 241, 0.3);
             color: white;
-            padding: 18px 15px;
-            border-radius: 18px;
+            padding: 12px 10px;
+            border-radius: 14px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
             transition: all 0.3s ease;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         .action-btn:hover {
@@ -654,7 +666,7 @@
         }
 
         .action-btn i {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--neon-blue);
         }
 
@@ -726,6 +738,7 @@
             font-size: 2.2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff, var(--neon-blue));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.5rem;
@@ -883,16 +896,17 @@
         }
 
         .section-title {
-            font-size: 3.5rem;
+            font-size: 2.75rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
             background: linear-gradient(45deg, white, var(--neon-blue), var(--neon-purple));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .section-subtitle {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             color: rgba(255, 255, 255, 0.7);
             max-width: 600px;
             margin: 0 auto;
@@ -1007,16 +1021,17 @@
         }
 
         .mission-title {
-            font-size: 3rem;
+            font-size: 2.25rem;
             font-weight: 900;
             margin-bottom: 2rem;
             background: linear-gradient(45deg, var(--neon-green), var(--neon-blue));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .mission-description {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             color: rgba(255, 255, 255, 0.8);
             max-width: 800px;
             margin: 0 auto 4rem;
@@ -1065,9 +1080,10 @@
         }
 
         .goal-number {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 900;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
@@ -1112,8 +1128,8 @@
         }
 
         @keyframes ctaShift {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(10deg); }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .cta-container {
@@ -1126,16 +1142,17 @@
         }
 
         .cta-title {
-            font-size: 3.5rem;
+            font-size: 2.75rem;
             font-weight: 900;
             margin-bottom: 1.5rem;
             background: linear-gradient(45deg, white, var(--neon-blue), var(--neon-purple));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .cta-description {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 3rem;
             line-height: 1.6;
@@ -1180,6 +1197,7 @@
             font-weight: 800;
             margin-bottom: 1.5rem;
             background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }

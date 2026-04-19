@@ -1,8 +1,12 @@
 const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+
+// Load environment variables immediately
+dotenv.config({ path: path.join(__dirname, '.env') });
+
+const helmet = require('helmet');
+const cors = require('cors');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -19,9 +23,6 @@ const fs = require('fs');
 
 // Import API routes
 const reportsRoutes = require('./routes/reports');
-
-// Load environment variables
-dotenv.config({ path: path.join(__dirname, '.env') });
 
 // Validate required environment variables
 const requiredEnvVars = ['JWT_SECRET', 'MONGODB_URI', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS'];

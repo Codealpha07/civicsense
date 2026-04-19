@@ -53,6 +53,7 @@
       box-sizing: border-box;
     }
 
+    html { font-size: 14px; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg-primary);
@@ -136,9 +137,9 @@
       left: 0;
       right: 0;
       z-index: 1000;
-      background: rgba(255, 255, 255, 1);
-      backdrop-filter: blur(30px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
       transition: var(--transition-smooth);
       padding: 0.5rem 0;
     }
@@ -148,7 +149,7 @@
     }
 
     .header-content {
-      max-width: 1600px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
       display: flex;
@@ -461,9 +462,9 @@
 
     /* Main Content */
     .main-content {
-      margin-top: 100px;
-      padding: 2.5rem;
-      max-width: 1600px;
+      margin-top: 130px;
+      padding: 0 2rem;
+      max-width: 1200px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -674,15 +675,16 @@
 
     /* Premium Badges */
     .premium-badge {
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      padding: 0.5rem 1rem;
+      border-radius: 14px;
+      padding: 0.6rem 1.25rem;
       color: var(--text-primary);
-      font-weight: 600;
-      font-size: 0.85rem;
+      font-weight: 700;
+      font-size: 0.8rem;
       transition: var(--transition-smooth);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     .premium-badge.success {
@@ -751,7 +753,9 @@
 
     .stats-card:hover {
       transform: translateY(-8px) scale(1.02);
-      box-shadow: var(--shadow-heavy);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      background: var(--bg-secondary);
+      border-color: var(--text-accent);
     }
 
     .stats-value {
@@ -1049,43 +1053,34 @@
         </div>
 
         <div class="user-profile">
-          <div class="profile-avatar" id="profileAvatar">
-            <img id="userAvatar" src="/images/default-avatar.png" alt="User Avatar">
-            <div id="avatarInitials" class="avatar-initials" style="display: none;">U</div>
+          <div class="profile-avatar" id="profileAvatar" style="width: 50px; height: 50px; border-radius: 16px; overflow: hidden; background: var(--premium-gradient);">
+            <img id="userAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="User Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+            <div id="avatarInitials" class="avatar-initials" style="display: none; height: 100%; align-items: center; justify-content: center; color: white; font-weight: bold;">U</div>
           </div>
           
-          <!-- Dropdown Menu -->
-          <div class="dropdown-menu dropdown-menu-end shadow-sm" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 250px; max-width: 280px; z-index: 1050; margin-top: 0.5rem;">
-            <div class="px-3 py-2 border-bottom">
-              <div class="fw-semibold" id="ddUserName">Loading...</div>
-              <div class="small text-muted" id="ddUserEmail">loading@email.com</div>
+          <div class="dropdown-menu dropdown-menu-end p-0 border-0 shadow-heavy overflow-hidden" id="profileDropdown" style="display: none; position: absolute; right: 0; top: 100%; min-width: 280px; z-index: 1050; margin-top: 1rem; border-radius: 24px; background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(20px);">
+            <div class="p-4 border-bottom text-center mb-2" style="background: var(--premium-gradient);">
+              <div class="profile-avatar mx-auto mb-3" style="width: 70px; height: 70px; border: 4px solid rgba(255,255,255,0.3); border-radius: 50%; overflow: hidden;">
+                <img id="ddUserAvatar" src="https://ui-avatars.com/api/?name=User&background=random" alt="Avatar" style="width: 100%; height: 100%; object-fit: cover;">
+              </div>
+              <h6 class="fw-bold text-white mb-0" id="ddUserName">Citizen User</h6>
+              <div class="small text-white opacity-75" id="ddUserEmail">citizen@civicsense.com</div>
             </div>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/profile">
-              <i class="fas fa-user"></i> Profile
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/my-reports">
-              <i class="fas fa-list"></i> My Reports
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/achievements">
-              <i class="fas fa-trophy"></i> Achievements
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/rewards.html">
-              <i class="fas fa-gift"></i> Rewards
-            </a>
-            <a class="dropdown-item d-flex align-items-center gap-2" href="/settings">
-              <i class="fas fa-cog"></i> Settings
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item text-muted small" href="/support.html">
-              <i class="fas fa-question-circle me-2"></i>Support
-            </a>
-            <a class="dropdown-item text-muted small" href="/privacy.html">
-              <i class="fas fa-shield-alt me-2"></i>Privacy
-            </a>
-            <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 text-danger" href="#" id="logoutBtn">
-              <i class="fas fa-sign-out-alt"></i> Logout
-            </a>
+            <div class="px-2 pb-3">
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/profile">
+                  <div class="bg-light p-2 rounded-3 text-primary"><i class="fas fa-user-circle"></i></div> My Profile
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/my-reports">
+                  <div class="bg-light p-2 rounded-3 text-success"><i class="fas fa-list-alt"></i></div> My Reports
+                </a>
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4" href="/achievements">
+                  <div class="bg-light p-2 rounded-3 text-warning"><i class="fas fa-medal"></i></div> Achievements
+                </a>
+                <hr class="dropdown-divider opacity-10 mx-3">
+                <a class="dropdown-item d-flex align-items-center gap-3 py-3 rounded-4 text-danger" href="#" id="logoutBtn">
+                  <div class="bg-soft-danger p-2 rounded-3"><i class="fas fa-sign-out-alt"></i></div> Logout
+                </a>
+            </div>
           </div>
         </div>
       </div>
@@ -1112,9 +1107,9 @@
             </span>
           </div>
           <div class="text-muted mb-2">
-            <i class="fas fa-award text-primary me-1"></i> Civic Champion
+            <i class="fas fa-award text-primary me-1"></i> <span id="userRank">Civic Champion</span>
             <span class="mx-2">•</span>
-            <i class="far fa-calendar-alt text-primary me-1"></i> Member since Jan 2023
+            <i class="far fa-calendar-alt text-primary me-1"></i> <span id="userMemberSince">Member since Jan 2023</span>
           </div>
           <div class="text-muted">
             <i class="fas fa-map-marker-alt text-primary me-1"></i> <span id="userLocation">New Delhi, India</span>
@@ -1777,32 +1772,42 @@
       // Set avatar in profile section
       const avatar = document.getElementById('profileAvatarMain');
       const headerAvatar = document.getElementById('userAvatar');
+      const ddAvatar = document.getElementById('ddUserAvatar');
       
+      // Update dropdown info
+      if (user.name) {
+          const ddName = document.getElementById('ddUserName');
+          if (ddName) ddName.textContent = user.name;
+      }
+      if (user.email) {
+          const ddEmail = document.getElementById('ddUserEmail');
+          if (ddEmail) ddEmail.textContent = user.email;
+      }
+
+      const defaultAvatar = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.name || 'User')}&background=random&color=fff`;
+
       if (user.photo) {
-        const avatarSrc = `/uploads/${user.photo}`;
+        let avatarSrc = user.photo;
+        if (!avatarSrc.startsWith('data:') && !avatarSrc.startsWith('http')) {
+            avatarSrc = `/uploads/${avatarSrc}`;
+        }
         if (avatar) avatar.src = avatarSrc;
         if (headerAvatar) headerAvatar.src = avatarSrc;
+        if (ddAvatar) ddAvatar.src = avatarSrc;
       } else {
-        // Show default avatar or generate initials
-        if (avatar) avatar.src = '/img/avatar-placeholder.png';
-        if (headerAvatar) headerAvatar.src = '/img/avatar-placeholder.png';
-        
-        // Optional: Generate initials if name is available
-        let initial = '?';
-        if (user.firstName && user.lastName) {
-          initial = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
-        } else if (user.name) {
-          initial = user.name.trim()[0].toUpperCase();
-        } else if (user.email) {
-          initial = user.email.trim()[0].toUpperCase();
-        }
-        
-        const avatarInitials = document.getElementById('avatarInitials');
-        if (avatarInitials) {
-          avatarInitials.textContent = initial;
-          avatarInitials.style.display = user.photo ? 'none' : 'flex';
-        }
+        if (avatar) avatar.src = defaultAvatar;
+        if (headerAvatar) headerAvatar.src = defaultAvatar;
+        if (ddAvatar) ddAvatar.src = defaultAvatar;
       }
+
+      // Fix active highlighting in dropdown
+      const dropdownItems = document.querySelectorAll('.dropdown-item');
+      dropdownItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('href') === '/profile') {
+              item.classList.add('active');
+          }
+      });
     }
 
     // Helper function to show alerts
@@ -1843,38 +1848,73 @@
       
       const avatarInput = document.getElementById('avatarInput');
       if (avatarInput) {
-        avatarInput.addEventListener('change', function(e) {
+        avatarInput.addEventListener('change', async function(e) {
           const file = e.target.files[0];
           if (!file) return;
           
-          // Check file type
           if (!file.type.match('image.*')) {
-            showAlert('Please select a valid image file (JPG, PNG, GIF)', 'danger');
+            showAlert('Please select a valid image file', 'danger');
             return;
           }
           
-          // Check file size (max 2MB)
           if (file.size > 2 * 1024 * 1024) {
             showAlert('Image size should be less than 2MB', 'danger');
             return;
           }
           
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            const avatarMain = document.getElementById('profileAvatarMain');
-            const avatarHeader = document.getElementById('userAvatar');
-            
-            if (avatarMain) avatarMain.src = e.target.result;
-            if (avatarHeader) avatarHeader.src = e.target.result;
-            
-            // In a real app, upload the file to your server here
-            const userData = JSON.parse(localStorage.getItem('user') || '{}');
-            userData.avatar = e.target.result;
-            localStorage.setItem('user', JSON.stringify(userData));
-            
-            showAlert('Profile picture updated successfully!', 'success');
-          };
-          reader.readAsDataURL(file);
+          try {
+            const formData = new FormData();
+            formData.append('photo', file);
+            showAlert('Uploading profile picture...', 'info');
+
+            const response = await fetch('/api/v1/users/photo', {
+              method: 'PUT',
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+              },
+              body: formData
+            });
+
+            if (!response.ok) {
+              throw new Error('Failed to upload photo');
+            }
+
+            const data = await response.json();
+            if (data.success) {
+              const photoUrl = `/uploads/${data.data.photo}`;
+              
+              // Update all avatar instances on page
+              if (document.getElementById('profileAvatarMain')) document.getElementById('profileAvatarMain').src = photoUrl;
+              if (document.getElementById('userAvatar')) document.getElementById('userAvatar').src = photoUrl;
+              
+              // Update avatar
+              updateAvatarDisplay(data.photo, data.firstName, data.lastName);
+
+              // Update dropdown info
+              const ddName = document.getElementById('ddUserName');
+              const ddEmail = document.getElementById('ddUserEmail');
+              const ddAvatar = document.getElementById('ddUserAvatar');
+              
+              if (ddName) ddName.textContent = `${data.firstName} ${data.lastName}`;
+              if (ddEmail) ddEmail.textContent = data.email;
+              if (ddAvatar) {
+                  if (data.photo) {
+                      ddAvatar.src = `/uploads/${data.photo}`;
+                  } else {
+                      ddAvatar.src = `https://ui-avatars.com/api/?name=${data.firstName}+${data.lastName}&background=random&color=fff`;
+                  }
+              }
+              
+              // Persist to local storage for instant access
+              const userData = JSON.parse(localStorage.getItem('user') || '{}');
+              userData.photo = data.data.photo;
+              localStorage.setItem('user', JSON.stringify(userData));
+
+              showAlert('Profile picture updated and saved!', 'success');
+            }
+          } catch (err) {
+            showAlert('Error uploading: ' + err.message, 'danger');
+          }
         });
       }
       
