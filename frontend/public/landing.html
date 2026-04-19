@@ -1462,38 +1462,49 @@
             .hero { padding: 120px 0 60px !important; }
             .hero-title { font-size: 2.7rem !important; letter-spacing: -0.02em !important; }
 
-            /* Premium Compact 2x2 Feature Grid */
+            /* Premium Compact 1-column Feature Grid */
             .features-grid { 
                 display: grid !important;
-                grid-template-columns: repeat(2, 1fr) !important;
+                grid-template-columns: 1fr !important;
                 padding: 0 1rem !important; 
                 gap: 1rem !important;
                 width: 100% !important;
+                box-sizing: border-box !important;
             }
             .feature-card {
-                padding: 1.25rem 1rem !important;
+                padding: 1.5rem 1.25rem !important;
                 border-radius: 20px !important;
-                text-align: center !important;
                 display: flex !important;
-                flex-direction: column !important;
-                align-items: center !important;
-                min-height: auto !important;
+                flex-direction: row !important; /* Horizontal layout for compactness */
+                align-items: flex-start !important;
+                gap: 1rem !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
             }
             .feature-icon {
-                width: 45px !important;
-                height: 45px !important;
-                font-size: 1.25rem !important;
-                margin-bottom: 0.75rem !important;
-                margin-left: auto !important;
-                margin-right: auto !important;
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 1.4rem !important;
+                border-radius: 12px !important;
+                margin: 0 !important;
+                flex-shrink: 0 !important;
             }
             .feature-card h3 {
-                font-size: 0.95rem !important;
-                margin-bottom: 0px !important;
-                line-height: 1.2 !important;
+                font-size: 1.2rem !important;
+                margin-bottom: 0.25rem !important;
+                text-align: left !important;
             }
-            .feature-card p, .feature-tags {
-                display: none !important; /* Hide for ultra-compact grid */
+            .feature-card p {
+                font-size: 0.85rem !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+                margin: 0 !important;
+                text-align: left !important;
+            }
+            .feature-tags {
+                display: none !important;
             }
             .stat-card { padding: 1.5rem 1rem !important; }
 
