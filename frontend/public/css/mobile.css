@@ -5,23 +5,19 @@
    ================================================================ */
 
 /* ── 0. Global Resets ─────────────────────────────────────────── */
-/* CRITICAL: prevent any child from blowing out the viewport */
-* { box-sizing: border-box; }
 @media (max-width: 768px) {
   html {
-    font-size: 12px !important; /* tighter base — everything scales down */
+    font-size: 12px !important; 
     -webkit-text-size-adjust: 100%;
   }
   body {
     overflow-x: hidden !important;
   }
-  /* Bottom nav clearance — using specific shorthand to avoid overrides */
   .main-content,
   main,
   .page-content {
-    padding-bottom: 100px !important;
+    padding-bottom: 80px !important;
   }
-  /* Disable heavy desktop animations on mobile for performance */
   .orb,
   .floating-orbs {
     display: none !important;
@@ -33,72 +29,58 @@
   .premium-header { padding: 0 !important; }
 
   .header-content {
-    height: 56px !important;
+    height: 60px !important;
     padding: 0 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
     gap: 0.5rem !important;
-    min-width: 0; /* prevent flex blowout */
-    overflow: hidden;
+    flex-wrap: nowrap !important;
   }
 
-  /* Hide desktop elements */
   .nav-links,
   .theme-toggle {
     display: none !important;
   }
 
-  /* Logo — shrink to fit, never overflow */
   .logo-section {
-    flex: 1 1 auto;
-    min-width: 0;
-    overflow: hidden;
+    flex: 1 !important;
+    min-width: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
   }
+
   .logo-icon {
-    width: 32px !important;
-    height: 32px !important;
+    width: 34px !important;
+    height: 34px !important;
     border-radius: 9px !important;
-    font-size: 0.8rem !important;
-    flex-shrink: 0 !important;
+    font-size: 0.9rem !important;
+    flex-shrink: 0;
   }
-  .logo-text {
-    min-width: 0;
-    overflow: hidden;
-  }
+
   .logo-text h1 {
-    font-size: 1rem !important;
+    font-size: 1.15rem !important;
     line-height: 1 !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    margin: 0 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
   .logo-text .subtitle { display: none !important; }
 
-  /* Header actions — fixed width, never shrink */
-  .header-actions {
-    flex-shrink: 0;
-    gap: 0.4rem !important;
-  }
   .action-btn {
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 8px !important;
-    font-size: 0.8rem !important;
-    flex-shrink: 0;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 9px !important;
+    font-size: 0.85rem !important;
   }
   .profile-avatar {
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 8px !important;
-    flex-shrink: 0;
-  }
-  .notification-badge {
-    width: 14px !important;
-    height: 14px !important;
-    font-size: 0.55rem !important;
-    top: -3px !important;
-    right: -3px !important;
+    width: 34px !important;
+    height: 34px !important;
+    border-radius: 9px !important;
   }
 
-  /* Hamburger */
   .mobile-hamburger {
     display: flex !important;
     width: 34px;
@@ -107,739 +89,98 @@
     justify-content: center;
     background: none;
     border: none;
-    cursor: pointer;
-    color: var(--text-primary, #1a202c);
-    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-size: 1.15rem;
     border-radius: 9px;
-    transition: background 0.15s;
     flex-shrink: 0;
   }
-  .mobile-hamburger:active { background: rgba(102,126,234,0.12); }
 }
 
-/* ── 1b. Mobile Footer — Compact & Clean ── */
-@media (max-width: 768px) {
-  /* Hide heavy links */
-  .footer-content .row > div:not(.footer-bottom) {
-    display: none !important;
-  }
-  
-  /* Show only the bottom section */
-  .premium-footer {
-    padding: 1rem 0 !important;
-    background: transparent !important;
-    border: none !important;
-  }
-  
-  .footer-bottom {
-    border-top: none !important;
-    padding-top: 0 !important;
-    margin-bottom: 110px !important; /* Space for bottom nav */
-  }
-}
-
-/* ── 2. Main Content Offset ────────────────────────────────────── */
-@media (max-width: 768px) {
-  .main-content {
-    margin-top: 68px !important;
-    /* Use separate padding to avoid shorthand wipeout of bottom padding */
-    padding-left: 0.65rem !important;
-    padding-right: 0.65rem !important;
-    padding-top: 0 !important;
-    max-width: 100% !important;
-    overflow-x: hidden;
-  }
-}
-@media (max-width: 480px) {
-  .main-content {
-    margin-top: 66px !important;
-    padding: 0.6rem !important;
-  }
-}
-
-/* ── 3. Hero / Welcome Section ─────────────────────────────────── */
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 1rem 0.85rem !important;
-    margin-bottom: 0.75rem !important;
-    border-radius: 14px !important;
-    overflow: hidden;
-  }
-  .hero-title {
-    font-size: 1.45rem !important;
-    line-height: 1.15 !important;
-    margin-bottom: 0.35rem !important;
-  }
-  .hero-subtitle {
-    font-size: 0.82rem !important;
-    margin-bottom: 0.75rem !important;
-    line-height: 1.4 !important;
-  }
-  .hero-section .d-flex.gap-3 {
-    gap: 0.4rem !important;
-    flex-wrap: wrap !important;
-  }
-  .hero-section .btn {
-    flex: 1 !important;
-    min-width: 110px !important;
-    font-size: 0.78rem !important;
-    padding: 0.5rem 0.65rem !important;
-    border-radius: 9px !important;
-  }
-  .hero-section .col-lg-5 { display: none !important; }
-}
-
-/* ── 4. Hero Stats Cards ───────────────────────────────────────── */
-@media (max-width: 768px) {
-  .hero-stats {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.6rem !important;
-    margin-top: 1rem !important;
-  }
-  .stat-card {
-    padding: 0.9rem 0.75rem !important;
-    border-radius: 14px !important;
-  }
-  .stat-icon {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 0.9rem !important;
-    border-radius: 10px !important;
-    margin-bottom: 0.6rem !important;
-  }
-  .stat-value { font-size: 1.5rem !important; }
-  .stat-label { font-size: 0.75rem !important; }
-}
-@media (max-width: 380px) {
-  .hero-stats { grid-template-columns: 1fr !important; }
-}
-
-/* ── 5. Quick Actions Grid ─────────────────────────────────────── */
+/* ── 2. Quick Actions Slider ────────────────────────────────────── */
 @media (max-width: 768px) {
   .quick-actions {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.6rem !important;
-    margin-bottom: 1rem !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    gap: 12px !important;
+    padding: 4px 4px 12px 4px !important;
+    margin: 0 -12px 12px -12px !important;
+    -webkit-overflow-scrolling: touch !important;
   }
-  .action-card {
-    padding: 1.1rem 0.75rem !important;
-    border-radius: 14px !important;
-    text-align: center;
-  }
-  .action-icon {
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 1.1rem !important;
-    border-radius: 12px !important;
-    margin: 0 auto 0.6rem !important;
-  }
-  .action-title {
-    font-size: 0.85rem !important;
-    font-weight: 700 !important;
-    margin-bottom: 0.25rem !important;
-  }
-  .action-description {
-    font-size: 0.73rem !important;
-    line-height: 1.3 !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-}
 
-/* ── 6. Advanced Stats ─────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .advanced-stats {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.6rem !important;
-    margin-bottom: 1rem !important;
+  .quick-actions::-webkit-scrollbar {
+    display: none !important;
   }
-  .advanced-stat-card {
-    padding: 0.9rem 0.75rem !important;
+
+  .action-card {
+    flex: 0 0 160px !important;
+    scroll-snap-align: center !important;
+    margin-bottom: 0 !important;
+    padding: 1.25rem 1rem !important;
+    border-radius: 18px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  }
+
+  .action-icon {
+    width: 48px !important;
+    height: 48px !important;
+    font-size: 1.25rem !important;
     border-radius: 14px !important;
+    margin: 0 auto 0.75rem auto !important;
   }
-  .stat-value {
-    font-size: 1.6rem !important;
+
+  .action-title {
+    font-size: 0.95rem !important;
     margin-bottom: 0.4rem !important;
   }
-  .stat-header { margin-bottom: 0.6rem !important; }
-  .stat-trend {
-    font-size: 0.65rem !important;
-    padding: 0.25rem 0.5rem !important;
-  }
-  .stat-progress { height: 5px !important; }
-}
-@media (max-width: 380px) {
-  .advanced-stats { grid-template-columns: 1fr !important; }
-}
 
-/* ── 7. Section Containers (Impact / Activity / Badges) ────────── */
-@media (max-width: 768px) {
-  .impact-section,
-  .activity-section,
-  .badges-section {
-    padding: 0.85rem 0.75rem !important;
-    margin-bottom: 0.75rem !important;
-    border-radius: 14px !important;
-    overflow: hidden; /* prevent inner content blowing out */
-  }
-  .section-title {
-    font-size: 0.95rem !important;
-    gap: 0.4rem !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 60%;
-  }
-  .section-title i { font-size: 0.9rem !important; }
-  .section-header {
-    margin-bottom: 0.75rem !important;
-    flex-wrap: nowrap !important;
-    gap: 0.4rem;
-    align-items: center;
-    overflow: hidden;
-  }
-  .section-header .btn {
-    font-size: 0.68rem !important;
-    padding: 0.28rem 0.55rem !important;
-    border-radius: 8px !important;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-}
-
-/* ── 8. Activity Cards ─────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .activity-card {
-    padding: 0.75rem 0.7rem !important;
-    margin-bottom: 0.5rem !important;
-    border-radius: 12px !important;
-    /* CRITICAL: prevent overflow */
-    overflow: hidden !important;
-    min-width: 0 !important;
-  }
-  /* All flex children must be able to shrink */
-  .activity-card > *,
-  .activity-card .d-flex > * {
-    min-width: 0;
-  }
-  .activity-icon {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important; /* never shrink below this */
-    font-size: 0.85rem !important;
-    border-radius: 9px !important;
-    flex-shrink: 0 !important;
-  }
-  /* Text block: truncate long location strings */
-  .activity-card .fw-semibold {
-    font-size: 0.8rem !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-  }
-  .activity-card .text-muted,
-  .activity-card small {
-    font-size: 0.68rem !important;
-    display: block;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  /* Description text — limit to 2 lines */
-  .activity-card p,
-  .activity-card .description {
-    font-size: 0.7rem !important;
+  .action-description {
+    font-size: 0.75rem !important;
+    line-height: 1.2 !important;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    line-height: 1.35 !important;
-    margin-bottom: 0.35rem !important;
   }
 }
 
-/* ── 9. Badge Cards ────────────────────────────────────────────── */
+/* ── 3. Main Content Spacing ────────────────────────────────────── */
 @media (max-width: 768px) {
-  .badge-card {
-    padding: 0.85rem !important;
-    border-radius: 13px !important;
-    text-align: center;
-  }
-  .badge-card .badge-icon {
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 1.1rem !important;
-    margin: 0 auto 0.5rem !important;
-    border-radius: 12px !important;
-  }
-  .badge-card h6,
-  .badge-card .fw-bold { font-size: 0.78rem !important; }
-  .badge-card small { font-size: 0.68rem !important; }
-}
-
-/* ── 10. Impact Stats ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .impact-card {
-    padding: 0.9rem !important;
-    border-radius: 13px !important;
-  }
-  .impact-stat { padding: 0.5rem !important; }
-  .impact-stat .h2 { font-size: 1.4rem !important; }
-  .impact-stat p { font-size: 0.72rem !important; }
-}
-
-/* ── 11. Glass / Generic Cards ─────────────────────────────────── */
-@media (max-width: 768px) {
-  .glass-card {
-    border-radius: 13px !important;
-    padding: 0.9rem !important;
-  }
-}
-
-/* ── 12. Bootstrap Utility Overrides ───────────────────────────── */
-@media (max-width: 768px) {
-  .p-4 { padding: 0.85rem !important; }
-  .p-3 { padding: 0.7rem !important; }
-  .mb-4 { margin-bottom: 0.85rem !important; }
-  .mb-3 { margin-bottom: 0.6rem !important; }
-  .gap-3 { gap: 0.6rem !important; }
-  .gap-4 { gap: 0.85rem !important; }
-  .h2, .h3, h2, h3 { font-size: 1.2rem !important; }
-  .h4, h4 { font-size: 1rem !important; }
-  .small, small { font-size: 0.72rem !important; }
-  .col-lg-5 { display: none !important; } /* hide desktop-only aside columns */
-}
-
-/* ── 13. Report Form Page ──────────────────────────────────────── */
-@media (max-width: 768px) {
-  .report-form-container,
-  .form-section {
+  .main-content {
+    margin-top: 70px !important;
     padding: 1rem !important;
-    border-radius: 14px !important;
-    margin-bottom: 0.75rem !important;
   }
-  .form-label {
-    font-size: 0.8rem !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.3rem !important;
+  .hero-section {
+    padding: 1.5rem 1.25rem !important;
+    border-radius: 20px !important;
   }
-  .form-control,
-  .form-select {
-    font-size: 1rem !important;      /* prevents iOS zoom (MUST stay >= 16px base) */
-    padding: 0.55rem 0.75rem !important;
-    border-radius: 10px !important;
-  }
-  #map, .leaflet-container {
-    height: 210px !important;
-    border-radius: 12px !important;
-  }
-  .step-indicator {
-    gap: 0.15rem !important;
-    margin-bottom: 1rem !important;
-  }
-  .step-number {
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 0.72rem !important;
-  }
-  .step-label { display: none !important; }
-  .step-connector { flex: 1 !important; min-width: 12px !important; }
-  .image-upload-area { padding: 1rem 0.75rem !important; }
-  .btn-submit-report {
-    width: 100% !important;
-    padding: 0.75rem !important;
-    font-size: 0.9rem !important;
-    border-radius: 12px !important;
+  .hero-title {
+    font-size: 1.75rem !important;
   }
 }
 
-/* ── 14. My Reports Page ───────────────────────────────────────── */
+/* ── 4. Stats & Grids ───────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Hero on my-reports — heavily compressed */
-  .reports-page .hero-section,
-  #reportsHero {
-    padding: 0.85rem !important;
-    margin-bottom: 0.65rem !important;
-  }
-  .reports-page .hero-title {
-    font-size: 1.35rem !important;
-  }
-  .reports-page .hero-subtitle {
-    font-size: 0.78rem !important;
-    margin-bottom: 0.5rem !important;
-  }
-  .reports-page .hero-stats {
+  .hero-stats, .advanced-stats {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.5rem !important;
-    margin-top: 0.65rem !important;
+    gap: 10px !important;
   }
+  .stat-card, .advanced-stat-card {
+    padding: 1rem !important;
+    border-radius: 15px !important;
+  }
+}
 
-  /* Filters */
-  .filters-card {
-    padding: 0.75rem !important;
-    margin-bottom: 0.65rem !important;
-    border-radius: 14px !important;
-  }
-  .filter-row, .filter-controls {
-    flex-direction: column !important;
-    gap: 0.45rem !important;
-  }
-  .filter-row .btn,
-  .filter-controls .btn { width: 100% !important; font-size: 0.78rem !important; padding: 0.45rem !important; }
-
-  /* Report cards — compact card list */
-  .reports-grid, .reports-container {
+@media (max-width: 480px) {
+  .hero-stats, .advanced-stats {
     grid-template-columns: 1fr !important;
-    gap: 0.5rem !important;
-  }
-  .report-card {
-    padding: 0.8rem 0.75rem !important;
-    border-radius: 12px !important;
-    overflow: hidden;
-    min-width: 0;
-  }
-  .report-card > *, .report-card .d-flex > * { min-width: 0; }
-  .report-card-header { margin-bottom: 0.5rem !important; }
-
-  /* Category icon */
-  .category-icon {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    font-size: 0.9rem !important;
-    border-radius: 9px !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* Title and location */
-  .report-card .fw-bold,
-  .report-card h5, .report-card h4 {
-    font-size: 0.85rem !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .report-card .text-muted,
-  .report-card small {
-    font-size: 0.7rem !important;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: block;
-  }
-  /* Description: 2 lines max */
-  .report-card p,
-  .report-card .description {
-    font-size: 0.72rem !important;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.3 !important;
-    margin: 0.3rem 0 !important;
-  }
-  /* Progress steps — compact */
-  .progress-step { font-size: 0.65rem !important; }
-  .progress-step .step-dot { width: 12px !important; height: 12px !important; }
-  .progress { height: 5px !important; }
-
-  /* Meta row */
-  .report-meta { flex-wrap: wrap; gap: 0.35rem; }
-  .report-meta span { font-size: 0.68rem !important; }
-  .status-badge,
-  .badge {
-    font-size: 0.62rem !important;
-    padding: 0.15rem 0.45rem !important;
-    border-radius: 5px !important;
-  }
-
-  /* Achievement section inside my-reports */
-  .achievement-section {
-    padding: 0.85rem 0.75rem !important;
-    margin-bottom: 0.65rem !important;
-    border-radius: 14px !important;
   }
 }
 
-/* ── 15. Profile Page ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .profile-layout { flex-direction: column !important; }
-  .profile-sidebar {
-    width: 100% !important;
-    margin-bottom: 0.85rem !important;
-    padding: 1rem !important;
-    border-radius: 16px !important;
-  }
-  .profile-avatar-section { text-align: center; }
-  .profile-avatar-section img,
-  .profile-avatar-section .avatar-placeholder {
-    width: 80px !important;
-    height: 80px !important;
-    border-radius: 50% !important;
-  }
-  .profile-stats-row {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 0.5rem !important;
-    margin-top: 0.75rem !important;
-  }
-  .profile-stats-row .stat-item {
-    padding: 0.6rem 0.4rem !important;
-    border-radius: 10px !important;
-    text-align: center;
-  }
-  .profile-stats-row .stat-item .value { font-size: 1.1rem !important; }
-  .profile-stats-row .stat-item .label { font-size: 0.65rem !important; }
-  .profile-form .row { flex-direction: column !important; }
-  .profile-form .col-md-6 { width: 100% !important; }
-  .edit-avatar-btn {
-    width: 26px !important;
-    height: 26px !important;
-    font-size: 0.7rem !important;
-  }
-}
-
-/* ── 16. Achievements Page ─────────────────────────────────────── */
-@media (max-width: 768px) {
-  .achievements-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.6rem !important;
-  }
-  .achievement-card {
-    padding: 0.85rem 0.7rem !important;
-    border-radius: 14px !important;
-    text-align: center;
-  }
-  .achievement-icon {
-    width: 44px !important;
-    height: 44px !important;
-    font-size: 1.1rem !important;
-    border-radius: 12px !important;
-    margin: 0 auto 0.5rem !important;
-  }
-  .achievement-card h6 { font-size: 0.78rem !important; }
-  .achievement-card p,
-  .achievement-card small { font-size: 0.68rem !important; }
-  .progress-section { padding: 1rem !important; border-radius: 14px !important; }
-  .progress-section h5 { font-size: 0.85rem !important; }
-}
-@media (max-width: 380px) {
-  .achievements-grid { grid-template-columns: 1fr !important; }
-}
-
-/* ── 17. Rewards Page ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .rewards-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.6rem !important;
-  }
-  .reward-card {
-    padding: 0.85rem 0.7rem !important;
-    border-radius: 14px !important;
-  }
-  .points-banner {
-    padding: 1.1rem 0.9rem !important;
-    border-radius: 14px !important;
-    margin-bottom: 0.85rem !important;
-  }
-  .points-banner .display-4 { font-size: 2rem !important; }
-  .points-banner h5 { font-size: 0.85rem !important; }
-}
-
-/* ── 18. Login / Signup / Verify ───────────────────────────────── */
-@media (max-width: 768px) {
-  .auth-container,
-  .login-container,
-  .signup-container {
-    padding: 0.75rem !important;
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .auth-card {
-    border-radius: 22px !important;
-    padding: 1.75rem 1.25rem !important;
-    margin: 0 !important;
-    width: 100%;
-    max-width: 400px;
-  }
-  .auth-card h2 { font-size: 1.4rem !important; }
-  .auth-form .form-control { font-size: 1rem !important; }
-  .auth-logo { width: 52px !important; height: 52px !important; }
-}
-
-/* ── 19. Touch Targets ─────────────────────────────────────────── */
-@media (max-width: 768px) {
-  button, .btn, .dropdown-item { min-height: 42px; }
-  .action-btn, .mobile-hamburger { min-width: 34px; min-height: 34px; }
-  /* Active state feedback */
-  .action-card:active, .stat-card:active,
-  .achievement-card:active, .reward-card:active {
-    transform: scale(0.97) !important;
-    transition: transform 0.1s !important;
-  }
-}
-
-/* ── 20. Slide-out Drawer ──────────────────────────────────────── */
-.mobile-nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.45);
-  z-index: 1999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s;
-}
-.mobile-nav-overlay.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.mobile-nav-drawer {
-  position: fixed;
-  top: 0;
-  right: -300px;
-  width: 272px;
-  height: 100%;
-  background: #fff;
-  z-index: 2000;
-  box-shadow: -8px 0 32px rgba(0,0,0,0.12);
-  transition: right 0.3s cubic-bezier(0.4,0,0.2,1);
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-}
-[data-bs-theme="dark"] .mobile-nav-drawer { background: #1e293b; }
-.mobile-nav-drawer.open { right: 0; }
-
-.mobile-drawer-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1rem 0.9rem;
-  background: linear-gradient(135deg,#667eea 0%,#764ba2 50%,#f093fb 100%);
-  flex-shrink: 0;
-}
-.mobile-drawer-user {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-}
-.mobile-drawer-avatar {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid rgba(255,255,255,0.45);
-}
-.mobile-drawer-name {
-  font-weight: 700;
-  font-size: 0.88rem;
-  color: white;
-  margin: 0;
-  line-height: 1.2;
-}
-.mobile-drawer-email {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.78);
-  margin: 0;
-  line-height: 1.2;
-}
-.mobile-drawer-close {
-  background: rgba(255,255,255,0.18);
-  border: none;
-  color: white;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-  transition: background 0.15s;
-}
-.mobile-drawer-close:active { background: rgba(255,255,255,0.3); }
-
-.mobile-drawer-nav {
-  padding: 0.6rem 0.6rem;
-  flex: 1;
-}
-.mobile-drawer-nav a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.7rem 0.75rem;
-  border-radius: 12px;
-  color: #374151;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
-  margin-bottom: 0.15rem;
-  transition: background 0.15s, color 0.15s;
-  -webkit-tap-highlight-color: transparent;
-}
-[data-bs-theme="dark"] .mobile-drawer-nav a { color: #e2e8f0; }
-.mobile-drawer-nav a .drawer-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  flex-shrink: 0;
-}
-.mobile-drawer-nav a.active,
-.mobile-drawer-nav a:hover {
-  background: linear-gradient(135deg,rgba(102,126,234,0.13),rgba(118,75,162,0.08));
-  color: #667eea;
-}
-.mobile-drawer-nav a.active .drawer-icon { opacity: 1; }
-
-.mobile-drawer-logout {
-  padding: 0.5rem 0.6rem 0.8rem;
-  border-top: 1px solid rgba(0,0,0,0.07);
-  flex-shrink: 0;
-}
-[data-bs-theme="dark"] .mobile-drawer-logout { border-top-color: rgba(255,255,255,0.07); }
-.mobile-drawer-logout a {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.7rem 0.75rem;
-  border-radius: 12px;
-  color: #ef4444;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.875rem;
-  -webkit-tap-highlight-color: transparent;
-}
-.mobile-drawer-logout a:active { background: rgba(239,68,68,0.08); }
-
-/* ── 21. Profile Dropdown (mobile full-width) ──────────────────── */
-@media (max-width: 768px) {
-  .dropdown-menu, #profileDropdown {
-    position: fixed !important;
-    left: 0.75rem !important;
-    right: 0.75rem !important;
-    top: 62px !important;
-    width: auto !important;
-    min-width: unset !important;
-    border-radius: 18px !important;
-    max-height: 80vh;
-    overflow-y: auto;
-  }
-}
-
-/* ── 22. Bottom Navigation Bar ─────────────────────────────────── */
-.bottom-nav { display: none; }
-
+/* ── 5. Bottom Nav ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .bottom-nav {
     display: flex !important;
@@ -847,125 +188,89 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 60px;
-    background: rgba(255,255,255,0.97);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-top: 1px solid rgba(0,0,0,0.07);
+    height: 64px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
     z-index: 1500;
     align-items: center;
     justify-content: space-around;
-    padding: 0 0.25rem;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    box-shadow: 0 -2px 16px rgba(0,0,0,0.07);
+    padding-bottom: env(safe-area-inset-bottom);
   }
+
   [data-bs-theme="dark"] .bottom-nav {
-    background: rgba(15,23,42,0.97);
-    border-top-color: rgba(255,255,255,0.07);
+    background: rgba(15, 23, 42, 0.98);
+    border-top-color: rgba(255, 255, 255, 0.05);
   }
 
   .bottom-nav-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     gap: 2px;
-    padding: 4px 8px;
-    text-decoration: none;
     color: #94a3b8;
-    border-radius: 12px;
-    transition: color 0.18s, background 0.18s;
-    min-width: 48px;
-    position: relative;
-    -webkit-tap-highlight-color: transparent;
+    text-decoration: none;
+    font-size: 0.65rem;
+    font-weight: 600;
   }
-  [data-bs-theme="dark"] .bottom-nav-item { color: #64748b; }
 
-  /* Active tab — gradient dot indicator above icon */
   .bottom-nav-item.active {
     color: #667eea;
   }
-  .bottom-nav-item.active::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20px;
-    height: 3px;
-    background: linear-gradient(90deg,#667eea,#764ba2);
-    border-radius: 0 0 4px 4px;
-  }
-
-  .bottom-nav-item:active { background: rgba(102,126,234,0.09); }
 
   .bottom-nav-icon {
-    font-size: 1.1rem;
-    transition: transform 0.18s;
-    position: relative;
+    font-size: 1.2rem;
   }
-  .bottom-nav-item.active .bottom-nav-icon { transform: translateY(-1px); }
 
-  /* FAB — center Report button */
   .bottom-nav-fab {
-    width: 46px;
-    height: 46px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 50%;
-    background: linear-gradient(135deg,#667eea 0%,#764ba2 100%);
-    color: white !important;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 3px 16px rgba(102,126,234,0.45);
-    margin-top: -18px;
-    border: 2.5px solid white;
-    transition: transform 0.18s, box-shadow 0.18s;
-    flex-shrink: 0;
+    color: white;
+    margin-top: -24px;
+    border: 3px solid white;
+    box-shadow: 0 4px 12px rgba(102,126,234,0.4);
   }
   [data-bs-theme="dark"] .bottom-nav-fab { border-color: #1e293b; }
-  .bottom-nav-fab:active {
-    transform: scale(0.94) translateY(-1px);
-    box-shadow: 0 6px 20px rgba(102,126,234,0.55);
-  }
-  .bottom-nav-fab .bottom-nav-icon {
-    font-size: 1.15rem;
-    transform: none !important;
-    color: white;
-  }
-
-  .bottom-nav-label {
-    font-size: 0.6rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
-    line-height: 1;
-  }
-  .bottom-nav-item.active .bottom-nav-label {
-    color: #667eea;
-    font-weight: 700;
-  }
-
-  /* Notification badge dot */
-  .bottom-nav-badge {
-    position: absolute;
-    top: 1px;
-    right: 4px;
-    width: 7px;
-    height: 7px;
-    background: #ef4444;
-    border-radius: 50%;
-    border: 1.5px solid white;
-  }
 }
 
-/* ── 23. Performance: disable heavy effects on mobile ──────────── */
+/* ── 6. Drawer ─────────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .premium-bg::before { animation: none !important; }
-  .logo-icon:hover { transform: none !important; }
-  /* Keep card hover lifts but dial back the scale */
-  .action-card:hover,
-  .stat-card:hover,
-  .activity-card:hover,
-  .badge-card:hover {
-    transform: translateY(-4px) !important;
+  .mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+  .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
+
+  .mobile-nav-drawer {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  [data-bs-theme="dark"] .mobile-nav-drawer { background: #1e293b; }
+  .mobile-nav-drawer.open { right: 0; }
+}
+
+/* ── 7. Touch Targets ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  button, .btn, a, .action-card {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
 }
