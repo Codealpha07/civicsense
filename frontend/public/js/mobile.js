@@ -21,11 +21,11 @@
 
   // ── Nav items config ────────────────────────────────────────
   const navItems = [
-    { href: '/dashboard',     icon: 'fa-home',      label: 'Home' },
-    { href: '/my-reports',    icon: 'fa-list',       label: 'Reports' },
-    { href: '/report',        icon: 'fa-plus',       label: 'Report',   isFab: true },
-    { href: '/achievements',  icon: 'fa-trophy',     label: 'Badges' },
-    { href: '/profile',       icon: 'fa-user',       label: 'Profile' },
+    { href: '/dashboard',   icon: 'fa-home',    label: 'Home' },
+    { href: '/my-reports',  icon: 'fa-list',    label: 'Reports' },
+    { href: '/report',      icon: 'fa-plus',    label: 'Report',   isFab: true },
+    { href: '/rewards',     icon: 'fa-gift',    label: 'Rewards' },
+    { href: '/profile',     icon: 'fa-user',    label: 'Profile' },
   ];
 
   // ── Inject CSS ───────────────────────────────────────────────

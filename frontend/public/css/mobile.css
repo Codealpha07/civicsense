@@ -5,6 +5,8 @@
    ================================================================ */
 
 /* ── 0. Global Resets ─────────────────────────────────────────── */
+/* CRITICAL: prevent any child from blowing out the viewport */
+* { box-sizing: border-box; }
 @media (max-width: 768px) {
   html {
     font-size: 12px !important; /* tighter base — everything scales down */
@@ -34,6 +36,8 @@
     height: 56px !important;
     padding: 0 0.75rem !important;
     gap: 0.5rem !important;
+    min-width: 0; /* prevent flex blowout */
+    overflow: hidden;
   }
 
   /* Hide desktop elements */
@@ -42,38 +46,56 @@
     display: none !important;
   }
 
-  /* Logo */
+  /* Logo — shrink to fit, never overflow */
+  .logo-section {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
+  }
   .logo-icon {
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 10px !important;
-    font-size: 0.85rem !important;
-    flex-shrink: 0;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 9px !important;
+    font-size: 0.8rem !important;
+    flex-shrink: 0 !important;
+  }
+  .logo-text {
+    min-width: 0;
+    overflow: hidden;
   }
   .logo-text h1 {
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     line-height: 1 !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .logo-text .subtitle { display: none !important; }
 
-  /* Header action buttons */
+  /* Header actions — fixed width, never shrink */
+  .header-actions {
+    flex-shrink: 0;
+    gap: 0.4rem !important;
+  }
   .action-btn {
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 9px !important;
-    font-size: 0.85rem !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+    flex-shrink: 0;
   }
   .profile-avatar {
-    width: 34px !important;
-    height: 34px !important;
-    border-radius: 9px !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0;
   }
   .notification-badge {
-    width: 16px !important;
-    height: 16px !important;
-    font-size: 0.6rem !important;
-    top: -4px !important;
-    right: -4px !important;
+    width: 14px !important;
+    height: 14px !important;
+    font-size: 0.55rem !important;
+    top: -3px !important;
+    right: -3px !important;
   }
 
   /* Hamburger */
@@ -95,11 +117,21 @@
   .mobile-hamburger:active { background: rgba(102,126,234,0.12); }
 }
 
+/* ── 1b. Hide desktop footer on mobile — use bottom nav instead ── */
+@media (max-width: 768px) {
+  .premium-footer,
+  footer.premium-footer {
+    display: none !important;
+  }
+}
+
 /* ── 2. Main Content Offset ────────────────────────────────────── */
 @media (max-width: 768px) {
   .main-content {
-    margin-top: 70px !important;
-    padding: 0.75rem !important;
+    margin-top: 68px !important;
+    padding: 0.65rem !important;
+    max-width: 100% !important;
+    overflow-x: hidden;
   }
 }
 @media (max-width: 480px) {
@@ -112,33 +144,32 @@
 /* ── 3. Hero / Welcome Section ─────────────────────────────────── */
 @media (max-width: 768px) {
   .hero-section {
-    padding: 1.25rem 1rem !important;
-    margin-bottom: 1rem !important;
-    border-radius: 16px !important;
+    padding: 1rem 0.85rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 14px !important;
+    overflow: hidden;
   }
   .hero-title {
-    font-size: 1.6rem !important;
+    font-size: 1.45rem !important;
     line-height: 1.15 !important;
-    margin-bottom: 0.4rem !important;
+    margin-bottom: 0.35rem !important;
   }
   .hero-subtitle {
-    font-size: 0.875rem !important;
-    margin-bottom: 0.9rem !important;
+    font-size: 0.82rem !important;
+    margin-bottom: 0.75rem !important;
     line-height: 1.4 !important;
   }
-  /* CTA buttons in hero — side by side */
   .hero-section .d-flex.gap-3 {
-    gap: 0.5rem !important;
+    gap: 0.4rem !important;
     flex-wrap: wrap !important;
   }
   .hero-section .btn {
     flex: 1 !important;
-    min-width: 120px !important;
-    font-size: 0.8rem !important;
-    padding: 0.55rem 0.75rem !important;
-    border-radius: 10px !important;
+    min-width: 110px !important;
+    font-size: 0.78rem !important;
+    padding: 0.5rem 0.65rem !important;
+    border-radius: 9px !important;
   }
-  /* Right-side stat grid — hide on small mobile, show on tablet */
   .hero-section .col-lg-5 { display: none !important; }
 }
 
@@ -232,47 +263,86 @@
   .impact-section,
   .activity-section,
   .badges-section {
-    padding: 1rem 0.85rem !important;
-    margin-bottom: 1rem !important;
-    border-radius: 16px !important;
+    padding: 0.85rem 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 14px !important;
+    overflow: hidden; /* prevent inner content blowing out */
   }
   .section-title {
-    font-size: 1.05rem !important;
-    gap: 0.5rem !important;
+    font-size: 0.95rem !important;
+    gap: 0.4rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
   }
-  .section-title i { font-size: 1rem !important; }
+  .section-title i { font-size: 0.9rem !important; }
   .section-header {
-    margin-bottom: 0.85rem !important;
-    flex-wrap: wrap;
+    margin-bottom: 0.75rem !important;
+    flex-wrap: nowrap !important;
     gap: 0.4rem;
     align-items: center;
+    overflow: hidden;
   }
-  /* "View All" style buttons in section header */
   .section-header .btn {
-    font-size: 0.72rem !important;
-    padding: 0.3rem 0.65rem !important;
+    font-size: 0.68rem !important;
+    padding: 0.28rem 0.55rem !important;
     border-radius: 8px !important;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
 /* ── 8. Activity Cards ─────────────────────────────────────────── */
 @media (max-width: 768px) {
   .activity-card {
-    padding: 0.85rem !important;
-    margin-bottom: 0.6rem !important;
-    border-radius: 13px !important;
-    gap: 0.6rem !important;
+    padding: 0.75rem 0.7rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 12px !important;
+    /* CRITICAL: prevent overflow */
+    overflow: hidden !important;
+    min-width: 0 !important;
+  }
+  /* All flex children must be able to shrink */
+  .activity-card > *,
+  .activity-card .d-flex > * {
+    min-width: 0;
   }
   .activity-icon {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 1rem !important;
-    border-radius: 10px !important;
-    flex-shrink: 0;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important; /* never shrink below this */
+    font-size: 0.85rem !important;
+    border-radius: 9px !important;
+    flex-shrink: 0 !important;
   }
-  .activity-card .fw-semibold { font-size: 0.82rem !important; }
+  /* Text block: truncate long location strings */
+  .activity-card .fw-semibold {
+    font-size: 0.8rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
   .activity-card .text-muted,
-  .activity-card small { font-size: 0.7rem !important; }
+  .activity-card small {
+    font-size: 0.68rem !important;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  /* Description text — limit to 2 lines */
+  .activity-card p,
+  .activity-card .description {
+    font-size: 0.7rem !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.35 !important;
+    margin-bottom: 0.35rem !important;
+  }
 }
 
 /* ── 9. Badge Cards ────────────────────────────────────────────── */
@@ -372,29 +442,109 @@
 
 /* ── 14. My Reports Page ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  .reports-grid, .reports-container {
-    grid-template-columns: 1fr !important;
-    gap: 0.6rem !important;
+  /* Hero on my-reports — heavily compressed */
+  .reports-page .hero-section,
+  #reportsHero {
+    padding: 0.85rem !important;
+    margin-bottom: 0.65rem !important;
   }
-  .report-card {
-    padding: 1rem !important;
+  .reports-page .hero-title {
+    font-size: 1.35rem !important;
+  }
+  .reports-page .hero-subtitle {
+    font-size: 0.78rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  .reports-page .hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+    margin-top: 0.65rem !important;
+  }
+
+  /* Filters */
+  .filters-card {
+    padding: 0.75rem !important;
+    margin-bottom: 0.65rem !important;
     border-radius: 14px !important;
-  }
-  .report-card-header {
-    margin-bottom: 0.6rem !important;
   }
   .filter-row, .filter-controls {
     flex-direction: column !important;
-    gap: 0.5rem !important;
+    gap: 0.45rem !important;
   }
   .filter-row .btn,
-  .filter-controls .btn { width: 100% !important; font-size: 0.8rem !important; }
-  .report-meta { flex-wrap: wrap; gap: 0.4rem; }
-  .report-meta span { font-size: 0.72rem !important; }
-  .status-badge {
-    font-size: 0.68rem !important;
-    padding: 0.2rem 0.55rem !important;
-    border-radius: 6px !important;
+  .filter-controls .btn { width: 100% !important; font-size: 0.78rem !important; padding: 0.45rem !important; }
+
+  /* Report cards — compact card list */
+  .reports-grid, .reports-container {
+    grid-template-columns: 1fr !important;
+    gap: 0.5rem !important;
+  }
+  .report-card {
+    padding: 0.8rem 0.75rem !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .report-card > *, .report-card .d-flex > * { min-width: 0; }
+  .report-card-header { margin-bottom: 0.5rem !important; }
+
+  /* Category icon */
+  .category-icon {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    font-size: 0.9rem !important;
+    border-radius: 9px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Title and location */
+  .report-card .fw-bold,
+  .report-card h5, .report-card h4 {
+    font-size: 0.85rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .report-card .text-muted,
+  .report-card small {
+    font-size: 0.7rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+  /* Description: 2 lines max */
+  .report-card p,
+  .report-card .description {
+    font-size: 0.72rem !important;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.3 !important;
+    margin: 0.3rem 0 !important;
+  }
+  /* Progress steps — compact */
+  .progress-step { font-size: 0.65rem !important; }
+  .progress-step .step-dot { width: 12px !important; height: 12px !important; }
+  .progress { height: 5px !important; }
+
+  /* Meta row */
+  .report-meta { flex-wrap: wrap; gap: 0.35rem; }
+  .report-meta span { font-size: 0.68rem !important; }
+  .status-badge,
+  .badge {
+    font-size: 0.62rem !important;
+    padding: 0.15rem 0.45rem !important;
+    border-radius: 5px !important;
+  }
+
+  /* Achievement section inside my-reports */
+  .achievement-section {
+    padding: 0.85rem 0.75rem !important;
+    margin-bottom: 0.65rem !important;
+    border-radius: 14px !important;
   }
 }
 
