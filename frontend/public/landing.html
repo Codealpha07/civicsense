@@ -1351,132 +1351,140 @@
         }
 
         /* Responsive Design */
+        /* Mobile Menu Styles */
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1500;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            transform: translateY(-100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mobile-nav-overlay.active {
+            transform: translateY(0);
+        }
+
+        .mobile-nav-overlay .nav-link {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
         @media (max-width: 768px) {
+            .mobile-toggle { display: block !important; }
+            .nav-container { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            html { font-size: 13px; }
+            
             .navbar {
                 top: 10px;
-                left: 10px;
-                right: 10px;
-                transform: none;
-                padding: 10px 20px;
+                left: 10px !important;
+                right: 10px !important;
+                width: calc(100% - 20px) !important;
+                transform: none !important;
+                padding: 8px 16px !important;
+                border-radius: 20px !important;
             }
 
-            .nav-container {
-                gap: 15px;
-            }
+            .nav-container { justify-content: space-between; width: 100%; gap: 10px !important; }
+            .nav-links { display: none !important; }
+            .nav-logo { font-size: 1.25rem !important; }
+            .nav-cta { padding: 8px 16px !important; font-size: 0.85rem !important; border-radius: 15px !important; margin-right: 40px; }
 
-            .nav-links {
-                display: none;
-            }
-
+            .hero { padding: 100px 0 60px !important; min-height: auto !important; }
             .hero-container {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                text-align: center;
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+                text-align: center !important;
+                padding: 0 1.5rem !important;
             }
 
-            .hero-title {
-                font-size: 3rem;
-            }
-
+            .hero-badge { margin: 0 auto 1.5rem !important; }
+            .hero-title { font-size: 3rem !important; line-height: 1.1 !important; }
+            .hero-subtitle { font-size: 1rem !important; margin: 0 auto 2rem !important; }
+            
             .hero-stats {
-                justify-content: center;
-                flex-wrap: wrap;
+                display: grid !important;
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1rem !important;
+                margin-bottom: 2.5rem !important;
             }
+            .stat-card { padding: 1.25rem 1rem !important; }
+            .stat-number { font-size: 1.8rem !important; }
 
             .hero-cta {
-                flex-direction: column;
-                align-items: center;
+                flex-direction: column !important;
+                gap: 1rem !important;
+                width: 100% !important;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100% !important;
+                justify-content: center !important;
+                padding: 14px 24px !important;
+                font-size: 1rem !important;
             }
 
-            .features-grid {
-                grid-template-columns: 1fr;
+            .hero-visual {
+                margin-top: 2rem !important;
+                transform: scale(0.85) !important;
             }
+            .phone-3d { width: 280px !important; height: 560px !important; }
 
-            .goals-grid {
-                grid-template-columns: 1fr;
-            }
+            .mission { padding: 4rem 0 !important; }
+            .mission-title { font-size: 2.2rem !important; }
+            .goals-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
 
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .footer-links {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .phone-container {
-                width: 280px;
-                height: 560px;
-            }
-
-            .modal-content {
-                margin: 10px;
-                max-width: calc(100% - 20px);
-            }
-
-            .modal-header {
-                padding: 2rem 1.5rem 1rem;
-            }
-
-            .modal-body {
-                padding: 1.5rem;
-            }
-
-            .option-card {
-                padding: 1.5rem;
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-
-            .option-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
+            .footer-content { grid-template-columns: 1fr !important; gap: 3rem !important; text-align: center !important; }
+            .footer-brand { margin: 0 auto !important; }
+            .footer-social { justify-content: center !important; }
+            .footer-links { grid-template-columns: repeat(2, 1fr) !important; gap: 2rem 1rem !important; text-align: left !important; }
+            
+            .cta-title { font-size: 2.2rem !important; }
+            .cta-buttons { flex-direction: column !important; width: 100% !important; }
         }
 
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2.5rem;
-            }
-
-            .cta-title {
-                font-size: 2.5rem;
-            }
-
-            .mission-title {
-                font-size: 2rem;
-            }
-
-            .modal-title {
-                font-size: 1.8rem;
-            }
-
-            .option-title {
-                font-size: 1.2rem;
-            }
+            .hero-title { font-size: 2.4rem !important; }
+            .stat-number { font-size: 1.6rem !important; }
+            .hero-stats { grid-template-columns: 1fr !important; }
+            .footer-links { grid-template-columns: 1fr !important; text-align: center !important; }
         }
     </style>
 </head>
 <body>
-    <!-- Floating Particles -->
-    <div class="particles-container" id="particles"></div>
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <a href="#features" class="nav-link" onclick="toggleMobileNav()">Features</a>
+        <a href="#mission" class="nav-link" onclick="toggleMobileNav()">Mission</a>
+        <a href="#contact" class="nav-link" onclick="toggleMobileNav()">Contact</a>
+        <button class="nav-cta" onclick="toggleMobileNav(); openModal('getStartedModal')">Get Started</button>
+    </div>
 
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
+            <div class="nav-logo" onclick="window.location.href='/'" style="cursor: pointer;">
                 <i class="fas fa-city"></i>
                 <span>CivicSense</span>
             </div>
@@ -1486,6 +1494,9 @@
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <button class="nav-cta" onclick="openModal('getStartedModal')">Get Started</button>
+            <button class="mobile-toggle" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </nav>
 
@@ -2057,6 +2068,22 @@
                 }, 600);
             });
         });
+
+        // Mobile Nav Toggle
+        function toggleMobileNav() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+            const icon = document.querySelector('.mobile-toggle i');
+            if (mobileNav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+                document.body.style.overflow = 'hidden';
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+                document.body.style.overflow = 'auto';
+            }
+        }
 
         // Add ripple animation CSS
         const style = document.createElement('style');
