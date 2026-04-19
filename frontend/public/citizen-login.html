@@ -6,6 +6,7 @@
   <title>CivicSense - Citizen Login</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/mobile.css">
   <style>
     :root {
       --primary-color: #667eea;
@@ -316,37 +317,17 @@
 
     @media (max-width: 576px) {
       .civic-card {
-        padding: 40px 24px 24px !important;
-        margin: 1.5rem 1rem !important;
-        border-radius: 24px !important;
-        max-width: 100% !important;
+        padding: 32px 24px;
+        margin: 1rem;
+        border-radius: 20px;
       }
 
       .civic-title {
-        font-size: 1.85rem !important;
-        margin-bottom: 0.25rem !important;
-      }
-
-      .subtitle {
-        font-size: 1rem !important;
-        margin-bottom: 1.75rem !important;
-      }
-      
-      .modern-input {
-        padding: 0.85rem 1rem 0.85rem 2.8rem !important;
-        font-size: 0.95rem !important;
-      }
-
-      .btn-primary {
-        padding: 0.75rem 1.5rem !important;
-        font-size: 0.95rem !important;
+        font-size: 1.75rem;
       }
 
       body {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        padding: 0 !important;
+        padding: 1rem 0;
       }
     }
 
@@ -520,5 +501,6 @@
   </script>
   <script src="/js/citizen-login.js"></script>
   <script src="/js/shared-footer.js"></script>
+  <script src="/js/mobile.js"></script>
 </body>
 </html>

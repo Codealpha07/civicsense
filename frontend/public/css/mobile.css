@@ -812,51 +812,78 @@
     transform: translateY(-4px) !important;
   }
 }
-/* ── 24. Footer Responsiveness — Ultra Compact ────────────────── */
+/* ── 24. Footer Responsiveness — Hyper Compact ────────────────── */
 @media (max-width: 768px) {
   .premium-footer {
-    margin-top: 1.5rem !important;
-    padding-bottom: 75px !important; /* tight clearance */
+    margin-top: 1rem !important;
+    padding-bottom: 70px !important;
   }
   .footer-content {
-    padding: 1.25rem 0.75rem 1rem !important;
+    padding: 1rem 0.5rem 0.5rem !important;
   }
   .footer-content .row {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem 0.5rem !important;
-    text-align: center !important;
+    gap: 0.75rem 0.25rem !important;
   }
   .footer-section h6 {
-    font-size: 0.9rem !important;
-    margin-bottom: 0.75rem !important;
-    font-weight: 800 !important;
-  }
-  .footer-section h6::after {
-    bottom: -0.25rem !important;
-    width: 20px !important;
-    height: 1.5px !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 0.5rem !important;
+    letter-spacing: 0.02em;
   }
   .footer-link {
-    font-size: 0.78rem !important;
-    padding: 0.2rem 0 !important;
-    gap: 0.35rem !important;
-  }
-  .footer-link i {
-    font-size: 0.7rem !important;
-    width: 14px !important;
-    text-align: center;
+    font-size: 0.75rem !important;
+    padding: 0.15rem 0 !important;
   }
   .footer-bottom {
-    grid-column: span 2 !important;
-    margin-top: 0.75rem !important;
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
-    font-size: 0.7rem !important;
-  }
-  .footer-version {
-    font-size: 0.65rem !important;
-    padding: 0.25rem 0.6rem !important;
     margin-top: 0.5rem !important;
+    padding-top: 0.5rem !important;
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ── 25. Dashboard & Card Refinements ─────────────────────────── */
+@media (max-width: 768px) {
+  .quick-actions {
+    padding: 0 0.5rem !important;
+    gap: 0.6rem !important;
+  }
+  .action-card {
+    padding: 1rem 0.6rem !important;
+    min-height: 120px !important;
+  }
+  /* Fix cards being "too wide" by adding container padding */
+  .main-content {
+    padding: 0.75rem !important;
+  }
+}
+
+/* ── 26. Auth Pages (Login/Signup) Responsiveness ─────────────── */
+@media (max-width: 768px) {
+  .civic-card {
+    padding: 1.5rem 1.25rem !important;
+    margin: 1rem auto !important;
+    max-width: 95% !important;
+    border-radius: 20px !important;
+  }
+  .civic-title {
+    font-size: 1.5rem !important;
+  }
+  .subtitle {
+    font-size: 0.9rem !important;
+  }
+  .form-section {
+    margin-bottom: 1.25rem !important;
+  }
+  .row > [class*="col-"] {
+    width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+  .top-bar {
+    padding: 0.5rem 0 !important;
+    font-size: 0.85rem !important;
+  }
+  /* Center buttons on mobile */
+  .btn-primary {
+    padding: 0.75rem 1rem !important;
+    font-size: 0.95rem !important;
   }
 }

@@ -8,6 +8,11 @@
 
   // ── Page detection ──────────────────────────────────────────
   const path = window.location.pathname;
+  
+  // Exclude public pages from injecting bottom nav / drawer
+  const publicPages = ['/landing', '/login', '/signup', '/verify', '/', ''];
+  const normalize = (p) => p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+  const isPublicPage = publicPages.includes(normalize(path));
 
   function isActive(href) {
     // Normalize: strip trailing slash and .html extension for comparison
@@ -272,6 +277,12 @@
   function init() {
     // Only run on mobile (max 768px)
     if (window.innerWidth > 900) return;
+    
+    // Skip portal UI on public pages (landing, login, etc)
+    if (isPublicPage) {
+      injectCSS(); // Still inject CSS for footer compaction
+      return;
+    }
 
     injectCSS();
     buildBottomNav();
