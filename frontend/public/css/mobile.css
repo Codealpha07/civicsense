@@ -812,49 +812,55 @@
     transform: translateY(-4px) !important;
   }
 }
-/* ── 24. Footer Responsiveness ─────────────────────────────────── */
+/* ── 24. Ultra-Compact Footer ─────────────────────────────────── */
 @media (max-width: 768px) {
   .premium-footer {
-    margin-top: 3rem !important;
-    padding-bottom: 90px !important; /* clear bottom nav */
+    margin-top: 1.5rem !important;
+    padding-bottom: 75px !important; /* tight clearance */
   }
   .footer-content {
-    padding: 2rem 1rem 1.5rem !important;
+    padding: 1.25rem 0.75rem 0.75rem !important;
   }
   .footer-content .row {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1.5rem 1rem !important;
+    gap: 1rem 0.5rem !important;
     text-align: center !important;
   }
-  /* Each col-md-3 now becomes a grid cell */
-  .footer-content .row > div {
-    width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
+  .footer-section {
+    margin-bottom: 1rem !important;
   }
   .footer-section h6 {
-    font-size: 1rem !important;
-    margin-bottom: 1.25rem !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
   .footer-section h6::after {
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    width: 24px !important;
+    bottom: -0.3rem !important;
+    width: 20px !important;
+    height: 1.5px !important;
   }
   .footer-link {
-    font-size: 0.85rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 0.5rem;
-    padding: 0.4rem 0 !important;
+    font-size: 0.78rem !important;
+    padding: 0.2rem 0 !important;
+    gap: 0.35rem;
+  }
+  .footer-link i {
+    font-size: 0.75rem !important;
+    opacity: 0.8;
   }
   .footer-bottom {
     grid-column: span 2 !important;
-    border-top: 1px solid rgba(0,0,0,0.06);
-    margin-top: 1.5rem !important;
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
+    margin-top: 0.75rem !important;
+    padding-top: 0.75rem !important;
+    font-size: 0.72rem !important;
+    opacity: 0.7;
+  }
+  .footer-version {
+    font-size: 0.7rem !important;
+    padding: 0.3rem 0.7rem !important;
+    border-radius: 8px !important;
+    margin-top: 0.5rem !important;
   }
 }
