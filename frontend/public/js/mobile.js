@@ -10,8 +10,13 @@
   const path = window.location.pathname;
 
   function isActive(href) {
-    if (href === '/dashboard') return path === '/dashboard' || path === '/';
-    return path.startsWith(href);
+    // Normalize: strip trailing slash and .html extension for comparison
+    const normalize = (p) => p.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+    const currentPath = normalize(path);
+    const targetPath  = normalize(href);
+
+    if (targetPath === '/dashboard') return currentPath === '/dashboard' || currentPath === '' || currentPath === '/';
+    return currentPath === targetPath || currentPath.startsWith(targetPath + '/');
   }
 
   // ── Nav items config ────────────────────────────────────────
