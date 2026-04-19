@@ -1,20 +1,46 @@
-# Environment variables
+# Environment variables — NEVER commit these
 .env
-adminportal/backend/.env
+.env.*
+!.env.example
 backend/.env
 frontend/.env
+adminportal/**/.env
 
 # Node modules
 node_modules/
+**/node_modules/
 
 # Logs
 logs/
 *.log
+npm-debug.log*
+
+# Upload directories (user-generated content)
+uploads/
+**/uploads/
+!uploads/.gitkeep
 
 # Build output
 dist/
 build/
 
+# Large media files
+*.mp4
+*.mov
+*.avi
+*.pdf
+
 # OS files
 .DS_Store
 Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+
+# Server backup files
+*.backup
+
+# Test images
+Test Images/

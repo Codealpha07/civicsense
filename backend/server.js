@@ -45,8 +45,12 @@ app.use(helmet({
 }));
 
 // Enable CORS for API access from frontend
+const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:3000').split(',').map(o => o.trim());
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -107,11 +111,13 @@ app.use((req, res, next) => {
 app.use('/api/reports', reportsRoutes);
 
 // File upload middleware
+const tempUploadDir = process.env.TEMP_UPLOAD_DIR || path.join(__dirname, '../uploads/tmp');
+if (!fs.existsSync(tempUploadDir)) fs.mkdirSync(tempUploadDir, { recursive: true });
 app.use(fileUpload({
   limits: { fileSize: 2 * 1024 * 1024 }, // 2MB max-file-size
   createParentPath: true,
   useTempFiles: true,
-  tempFileDir: '/tmp/',
+  tempFileDir: tempUploadDir,
   debug: process.env.NODE_ENV === 'development'
 }));
 
@@ -192,9 +198,16 @@ app.get('/api/v1/reverse-geocode', async (req, res) => {
 // Serve uploads directory
 app.use('/uploads', express.static(uploadsDir));
 
+// Determine frontend static files directory
+const FRONTEND_DIR = process.env.FRONTEND_STATIC_DIR || path.join(__dirname, '../frontend/public');
+const LANDING_PAGE = path.join(FRONTEND_DIR, 'landing.html');
+
+// Serve all frontend static assets (JS, CSS, images, etc.)
+app.use(express.static(FRONTEND_DIR));
+
 // Serve HTML files directly (for multi-page app)
 const servePage = (page) => (req, res) => {
-  res.sendFile(path.join(__dirname, `../public/${page}.html`));
+  res.sendFile(path.join(FRONTEND_DIR, `${page}.html`));
 };
 
 // Email service route
@@ -245,34 +258,31 @@ app.post('/api/send-complaint', express.json(), async (req, res) => {
   }
 });
 
-// Mount auth routes
-app.use('/api/v1/auth', require('./routes/auth.routes'));
+// Note: auth routes already mounted above at /api/v1/auth
 
 // Define routes for each page
-// Landing page
-app.get(['/', '/landing', '/landing.html'], (req, res) => {
-  res.sendFile(path.join(__dirname, '../landing.html'));
-});
-app.get('/login', (req, res) => {
-  const filePath = path.join(__dirname, '../public/citizen-login.html');
-  console.log('Serving:', filePath);
-  res.sendFile(filePath);
-});
-app.get('/signup', (req, res) => {
-  const filePath = path.join(__dirname, '../public/citizen-signup.html');
-  console.log('Serving:', filePath);
-  res.sendFile(filePath);
-});
+app.get(['/', '/landing', '/landing.html'], (req, res) => res.sendFile(LANDING_PAGE));
+app.get('/login', (req, res) => res.sendFile(path.join(FRONTEND_DIR, 'citizen-login.html')));
+app.get('/signup', (req, res) => res.sendFile(path.join(FRONTEND_DIR, 'citizen-signup.html')));
+app.get('/verify', servePage('citizen-verify'));
 app.get('/dashboard', servePage('citizen-dashboard'));
 app.get('/report', servePage('report'));
+app.get('/report-success', servePage('report-success'));
+app.get('/report-detail', servePage('report-detail'));
 app.get('/my-reports', servePage('my-reports'));
+app.get('/achievements', servePage('achievements'));
+app.get('/rewards', servePage('rewards'));
 app.get('/profile', servePage('profile'));
 app.get('/settings', servePage('settings'));
 app.get('/admin', servePage('admin-dashboard'));
+app.get('/admin-login', servePage('official-login'));
+app.get('/map', servePage('map'));
+app.get('/rating', servePage('rating'));
 
-// Fallback for SPA routing - serve index.html for any other route
+// Fallback for SPA routing - serve landing page
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../landing.html'));
+  res.sendFile(LANDING_PAGE);
+
 });
 
 // Handle 404 - Not Found
