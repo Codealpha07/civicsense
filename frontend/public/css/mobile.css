@@ -167,52 +167,41 @@
   .hero-stats { grid-template-columns: 1fr !important; }
 }
 
-/* ── 5. Quick Actions Slide ─────────────────────────────────────── */
+/* ── 5. Quick Actions Grid ─────────────────────────────────────── */
 @media (max-width: 768px) {
   .quick-actions {
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    scroll-snap-type: x mandatory !important;
-    gap: 1rem !important;
-    padding: 0.2rem 0.5rem 1.2rem !important;
-    margin: 0 -0.5rem 0.5rem !important;
-    scrollbar-width: none;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1rem !important;
   }
-  .quick-actions::-webkit-scrollbar { display: none; }
 
   .action-card {
-    flex: 0 0 160px !important;
-    scroll-snap-align: center !important;
-    padding: 1.25rem 0.85rem !important;
+    padding: 1.15rem 0.85rem !important;
     border-radius: 18px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
     text-align: center !important;
     background: var(--bg-secondary);
     border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-light);
   }
   .action-icon {
-    width: 48px !important;
-    height: 48px !important;
-    font-size: 1.2rem !important;
-    border-radius: 14px !important;
-    margin: 0 0 0.75rem !important;
+    width: 44px !important;
+    height: 44px !important;
+    font-size: 1.1rem !important;
+    border-radius: 12px !important;
+    margin: 0 auto 0.65rem !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
   }
   .action-title {
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
     font-weight: 700 !important;
-    margin-bottom: 0.4rem !important;
-    white-space: nowrap;
+    margin-bottom: 0.35rem !important;
   }
   .action-description {
-    font-size: 0.75rem !important;
-    line-height: 1.3 !important;
+    font-size: 0.73rem !important;
+    line-height: 1.25 !important;
     margin: 0 !important;
     display: -webkit-box;
     -webkit-line-clamp: 3;
