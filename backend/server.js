@@ -46,10 +46,20 @@ app.use(helmet({
 
 // Enable CORS for API access from frontend
 const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:3000').split(',').map(o => o.trim());
+
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
-    callback(new Error('Not allowed by CORS'));
+    // Allow if:
+    // 1. No origin (like same-origin mobile apps or curl)
+    // 2. Exact match in FRONTEND_URL
+    // 3. Any .onrender.com domain (production support)
+    if (!origin || 
+        allowedOrigins.includes(origin) || 
+        origin.endsWith('.onrender.com') ||
+        process.env.NODE_ENV === 'development') {
+      return callback(null, true);
+    }
+    callback(new Error(`Not allowed by CORS: ${origin}`));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
