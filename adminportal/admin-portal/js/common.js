@@ -20,10 +20,10 @@
       }
     });
 
-    // Logout logic
-    const logoutBtn = document.getElementById('logoutBtn');
-    if (logoutBtn) {
-      logoutBtn.addEventListener('click', (e) => {
+    // Robust Logout logic using event delegation
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('#logoutBtn');
+      if (btn) {
         e.preventDefault();
         
         // Clear auth data
@@ -34,8 +34,8 @@
         // Redirect to main landing page (citizen portal)
         // PRODUCTION: https://civicsense-4861.onrender.com/
         window.location.href = 'https://civicsense-4861.onrender.com/';
-      });
-    }
+      }
+    });
 
   } catch (e) {
     console.error('Failed to load common header:', e);

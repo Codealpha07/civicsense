@@ -1,97 +1,53 @@
 <!-- Common Admin Portal Header -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top page-navbar-common">
-  <div class="container-fluid">
-      <a class="navbar-brand" href="dashboard.html">
-          <i class="fas fa-shield-alt me-2 text-primary"></i>
-          <span>CivicSense</span>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav me-auto" id="navLinks">
-              <li class="nav-item">
-                  <a class="nav-link" data-page="dashboard" href="dashboard.html">
-                      <i class="fas fa-ticket-alt me-1"></i> Complaints
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" data-page="admin-reports" href="admin-reports.html">
-                      <i class="fas fa-file-alt me-1"></i> Manage Reports
-                  </a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" data-page="admin-employees" href="admin-employees.html">
-                      <i class="fas fa-users me-1"></i> Employees
-                  </a>
-              </li>
-          </ul>
-          <div class="d-flex align-items-center">
-              <div class="dropdown">
-                  <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                      <div class="d-flex align-items-center">
-                          <div class="avatar-circle me-2" id="userInitials">AD</div>
-                          <span class="d-none d-md-inline fw-medium text-muted small">Admin</span>
-                          <i class="fas fa-chevron-down ms-2 text-muted small"></i>
-                      </div>
-                  </div>
-                  <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
-                      <li>
-                          <a class="dropdown-item" href="#">
-                              <i class="fas fa-user-circle me-2 text-primary"></i> Profile
-                          </a>
-                      </li>
-                      <li>
-                          <a class="dropdown-item" href="#">
-                              <i class="fas fa-cog me-2 text-primary"></i> Settings
-                          </a>
-                      </li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li>
-                          <a class="dropdown-item text-danger" href="#" id="logoutBtn">
-                              <i class="fas fa-sign-out-alt me-2"></i> Logout
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </div>
-  </div>
-</nav> navbar-expand-lg navbar-light bg-white fixed-top shadow-sm page-navbar-common">
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm page-navbar-common">
   <div class="container-fluid">
     <a class="navbar-brand" href="dashboard.html">
-      <i class="fas fa-shield-alt me-2 text-primary"></i>
-      <span class="fw-bold">CivicSense</span>
+        <i class="fas fa-shield-alt me-2 text-primary"></i>
+        <span class="fw-bold">CivicSense</span>
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#headerNav" aria-controls="headerNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navCollapse" aria-controls="navCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="headerNav">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
-        <li class="nav-item">
-          <a class="nav-link" data-page="dashboard" href="dashboard.html"><i class="fas fa-chart-line me-1"></i> Complaints</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-page="manage-reports" href="manage-reports.html"><i class="fas fa-file-alt me-1"></i> Manage Reports</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-page="admin-employees" href="admin-employees.html"><i class="fas fa-users me-1"></i> Employees</a>
-        </li>
-      </ul>
-      <div class="d-flex align-items-center">
-        <div class="dropdown">
-          <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="avatar-circle me-2" id="userInitials">AD</div>
-            <span class="d-none d-md-inline fw-medium text-muted small">Admin</span>
-            <i class="fas fa-chevron-down ms-2 text-muted small"></i>
-          </div>
-          <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="#"><i class="fas fa-user-circle me-2"></i>Profile</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item text-danger" href="#" id="logoutBtn"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
-          </ul>
+    <div class="collapse navbar-collapse" id="navCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="navLinks">
+            <li class="nav-item">
+                <a class="nav-link" data-page="dashboard" href="dashboard.html">
+                    <i class="fas fa-chart-line me-1"></i> Complaints
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-page="admin-reports" href="admin-reports.html">
+                    <i class="fas fa-file-alt me-1"></i> Manage Reports
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-page="admin-employees" href="admin-employees.html">
+                    <i class="fas fa-users me-1"></i> Employees
+                </a>
+            </li>
+        </ul>
+        <div class="d-flex align-items-center">
+            <div class="dropdown">
+                <div class="d-flex align-items-center" role="button" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="avatar-circle me-2" id="userInitials">AD</div>
+                    <span class="d-none d-md-inline fw-medium text-muted small">Admin</span>
+                    <i class="fas fa-chevron-down ms-2 text-muted small"></i>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                    <li>
+                        <a class="dropdown-item" href="#">
+                            <i class="fas fa-user-circle me-2 text-primary"></i> Profile
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt me-2"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-      </div>
     </div>
   </div>
 </nav>
