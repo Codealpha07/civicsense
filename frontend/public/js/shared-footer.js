@@ -134,7 +134,7 @@
               <div class="footer-section">
                 <h6>Quick Links</h6>
                 <ul class="list-unstyled">
-                  <li class="mb-2"><a href="/about.html" class="footer-link"><i class="fas fa-info-circle me-2"></i>About CivicVerse</a></li>
+                  <li class="mb-2"><a href="/about.html" class="footer-link"><i class="fas fa-info-circle me-2"></i>About CivicSense</a></li>
                   <li class="mb-2"><a href="/citizen-dashboard.html" class="footer-link"><i class="fas fa-tachometer-alt me-2"></i>Dashboard</a></li>
                   <li class="mb-2"><a href="/contact.html" class="footer-link"><i class="fas fa-envelope me-2"></i>Contact Us</a></li>
                 </ul>

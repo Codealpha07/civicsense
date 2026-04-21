@@ -32,8 +32,8 @@
         localStorage.removeItem('role');
         
         // Redirect to main landing page (citizen portal)
-        // Usually http://localhost:3000 in dev
-        window.location.href = 'http://localhost:3000/';
+        // PRODUCTION: https://civicsense-4861.onrender.com/
+        window.location.href = 'https://civicsense-4861.onrender.com/';
       });
     }
 
